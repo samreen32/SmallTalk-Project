@@ -83,7 +83,7 @@ function Reports() {
         <>
           <Toolbar>
             <form
-              class="d-flex"
+              className="d-flex"
               role="search"
               style={{
                 borderRadius: "18px",
@@ -106,7 +106,7 @@ function Reports() {
                 <SearchIcon />
               </SearchIconWrapper>
               <input
-                class="form-control me-2 mx-5"
+                className="form-control me-2 mx-5"
                 style={{ width: "75%", backgroundColor: "#f7f7f5" }}
                 type="text"
                 id="search"

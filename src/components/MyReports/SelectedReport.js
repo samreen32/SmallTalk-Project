@@ -361,63 +361,63 @@ export default function SelectedReport() {
 
       {/* Vocabulary content 4 small div's */}
       <div
-        class="row my-5"
+        className="row my-5"
         style={{ textAlign: "center", padding: "0 25px 0 25px" }}
       >
-        <div class="col-sm-3 mb-3 mb-sm-0">
-          <div class="card" style={{ borderRadius: "25px", padding: "15px" }}>
-            <div class="card-body">
+        <div className="col-sm-3 mb-3 mb-sm-0">
+          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+            <div className="card-body">
               <p style={{ color: "#606070" }}>Active Vocabulary</p>
-              <h5 class="card-title">
+              <h5 className="card-title">
                 <b>
                   {total_words}&nbsp;<sub>words</sub>
                 </b>
               </h5>
-              <p class="card-text">
+              <p className="card-text">
                 correspond to level C1, the next level C2 starts with 10000
                 words
               </p>
             </div>
           </div>
         </div>
-        <div class="col-sm-3 mb-3 mb-sm-0">
-          <div class="card" style={{ borderRadius: "25px", padding: "15px" }}>
-            <div class="card-body">
+        <div className="col-sm-3 mb-3 mb-sm-0">
+          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+            <div className="card-body">
               <p style={{ color: "#606070" }}>Unique words</p>
-              <h5 class="card-title">
+              <h5 className="card-title">
                 <b>
                   {totalUniqueWords}&nbsp;<sub>words</sub>
                 </b>
               </h5>
-              <p class="card-text">that used only once in your speech</p>
+              <p className="card-text">that used only once in your speech</p>
             </div>
           </div>
         </div>
-        <div class="col-sm-3 mb-3 mb-sm-0">
-          <div class="card" style={{ borderRadius: "25px", padding: "15px" }}>
-            <div class="card-body">
+        <div className="col-sm-3 mb-3 mb-sm-0">
+          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+            <div className="card-body">
               <p style={{ color: "#606070" }}>Rare words</p>
-              <h5 class="card-title">
+              <h5 className="card-title">
                 <b>
                   7482&nbsp;<sub>%</sub>
                 </b>
               </h5>
-              <p class="card-text">
+              <p className="card-text">
                 words that are not among the 5,000 most common English
               </p>
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="card" style={{ borderRadius: "25px", padding: "15px" }}>
-            <div class="card-body">
+        <div className="col-sm-3">
+          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+            <div className="card-body">
               <p style={{ color: "#606070" }}>Frequently used words</p>
-              <h5 class="card-title">
+              <h5 className="card-title">
                 <b>
                   7482&nbsp;<sub>%</sub>
                 </b>
               </h5>
-              <p class="card-text">
+              <p className="card-text">
                 words that are among the 2,000 most frequently used English
                 words
               </p>
@@ -522,14 +522,14 @@ export default function SelectedReport() {
           <div className="card" style={{ borderRadius: "25px" }}>
             <div className="card-body mx-4 ">
               <div style={{ fontWeight: "bold", padding: "25px 0" }}>
-                <i class="fa fa-volume-up fa-xl" aria-hidden="true"></i>
+                <i className="fa fa-volume-up fa-xl" aria-hidden="true"></i>
                 <h8 className="card-title mx-3">
                   Most difficult words to pronounce
                 </h8>
               </div>
               <div className="row">
                 <div className="col-md-12">
-                  <table class="table" style={{ textAlign: "center" }}>
+                  <table className="table" style={{ textAlign: "center" }}>
                     <thead style={{ color: "#606070" }}>
                       <tr>
                         <th scope="col">Word</th>
@@ -584,7 +584,7 @@ export default function SelectedReport() {
               </div>
               <div className="row">
                 <div className="col-md-12">
-                  <table class="table" style={{ textAlign: "center" }}>
+                  <table className="table" style={{ textAlign: "center" }}>
                     <thead style={{ color: "#606070" }}>
                       <tr>
                         <th scope="col">#</th>
@@ -631,7 +631,7 @@ export default function SelectedReport() {
               >
                 <p>
                   <i
-                    class="fa fa-exclamation-circle mx-2"
+                    className="fa fa-exclamation-circle mx-2"
                     aria-hidden="true"
                   ></i>
                   <b> Experimental block</b>

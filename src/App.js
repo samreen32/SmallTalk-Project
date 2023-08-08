@@ -13,6 +13,7 @@ import Reports from "./components/MyReports/Reports";
 import SelectedReport from "./components/MyReports/SelectedReport";
 import PIHome from "./components/PredictiveIndex/PIHome";
 import PISecondScreen from "./components/PredictiveIndex/PISecondScreen";
+import PIThirdScreen from "./components/PredictiveIndex/PIThirdScreen";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <div style={{ fontFamily: "Roboto, sans-serif" }}>
         <Router>
           <Navbar />
-        
+
           {/* <Register /> */}
           {/* <Login />
           <Register />
@@ -45,10 +46,15 @@ function App() {
               path="/SelectedReport"
               element={<SelectedReport />}
             ></Route>
-             <Route
+            <Route
               exact
               path="/PISecondScreen"
               element={<PISecondScreen />}
+            ></Route>
+            <Route
+              exact
+              path="/PIThirdScreen"
+              element={<PIThirdScreen />}
             ></Route>
           </Routes>
         </Router>

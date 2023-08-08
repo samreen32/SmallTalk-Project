@@ -134,7 +134,7 @@ export default function LoginSmallTalk() {
                   ),
                 }}
               />
-              <div id="emailHelp" class="form-text">
+              <div id="emailHelp" className="form-text">
                 <a
                   href="ww.google.com"
                   style={{

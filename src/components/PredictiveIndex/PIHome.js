@@ -55,12 +55,21 @@ function PIHome() {
       </h3>
       <br />
       <form>
+        {/* Languages */}
         <div className="mb-3">
           <label for="exampleInputEmail1" className="form-label">
             <h8>
-              <b>Language</b>
+              <b>Language *</b>
             </h8>
-            <div className="form-text">
+            <div
+              className="my-1"
+              style={{
+                marginRight: "10rem",
+                marginBottom: "2rem",
+                display: "block",
+                color: "gray",
+              }}
+            >
               <i>
                 Please select the language in which you prefer to complete the
                 assessment. Your language selection is not reflected in your
@@ -79,21 +88,23 @@ function PIHome() {
           >
             <MenuItem value="english">English</MenuItem>
             <MenuItem value="spanish">Spanish</MenuItem>
-            <MenuItem value="spanish">Urdu</MenuItem>
-            <MenuItem value="spanish">French</MenuItem>
+            <MenuItem value="urdu">Urdu</MenuItem>
+            <MenuItem value="french">French</MenuItem>
           </Select>
         </div>
 
+        {/* Purple * Statement */}
         <div className="mx-5 my-5" style={{ color: "purple" }}>
           <b>To continue, complete the required fields (*) as indicated.</b>
         </div>
 
+        {/* First, Middle, Last Name */}
         <div
           className="input-group my-5"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
           <div style={{ textAlign: "left", flex: 1 }}>
-            <div>First name</div>
+            <div>First name *</div>
             <TextField
               variant="outlined"
               name="firstName"
@@ -125,7 +136,7 @@ function PIHome() {
             />
           </div>
           <div style={{ textAlign: "left", flex: 1 }}>
-            <div>Last name</div>
+            <div>Last name *</div>
             <TextField
               variant="outlined"
               name="lastName"
@@ -142,13 +153,14 @@ function PIHome() {
           </div>
         </div>
 
+        {/* Email */}
         <div className="my-5">
           <label
             className="form-label"
             style={{ marginBottom: "0.5rem", display: "block" }}
           >
             <h8>
-              <b>Email</b>
+              <b>Email *</b>
             </h8>
           </label>
           <TextField
@@ -164,6 +176,7 @@ function PIHome() {
           />
         </div>
 
+        {/* CheckBoxes */}
         <div className="mb-3 form-check">
           <input
             type="checkbox"
@@ -194,6 +207,7 @@ function PIHome() {
             </>
           )}
         </div>
+
         <div className="mb-3 form-check">
           <input
             type="checkbox"
@@ -205,6 +219,8 @@ function PIHome() {
             optional questions.
           </label>
         </div>
+
+        {/* Continue Button */}
         <Link
           type="submit"
           className="btn btn-primary"
@@ -213,6 +229,7 @@ function PIHome() {
         >
           Continue
         </Link>
+
         <br />
         <br />
         <br />
