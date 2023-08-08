@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PIThirdScreen() {
   return (
@@ -16,7 +17,7 @@ function PIThirdScreen() {
         <p>
           <b>A few guidelines to know before you begin:</b>
         </p>
-        <ul class="">
+        <ul className="">
           <li className="">
             The assessment is untimed, but typically takes six minutes.
           </li>
@@ -36,6 +37,29 @@ function PIThirdScreen() {
           <b>Please note:</b> it is not possible to edit or review your
           responses once they have been submitted.
         </p>
+      </div>
+
+      {/* Buttons */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "40px",
+        }}
+      >
+        <Link className="btn btn-outline-secondary" to="/PISecondScreen">
+          Back
+        </Link>
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <Link
+            type="submit"
+            className="btn btn-primary"
+            style={{}}
+            to="/PIFourthScreen"
+          >
+            Continue
+          </Link>
+        </div>
       </div>
     </div>
   );
