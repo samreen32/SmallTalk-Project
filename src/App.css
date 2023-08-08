@@ -1,0 +1,499 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* CUSTOME STYLING */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+/* Rocket Styling */
+.image-container {
+  position: absolute;
+  top: -90px;
+  right: -50px;
+  margin-right: 20px;
+}
+.form-container {
+  padding: 20px;
+}
+
+/* Button Styling */
+.button {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: floralwhite;
+  padding: 0.5rem 10rem;
+  border-radius: 5rem;
+  transition: 0.3s;
+  background-color: #5cb3cf;
+  font-weight: bold;
+  font-size: 17px;
+  border: none;
+  width: 100%;
+  flex-shrink: 0;
+  white-space: normal;
+}
+
+.button--flex {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .button {
+    padding: 0.5rem 6rem;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .button {
+    padding: 0.5rem 4rem;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .button {
+    padding: 0.5rem 3rem;
+    font-size: 13px;
+  }
+}
+
+/* Lines Styling */
+.arrow-line {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.arrow-line p {
+  display: inline-block;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  padding: 0 10px;
+}
+
+.arrow-line::before,
+.arrow-line::after {
+  content: "";
+  display: inline-block;
+  flex-grow: 1;
+  height: 1px;
+  background-color: #000;
+}
+
+.arrow-line::before {
+  margin-right: 10px;
+}
+
+.arrow-line::after {
+  margin-left: 10px;
+}
+
+/* Google / Apple ID Styling */
+.rectangle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 45px;
+  border: 2px solid black;
+  margin: 10px;
+  cursor: pointer;
+  color: black;
+  padding: 0.5rem 0rem;
+  border-radius: 5rem;
+  transition: 0.3s;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+}
+
+.rectangle i {
+  font-size: 20px;
+  color: black;
+  margin-right: 5px;
+}
+
+/* Password / Forgot Password Styling */
+.mb-3 {
+  position: relative;
+}
+
+.form-text-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-text {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .form-text-container {
+    flex-wrap: wrap;
+  }
+
+  .form-label {
+    margin-bottom: 10px;
+  }
+}
+
+/* Register page Styling */
+.welcomeBack {
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 127.5%;
+}
+
+.toStay {
+  color: #fff;
+  text-align: center;
+  font-size: 1.1vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 127.5%;
+}
+
+.signInBtn {
+  border-radius: 5px;
+  background: #30b596;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(30px);
+  width: 100%;
+  max-width: 260px;
+  height: 42px;
+  flex-shrink: 0;
+  color: floralwhite;
+  transition: 0.3s;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #30b596;
+  margin: 7px;
+  cursor: pointer;
+}
+.circle i {
+  color: white;
+}
+
+.textInput {
+  display: flex;
+  width: 318px;
+  height: 42px;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #3eb599;
+}
+
+.homeBtn {
+  display: flex;
+  width: 130px;
+  height: 32px;
+  font-size: 14px;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #04d39c;
+  color: floralwhite;
+  transition: 0.3s;
+}
+
+.custom-dropdown .dropdown-menu {
+  left: -120px;
+}
+
+.dropdown-width {
+  width: 200px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.img-container img {
+  max-width: 250px;
+}
+
+.week-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+}
+
+.circle-container {
+  text-align: center;
+}
+
+.circle {
+  cursor: pointer;
+  display: inline-block;
+  color: floralwhite;
+  padding: 0.5rem 0.5rem;
+  border-radius: 50%;
+  transition: 0.3s;
+  background-color: #f0a500;
+  font-size: 1.1vw;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.highlight {
+  background-color: #3399ff;
+  color: #fff;
+}
+@media (max-width: 518px) {
+  .week-container {
+    flex-wrap: wrap;
+  }
+}
+
+/* Nvbar Styling*/
+.navbar-nav .nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 20px 10px;
+  border-radius: 40px;
+  width: 130px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: #f9f9fa;
+}
+
+/* Profile icon Styling */
+.nav-link-home {
+  display: block;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: var(--bs-nav-link-font-weight);
+  color: var(--bs-nav-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+.nav-link-home:hover {
+  color: var(--bs-nav-link-color);
+}
+.navbar-nav .nav-item:hover .nav-link::after {
+  transform: translateX(-50%) scale(1);
+}
+
+@media (max-width: 600px) {
+  .card1 {
+    width: 80%;
+    height: 70%;
+  }
+}
+
+.circle-image {
+  position: absolute;
+  top: 5%;
+  right: 15%;
+  width: 40%;
+  max-width: 350px;
+  height: auto;
+  opacity: 0.5;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .circle-image {
+    top: 10%;
+    right: 10%;
+    width: 50%;
+    max-width: 300px;
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  .circle-image {
+    top: 15%;
+    right: 5%;
+    width: 60%;
+    max-width: 250px;
+  }
+}
+
+.card {
+  cursor: pointer;
+}
+
+/* First Checklist */
+ul.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+ul.checklist li {
+  position: relative;
+  padding-left: 40px;
+  line-height: 1.5;
+}
+
+ul.checklist li:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  text-align: center;
+}
+
+ul.checklist li:before {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  color: white;
+  position: absolute;
+  left: 4px;
+  top: 0;
+  font-size: 14px;
+}
+
+/* Checklist 2 */
+ul.checklist-2 {
+  list-style: none;
+  padding: 0;
+}
+
+ul.checklist-2 li {
+  position: relative;
+  padding-left: 40px;
+  line-height: 1.5;
+}
+
+ul.checklist-2 li:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  text-align: center;
+}
+
+ul.checklist-2 li:before {
+  content: "\f12a";
+  font-family: "FontAwesome";
+  color: white;
+  position: absolute;
+  left: 4px;
+  top: 0;
+  font-size: 14px;
+}
+
+.rounded-lg {
+  border-radius: 200px;
+}
+
+.highlighted {
+  background-color: white;
+  border-radius: 200px;
+  padding: 12px;
+  margin: 0;
+  width: 35%;
+}
+
+.col-md-8.offset-md-2 p {
+  margin: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.selected-card {
+  background-color: red;
+  color: white;
+}
+
+.customWidth .MuiBottomNavigationAction-label {
+  min-width: 190px;
+}
