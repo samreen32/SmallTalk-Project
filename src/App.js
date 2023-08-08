@@ -12,6 +12,7 @@ import InterviewQs from "./components/InterviewScreens/InterviewQs";
 import Reports from "./components/MyReports/Reports";
 import SelectedReport from "./components/MyReports/SelectedReport";
 import PIHome from "./components/PredictiveIndex/PIHome";
+import PISecondScreen from "./components/PredictiveIndex/PISecondScreen";
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
               exact
               path="/SelectedReport"
               element={<SelectedReport />}
+            ></Route>
+             <Route
+              exact
+              path="/PISecondScreen"
+              element={<PISecondScreen />}
             ></Route>
           </Routes>
         </Router>

@@ -205,7 +205,12 @@ function PIHome() {
             optional questions.
           </label>
         </div>
-        <Link type="submit" className="btn btn-primary" to="">
+        <Link
+          type="submit"
+          className="btn btn-primary"
+          // style={{ backgroundColor: "#00A9FF" }}
+          to="/PISecondScreen"
+        >
           Continue
         </Link>
         <br />

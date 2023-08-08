@@ -135,121 +135,121 @@ export default function InterviewQs() {
   /* Function to handle the audio and send it to server */
   const handleAudio = async () => {
     try {
-      const response = await axios.get(
-        "http://192.168.18.74:8000/user/get-csrf-token/"
-      );
-      console.log("dhsf");
-      if (!recordedAudio) {
-        console.error("No audio recorded.");
-        return;
-      }
-      console.log("end");
+      // const response = await axios.get(
+      //   "http://192.168.18.74:8000/user/get-csrf-token/"
+      // );
+      // console.log("dhsf");
+      // if (!recordedAudio) {
+      //   console.error("No audio recorded.");
+      //   return;
+      // }
+      // console.log("end");
 
-      const blob = await fetchBlobFromUrl(recordedAudio);
-      const wavBlob = await blobToWav(blob);
-      console.log("converted audio to WAV:", wavBlob);
+      // const blob = await fetchBlobFromUrl(recordedAudio);
+      // const wavBlob = await blobToWav(blob);
+      // console.log("converted audio to WAV:", wavBlob);
 
-      const formData = new FormData();
-      formData.append("file", wavBlob);
-      console.log("recorded audio getting ", wavBlob);
+      // const formData = new FormData();
+      // formData.append("file", wavBlob);
+      // console.log("recorded audio getting ", wavBlob);
 
-      // Set the X-CSRF token in the request headers
-      axios.defaults.headers.common["X-CSRFToken"] = response.data.csrfToken;
-      console.log("getting token", response.data.csrfToken);
+      // // Set the X-CSRF token in the request headers
+      // axios.defaults.headers.common["X-CSRFToken"] = response.data.csrfToken;
+      // console.log("getting token", response.data.csrfToken);
 
-      const result = await axios.post(
-        "http://192.168.18.74:8000/test/english/get-answer/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
+      // const result = await axios.post(
+      //   "http://192.168.18.74:8000/test/english/get-answer/",
+      //   formData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   }
+      // );
+
+      const result = {
+        context:
+          " Please call Stela. Ask her about to bring a big toy frog for the kids. She can scoop these things into three red bags and we will go meet her Wednesday at the train station.",
+        similarity_score: [75.15367269515991],
+        vocabulary_proficiency: {
+          "Most Common Words:": [
+            ["please", 1],
+            ["call", 1],
+            ["stela", 1],
+            ["ask", 1],
+            ["bring", 1],
+            ["big", 1],
+            ["toy", 1],
+            ["frog", 1],
+            ["kids", 1],
+            ["scoop", 1],
+          ],
+          "Total Words:": 38,
+          "Total Unique Words:": 19,
+          "Lexical Diversity:": 0.5,
+          level_words: {
+            beginner: [
+              "toy",
+              "station",
+              "big",
+              "kids",
+              "stela",
+              "wednesday",
+              "please",
+              "bring",
+              "red",
+              "meet",
+            ],
+            elementary: [
+              "bags",
+              "ask",
+              "three",
+              "train",
+              "go",
+              "frog",
+              "scoop",
+              "things",
+            ],
+            intermediate: ["call"],
+            "upper-intermediate": [""],
+            advanced: [""],
           },
-        }
-      );
+          level_words_percentage: {
+            beginner: 52.63157894736842,
+            elementary: 42.10526315789473,
+            intermediate: 5.263157894736842,
+            "upper-intermediate": 0.0,
+            advanced: 0.0,
+          },
+        },
+        word_per_minute: 43,
+        duration: "0 Min 48 Sec",
+        grammar_mistakes: [
+          {
+            context:
+              " Please call Stela. Ask her about to bring a big toy frog ...",
+            issue: "misspelling",
+            start: 13,
+            end: 18,
+            suggestion: ["Steal", "Stella", "Estela"],
+          },
+          {
+            context:
+              "...n scoop these things into three red bags and we will go meet her Wednesday at the tr...",
+            issue: "typographical",
+            start: 118,
+            end: 122,
+            suggestion: [", and"],
+          },
+        ],
+      };
 
-      // const result = {
-      //   context:
-      //     " Please call Stela. Ask her about to bring a big toy frog for the kids. She can scoop these things into three red bags and we will go meet her Wednesday at the train station.",
-      //   similarity_score: [75.15367269515991],
-      //   vocabulary_proficiency: {
-      //     "Most Common Words:": [
-      //       ["please", 1],
-      //       ["call", 1],
-      //       ["stela", 1],
-      //       ["ask", 1],
-      //       ["bring", 1],
-      //       ["big", 1],
-      //       ["toy", 1],
-      //       ["frog", 1],
-      //       ["kids", 1],
-      //       ["scoop", 1],
-      //     ],
-      //     "Total Words:": 38,
-      //     "Total Unique Words:": 19,
-      //     "Lexical Diversity:": 0.5,
-      //     level_words: {
-      //       beginner: [
-      //         "toy",
-      //         "station",
-      //         "big",
-      //         "kids",
-      //         "stela",
-      //         "wednesday",
-      //         "please",
-      //         "bring",
-      //         "red",
-      //         "meet",
-      //       ],
-      //       elementary: [
-      //         "bags",
-      //         "ask",
-      //         "three",
-      //         "train",
-      //         "go",
-      //         "frog",
-      //         "scoop",
-      //         "things",
-      //       ],
-      //       intermediate: ["call"],
-      //       "upper-intermediate": [""],
-      //       advanced: [""],
-      //     },
-      //     level_words_percentage: {
-      //       beginner: 52.63157894736842,
-      //       elementary: 42.10526315789473,
-      //       intermediate: 5.263157894736842,
-      //       "upper-intermediate": 0.0,
-      //       advanced: 0.0,
-      //     },
-      //   },
-      //   word_per_minute: 43,
-      //   duration: "0 Min 48 Sec",
-      //   grammar_mistakes: [
-      //     {
-      //       context:
-      //         " Please call Stela. Ask her about to bring a big toy frog ...",
-      //       issue: "misspelling",
-      //       start: 13,
-      //       end: 18,
-      //       suggestion: ["Steal", "Stella", "Estela"],
-      //     },
-      //     {
-      //       context:
-      //         "...n scoop these things into three red bags and we will go meet her Wednesday at the tr...",
-      //       issue: "typographical",
-      //       start: 118,
-      //       end: 122,
-      //       suggestion: [", and"],
-      //     },
-      //   ],
-      // };
-
-      setResponseData((prevData) => [...prevData, result.data]);
-      console.log("Getting Response:", result.data);
-      localStorage.setItem(
-        "responseData",
-        JSON.stringify([...responseData, result.data])
-      );
+      setResponseData((prevData) => [...prevData, result]);
+      console.log("Getting Response:", result);
+      // localStorage.setItem(
+      //   "responseData",
+      //   JSON.stringify([...responseData, result])
+      // );
     } catch (error) {
       console.error(error);
     }

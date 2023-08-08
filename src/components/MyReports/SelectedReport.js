@@ -32,6 +32,7 @@ export default function SelectedReport() {
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -60,8 +61,7 @@ export default function SelectedReport() {
     }
   });
 
-  const [isHovering, setIsHovering] = useState(false);
-
+  /* Function for showing audio on rammer mistakes */
   const handleMouseEnter = () => {
     console.log("mouse enter");
     setIsHovering(true);
@@ -72,8 +72,8 @@ export default function SelectedReport() {
     setIsHovering(false);
   };
 
-  /* Function to Highlight Grammar Mistakes */
-  const highlightMistakes = (text, suggestions) => {
+  /* Function to Highlight Prounciation Mistakes */
+  const highlightProunMistakes = (text, suggestions) => {
     if (!suggestions || suggestions.length === 0) return text;
     const characters = text.split("");
     suggestions.forEach((suggestion, i) => {
@@ -136,6 +136,55 @@ export default function SelectedReport() {
   //   });
   //   return markedContext;
   // };
+
+  /* Function to Highlight Grammer Mistakes */
+  const highlightGrammerMistakes = (text, suggestions) => {
+    if (!suggestions || suggestions.length === 0) return text;
+
+    const characters = text.split("");
+    const highlightedText = [];
+    let currentIndex = 0;
+
+    suggestions.forEach((suggestion) => {
+      const start = suggestion.start;
+      const end = suggestion.end;
+
+      // Add the text before the mistake
+      for (let i = currentIndex; i < start; i++) {
+        highlightedText.push(characters[i]);
+        currentIndex++;
+      }
+
+      // Highlight suggestions in green
+      suggestion.suggestion.forEach((word, j) => {
+        highlightedText.push(
+          <span
+            key={currentIndex + j}
+            style={{ color: "green", position: "relative" }}
+          >
+            {word}{" "}
+          </span>
+        );
+        currentIndex += word.length + 1;
+      });
+
+      // Highlight mistakes in red
+      const mistakeText = characters.slice(start, end + 1).join("");
+      highlightedText.push(
+        <span key={currentIndex} style={{ color: "red", position: "relative" }}>
+          <strike>{mistakeText}</strike>
+        </span>
+      );
+      currentIndex += mistakeText.length;
+    });
+
+    // Add the remaining text
+    for (let i = currentIndex; i < characters.length; i++) {
+      highlightedText.push(characters[i]);
+    }
+
+    return highlightedText;
+  };
 
   /* Highest Level based on Words */
   useEffect(() => {
@@ -217,7 +266,7 @@ export default function SelectedReport() {
     setValue(newValue);
   };
 
-  /* Function for Audio upon Grammer Mistakes */
+  /* Function for Audio upon Prounciation Mistakes */
   const handleAudioClick = (text) => {
     if (currentlyPlaying) {
       window.speechSynthesis.cancel();
@@ -451,14 +500,14 @@ export default function SelectedReport() {
                   <u>Pronunciation mistakes</u>
                 </h9>
                 &nbsp; &nbsp;
-                <h9 style={{ backgroundColor: "orange" }}>
+                <h9 style={{ backgroundColor: "#f5e06c" }}>
                   <u>Phonetic inaccuracies that change the meaning</u>
                 </h9>
               </div>
               <div className="row">
                 <div className="col-md-12">
                   <p className="card-text">
-                    {highlightMistakes(context, grammar_mistakes)}
+                    {highlightProunMistakes(context, grammar_mistakes)}
                   </p>
                 </div>
               </div>
@@ -467,7 +516,7 @@ export default function SelectedReport() {
         </div>
       </div>
 
-      {/* Prouncation Mistakes */}
+      {/* Prouncation Mistakes Table*/}
       <div className="row mb-3">
         <div className="col-md-12" style={{ padding: "0 30px" }}>
           <div className="card" style={{ borderRadius: "25px" }}>
@@ -524,8 +573,7 @@ export default function SelectedReport() {
 
     /* Grmmer mistakes */
     <div>
-      {/* Card 3 content */}
-
+      {/* Articles in Grammer */}
       <div className="row mb-3">
         <div className="col-md-12" style={{ padding: "0 30px" }}>
           <div className="card" style={{ borderRadius: "25px" }}>
@@ -549,15 +597,66 @@ export default function SelectedReport() {
                       <tr>
                         <td>1</td>
                         <td>Articles</td>
-                        <td>
-                          3
-                        </td>
-                        <td>
-                          
-                        </td>
+                        <td>3</td>
+                        <td></td>
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mistakes in Detail */}
+      <div className="row mb-3">
+        <div className="col-md-12" style={{ padding: "0 30px" }}>
+          <div className="card" style={{ borderRadius: "25px" }}>
+            <div className="card-body mx-4 ">
+              <div
+                style={{
+                  fontWeight: "bold",
+                  padding: "25px 0",
+                }}
+              >
+                <h8 className="card-title mx-2">Mistakes in detail</h8>
+              </div>
+              <div
+                style={{
+                  backgroundColor: "#F5F5F5",
+                  borderRadius: "10px",
+                  padding: "20px 30px 10px 10px",
+                }}
+              >
+                <p>
+                  <i
+                    class="fa fa-exclamation-circle mx-2"
+                    aria-hidden="true"
+                  ></i>
+                  <b> Experimental block</b>
+                </p>
+                <p className="mx-2">
+                  This block serves for experimental purposes, and some of our
+                  English learners consider it useful. If you spot any words you
+                  haven’t pronounced, please check your environment for
+                  unexpected noise and try to speak clearly. These issues won’t
+                  impact your overall score.
+                </p>
+              </div>
+              <div className="my-4" style={{ color: "green" }}>
+                <strike className="mx-2" style={{ color: "red" }}>
+                  mistake
+                </strike>
+                {"  "}
+                <strike className="mx-3" style={{ color: "#EDBA5C" }}>
+                  speech error
+                </strike>{" "}
+                suggestion
+              </div>
+              <div className="row">
+                <div className="col-md-12 mx-3 my-5">
+                  <p>{highlightGrammerMistakes(context, grammar_mistakes)}</p>
                 </div>
               </div>
             </div>
