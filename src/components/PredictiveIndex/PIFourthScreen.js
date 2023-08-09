@@ -16,310 +16,312 @@ function PIFourthScreen() {
       </div>
 
       {/* CheckBox Content */}
-      <div className="row">
-        <div className="col">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
-            />
-            <label className="form-check-label" for="inlineCheckbox1">
-              1
-            </label>
+      <div style={{ padding: "0 10px 0 50px" }}>
+        <div className="row">
+          <div className="col mx-5">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox1"
+                value="option1"
+              />
+              <label className="form-check-label" for="inlineCheckbox1">
+                1
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox2"
+                value="option2"
+              />
+              <label className="form-check-label" for="inlineCheckbox2">
+                2
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox3"
+                value="option3"
+              />
+              <label className="form-check-label" for="inlineCheckbox3">
+                3
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox4"
+                value="option4"
+              />
+              <label className="form-check-label" for="inlineCheckbox4">
+                4
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox5"
+                value="option5"
+              />
+              <label className="form-check-label" for="inlineCheckbox5">
+                5
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox6"
+                value="option6"
+              />
+              <label className="form-check-label" for="inlineCheckbox6">
+                6
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox7"
+                value="option7"
+              />
+              <label className="form-check-label" for="inlineCheckbox7">
+                7
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox8"
+                value="option8"
+              />
+              <label className="form-check-label" for="inlineCheckbox8">
+                8
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox9"
+                value="option9"
+              />
+              <label className="form-check-label" for="inlineCheckbox9">
+                9
+              </label>
+            </div>
           </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
-            />
-            <label className="form-check-label" for="inlineCheckbox2">
-              2
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox3"
-              value="option3"
-            />
-            <label className="form-check-label" for="inlineCheckbox3">
-              3
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox4"
-              value="option4"
-            />
-            <label className="form-check-label" for="inlineCheckbox4">
-              4
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox5"
-              value="option5"
-            />
-            <label className="form-check-label" for="inlineCheckbox5">
-              5
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox6"
-              value="option6"
-            />
-            <label className="form-check-label" for="inlineCheckbox6">
-              6
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox7"
-              value="option7"
-            />
-            <label className="form-check-label" for="inlineCheckbox7">
-              7
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox8"
-              value="option8"
-            />
-            <label className="form-check-label" for="inlineCheckbox8">
-              8
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox9"
-              value="option9"
-            />
-            <label className="form-check-label" for="inlineCheckbox9">
-              9
-            </label>
-          </div>
-        </div>
 
-        <div className="col">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
-            />
-            <label className="form-check-label" for="inlineCheckbox1">
-              1
-            </label>
+          <div className="col mx-5">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox1"
+                value="option1"
+              />
+              <label className="form-check-label" for="inlineCheckbox1">
+                1
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox2"
+                value="option2"
+              />
+              <label className="form-check-label" for="inlineCheckbox2">
+                2
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox3"
+                value="option3"
+              />
+              <label className="form-check-label" for="inlineCheckbox3">
+                3
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox4"
+                value="option4"
+              />
+              <label className="form-check-label" for="inlineCheckbox4">
+                4
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox5"
+                value="option5"
+              />
+              <label className="form-check-label" for="inlineCheckbox5">
+                5
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox6"
+                value="option6"
+              />
+              <label className="form-check-label" for="inlineCheckbox6">
+                6
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox7"
+                value="option7"
+              />
+              <label className="form-check-label" for="inlineCheckbox7">
+                7
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox8"
+                value="option8"
+              />
+              <label className="form-check-label" for="inlineCheckbox8">
+                8
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox9"
+                value="option9"
+              />
+              <label className="form-check-label" for="inlineCheckbox9">
+                9
+              </label>
+            </div>
           </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
-            />
-            <label className="form-check-label" for="inlineCheckbox2">
-              2
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox3"
-              value="option3"
-            />
-            <label className="form-check-label" for="inlineCheckbox3">
-              3
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox4"
-              value="option4"
-            />
-            <label className="form-check-label" for="inlineCheckbox4">
-              4
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox5"
-              value="option5"
-            />
-            <label className="form-check-label" for="inlineCheckbox5">
-              5
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox6"
-              value="option6"
-            />
-            <label className="form-check-label" for="inlineCheckbox6">
-              6
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox7"
-              value="option7"
-            />
-            <label className="form-check-label" for="inlineCheckbox7">
-              7
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox8"
-              value="option8"
-            />
-            <label className="form-check-label" for="inlineCheckbox8">
-              8
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox9"
-              value="option9"
-            />
-            <label className="form-check-label" for="inlineCheckbox9">
-              9
-            </label>
-          </div>
-        </div>
 
-        <div className="col">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
-            />
-            <label className="form-check-label" for="inlineCheckbox1">
-              1
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox2"
-              value="option2"
-            />
-            <label className="form-check-label" for="inlineCheckbox2">
-              2
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox3"
-              value="option3"
-            />
-            <label className="form-check-label" for="inlineCheckbox3">
-              3
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox4"
-              value="option4"
-            />
-            <label className="form-check-label" for="inlineCheckbox4">
-              4
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox5"
-              value="option5"
-            />
-            <label className="form-check-label" for="inlineCheckbox5">
-              5
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox6"
-              value="option6"
-            />
-            <label className="form-check-label" for="inlineCheckbox6">
-              6
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox7"
-              value="option7"
-            />
-            <label className="form-check-label" for="inlineCheckbox7">
-              7
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox8"
-              value="option8"
-            />
-            <label className="form-check-label" for="inlineCheckbox8">
-              8
-            </label>
-          </div>
-          <div className="form-check my-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox9"
-              value="option9"
-            />
-            <label className="form-check-label" for="inlineCheckbox9">
-              9
-            </label>
+          <div className="col mx-5">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox1"
+                value="option1"
+              />
+              <label className="form-check-label" for="inlineCheckbox1">
+                1
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox2"
+                value="option2"
+              />
+              <label className="form-check-label" for="inlineCheckbox2">
+                2
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox3"
+                value="option3"
+              />
+              <label className="form-check-label" for="inlineCheckbox3">
+                3
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox4"
+                value="option4"
+              />
+              <label className="form-check-label" for="inlineCheckbox4">
+                4
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox5"
+                value="option5"
+              />
+              <label className="form-check-label" for="inlineCheckbox5">
+                5
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox6"
+                value="option6"
+              />
+              <label className="form-check-label" for="inlineCheckbox6">
+                6
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox7"
+                value="option7"
+              />
+              <label className="form-check-label" for="inlineCheckbox7">
+                7
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox8"
+                value="option8"
+              />
+              <label className="form-check-label" for="inlineCheckbox8">
+                8
+              </label>
+            </div>
+            <div className="form-check my-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox9"
+                value="option9"
+              />
+              <label className="form-check-label" for="inlineCheckbox9">
+                9
+              </label>
+            </div>
           </div>
         </div>
       </div>

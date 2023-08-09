@@ -41,10 +41,6 @@ export default function InterviewQs() {
   const handleFinishInterview = () => {
     setIsTimerRunning(false);
     setTimerValue(0);
-    const newWindow = window.open("_blank");
-    if (newWindow) {
-      newWindow.focus();
-    }
   };
 
   /* Recording States */
@@ -256,6 +252,8 @@ export default function InterviewQs() {
   };
 
   const handleEndInterview = () => {
+    setIsTimerRunning(false);
+    setTimerValue(0);
     handleAudio();
     console.log("Interview Ended!");
   };
@@ -619,6 +617,7 @@ export default function InterviewQs() {
               <Link
                 to="/"
                 className="btn"
+                data-bs-dismiss="modal"
                 style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
                 onClick={handleFinishInterview}
               >
