@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function PIFourthScreen() {
+function PIFivthScreen() {
   return (
-    <div style={{ padding: "7% 10%" }}>
-  <h2>
+    <div style={{ padding: "50px 150px 0 150px" }}>
+      <h2>
         <b>The Predictive Index®</b>
       </h2>
 
       <div className="my-5">
         <p>
-          Please read the words in the list below and check those that you feel
-          describe <b>the way you are expected to act by others at work.</b>
+          Please read the list of words below and check those that you yourself
+          believe <b>really describe you as you are.</b>
         </p>
       </div>
 
@@ -334,17 +334,12 @@ function PIFourthScreen() {
           marginTop: "40px",
         }}
       >
-        <Link className="btn btn-outline-secondary" to="/PIThirdScreen">
+        <Link className="btn btn-outline-secondary" to="/PIFourthScreen">
           Back
         </Link>
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-          <Link
-            type="submit"
-            className="btn btn-primary"
-            style={{}}
-            to="/PIFivthScreen"
-          >
-            Continue
+          <Link type="submit" className="btn btn-primary" style={{}} to="/PILastScreen">
+            Submit
           </Link>
         </div>
       </div>
@@ -352,4 +347,4 @@ function PIFourthScreen() {
   );
 }
 
-export default PIFourthScreen;
+export default PIFivthScreen;

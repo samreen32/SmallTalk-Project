@@ -15,6 +15,7 @@ import PIHome from "./components/PredictiveIndex/PIHome";
 import PISecondScreen from "./components/PredictiveIndex/PISecondScreen";
 import PIThirdScreen from "./components/PredictiveIndex/PIThirdScreen";
 import PIFourthScreen from "./components/PredictiveIndex/PIFourthScreen";
+import PIFivthScreen from "./components/PredictiveIndex/PIFivthScreen";
 import PILastScreen from "./components/PredictiveIndex/PILastScreen";
 
 function App() {
@@ -23,7 +24,6 @@ function App() {
       <div style={{ fontFamily: "Roboto, sans-serif" }}>
         <Router>
           <Navbar />
-
           {/* <Register /> */}
           {/* <Login />
           <Register />
@@ -62,6 +62,11 @@ function App() {
               exact
               path="/PIFourthScreen"
               element={<PIFourthScreen />}
+            ></Route>
+            <Route
+              exact
+              path="/PIFivthScreen"
+              element={<PIFivthScreen />}
             ></Route>
             <Route
               exact

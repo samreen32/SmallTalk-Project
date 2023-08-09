@@ -42,7 +42,7 @@ function PIHome() {
   };
 
   return (
-    <div style={{ padding: "100px 150px 0 150px" }}>
+    <div style={{ padding: "7% 10%" }}>
       <h2 className="md-8">
         <b>
           Liberty Iberoamerica SLU has requested that you complete a Predictive
@@ -101,15 +101,21 @@ function PIHome() {
         {/* First, Middle, Last Name */}
         <div
           className="input-group my-5"
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+          }}
         >
-          <div style={{ textAlign: "left", flex: 1 }}>
+          <div
+            style={{ flex: "0 0 calc(33.33% - 1rem)", marginBottom: "1rem" }}
+          >
             <div>First name *</div>
             <TextField
               variant="outlined"
               name="firstName"
               margin="normal"
-              sx={{ width: "90%", marginBottom: "0.5rem" }}
+              sx={{ width: "100%" }}
               required
               value={fName}
               onChange={onChange}
@@ -119,13 +125,15 @@ function PIHome() {
               }
             />
           </div>
-          <div style={{ textAlign: "left", flex: 1 }}>
+          <div
+            style={{ flex: "0 0 calc(33.33% - 1rem)", marginBottom: "1rem" }}
+          >
             <div>Middle name</div>
             <TextField
               variant="outlined"
               name="middleName"
               margin="normal"
-              sx={{ width: "90%", marginBottom: "0.5rem" }}
+              sx={{ width: "100%" }}
               required
               value={mName}
               onChange={onChange}
@@ -135,13 +143,15 @@ function PIHome() {
               }
             />
           </div>
-          <div style={{ textAlign: "left", flex: 1 }}>
+          <div
+            style={{ flex: "0 0 calc(33.33% - 1rem)", marginBottom: "1rem" }}
+          >
             <div>Last name *</div>
             <TextField
               variant="outlined"
               name="lastName"
               margin="normal"
-              sx={{ width: "90%", marginBottom: "0.5rem" }}
+              sx={{ width: "100%" }}
               required
               value={lName}
               onChange={onChange}
