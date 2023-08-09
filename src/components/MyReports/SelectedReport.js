@@ -365,7 +365,10 @@ export default function SelectedReport() {
         style={{ textAlign: "center", padding: "0 25px 0 25px" }}
       >
         <div className="col-sm-3 mb-3 mb-sm-0">
-          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+          <div
+            className="card"
+            style={{ borderRadius: "25px", padding: "15px" }}
+          >
             <div className="card-body">
               <p style={{ color: "#606070" }}>Active Vocabulary</p>
               <h5 className="card-title">
@@ -381,7 +384,10 @@ export default function SelectedReport() {
           </div>
         </div>
         <div className="col-sm-3 mb-3 mb-sm-0">
-          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+          <div
+            className="card"
+            style={{ borderRadius: "25px", padding: "15px" }}
+          >
             <div className="card-body">
               <p style={{ color: "#606070" }}>Unique words</p>
               <h5 className="card-title">
@@ -394,7 +400,10 @@ export default function SelectedReport() {
           </div>
         </div>
         <div className="col-sm-3 mb-3 mb-sm-0">
-          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+          <div
+            className="card"
+            style={{ borderRadius: "25px", padding: "15px" }}
+          >
             <div className="card-body">
               <p style={{ color: "#606070" }}>Rare words</p>
               <h5 className="card-title">
@@ -409,7 +418,10 @@ export default function SelectedReport() {
           </div>
         </div>
         <div className="col-sm-3">
-          <div className="card" style={{ borderRadius: "25px", padding: "15px" }}>
+          <div
+            className="card"
+            style={{ borderRadius: "25px", padding: "15px" }}
+          >
             <div className="card-body">
               <p style={{ color: "#606070" }}>Frequently used words</p>
               <h5 className="card-title">
@@ -779,7 +791,7 @@ export default function SelectedReport() {
       {/* Third div */}
       <div className="row mb-3 justify-content-center">
         <div className="col-md-8">
-          <Box sx={{ width: 800 }}>
+          <Box sx={{ width: "100%" }}>
             <BottomNavigation
               showLabels
               value={value}
@@ -793,42 +805,61 @@ export default function SelectedReport() {
             >
               <BottomNavigationAction
                 label={
-                  <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "1.3vw",
+                      transition: "font-size 0.3s ease-in-out",
+                    }}
+                  >
                     Vocabulary
                   </span>
                 }
                 sx={{
-                  minWidth: 190,
+                  minWidth: "31%",
                   color: value === 0 ? "black !important" : "#606070",
                   backgroundColor: value === 0 ? "white" : "",
                   borderRadius: value === 0 ? "50px" : "0",
                 }}
-                className="customWidth mx-4"
+                className="customWidth mx-1"
               />
 
               <BottomNavigationAction
                 label={
-                  <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "1.3vw",
+                      transition: "font-size 0.3s ease-in-out",
+                    }}
+                  >
                     Pronunciation &amp; Fluency
                   </span>
                 }
                 sx={{
-                  minWidth: 250,
+                  minWidth: "33%",
                   color: value === 1 ? "black !important" : "#606070",
                   backgroundColor: value === 1 ? "white" : "",
                   borderRadius: value === 1 ? "50px" : "0",
                 }}
-                className="customWidth mx-4"
+                className="customWidth mx-1"
               />
+
               <BottomNavigationAction
                 label={
-                  <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "1.3vw",
+                      transition: "font-size 0.3s ease-in-out",
+                    }}
+                  >
                     Grammar
                   </span>
                 }
-                className="customWidth mx-4"
+                className="customWidth mx-1"
                 sx={{
-                  minWidth: 190,
+                  minWidth: "31%",
                   color: value === 2 ? "black !important" : "#606070",
                   backgroundColor: value === 2 ? "white" : "",
                   borderRadius: value === 2 ? "50px" : "0",
@@ -838,6 +869,7 @@ export default function SelectedReport() {
           </Box>
         </div>
       </div>
+
       <br />
       {cardContent[value]}
     </div>
