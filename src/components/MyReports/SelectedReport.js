@@ -452,17 +452,20 @@ export default function SelectedReport() {
               <div className="row">
                 <div className="col-md-4">
                   <div className="row">
-                    {/* <div className="col">
+                    <div className="col">
                       <img
                         src={meterBlue}
                         alt="blue meter"
                         width={50}
                         height={50}
+                        style={{ float: "left" }}
                       />
-                    </div> */}
-                    <div className="col">
-                      <p className="card-text" style={{ color: "#606070" }}>
-                        My speaking rate
+
+                      <p
+                        className="card-text"
+                        style={{ color: "#9E9E9E", padding: "0 0 0 60px" }}
+                      >
+                        <b>My speaking rate</b>
                         <br />
                         <h3 style={{ color: "black" }}>
                           <b>127</b>
@@ -474,17 +477,19 @@ export default function SelectedReport() {
 
                 <div className="col-md-8">
                   <div className="row">
-                    {/* <div className="col">
+                    <div className="col">
                       <img
                         src={meterBlack}
                         alt="blue meter"
                         width={50}
                         height={50}
+                        style={{ float: "left" }}
+                        className="mx-3"
                       />
-                    </div> */}
-                    <div className="col">
-                      <p className="card-text" style={{ color: "#606070" }}>
-                        Common speaking rate for native speakers in the US
+                      <p className="card-text" style={{ color: "#9E9E9E" }}>
+                        <b>
+                          Common speaking rate for native speakers in the US
+                        </b>
                         <br />
                         <h3 style={{ color: "black" }}>
                           <b>90-150</b>
@@ -494,6 +499,81 @@ export default function SelectedReport() {
                   </div>
                 </div>
               </div>
+
+              {/* Progress Bar */}
+              {/* <div className="row my-5">
+                <div
+                  class="progress"
+                  role="progressbar"
+                  aria-label="Example 20px high"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style={{ height: "20px" }}
+                >
+                  <div class="progress-bar" style={{ width: "25%" }}></div>
+                </div>
+              </div> */}
+
+              {/* <div
+                style={{
+                  backgroundImage: "radial-gradient(circle, white 0%, lightblue 100%)",
+                  color: "darkred",              
+                }}
+              >
+                Inline style in react background: linear-gradient
+              </div> */}
+
+              <pre>
+                <div className="row my-5" style={{ padding: "40px 0 0 0" }}>
+                  <div className="progress-container">
+                    <div
+                      className="progress"
+                      role="progressbar"
+                      style={{
+                        height: "25px",
+                        width: "183%",
+                        backgroundImage:
+                          "radial-gradient(circle, white 0%, lightblue 100%)",
+                        color: "darkred",
+                      }}
+                    >
+                      <div
+                        className="progress-bar"
+                        // style={{ width: "35%" }}
+                      ></div>
+                    </div>
+                    <div className="ruler">
+                      {[
+                        0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120,
+                        130, 140, 150, 160, 170,
+                      ].map((value) => (
+                        <div
+                          className="ruler-mark"
+                          style={{
+                            left: `${value}%`,
+                            width: `${100 / (value + 10)}%`,
+                          }}
+                        >
+                          <div className="ruler-line"></div>
+                          <div className="ruler-value">{value}</div>
+                          {value === 70 && (
+                            <div className="boring-text">may be boring</div>
+                          )}
+                          {value === 120 && (
+                            <div className="normal-text">normal</div>
+                          )}
+                          {value === 160 && (
+                            <div className="fast-text">
+                              too fast to understand
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </pre>
             </div>
           </div>
         </div>
@@ -656,7 +736,7 @@ export default function SelectedReport() {
                   impact your overall score.
                 </p>
               </div>
-              <div className="my-4" style={{ color: "green" }}>
+              <div className="my-5" style={{ color: "green" }}>
                 <strike className="mx-2" style={{ color: "red" }}>
                   mistake
                 </strike>
@@ -667,7 +747,7 @@ export default function SelectedReport() {
                 suggestion
               </div>
               <div className="row">
-                <div className="col-md-12 mx-3 my-5">
+                <div className="col-md-12 mx-3 my-2">
                   <p>{highlightGrammerMistakes(context, grammar_mistakes)}</p>
                 </div>
               </div>
