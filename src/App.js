@@ -17,6 +17,7 @@ import PIThirdScreen from "./components/PredictiveIndex/PIThirdScreen";
 import PIFourthScreen from "./components/PredictiveIndex/PIFourthScreen";
 import PIFivthScreen from "./components/PredictiveIndex/PIFivthScreen";
 import PILastScreen from "./components/PredictiveIndex/PILastScreen";
+import Contact from "./components/ContactUs/Contact";
 
 function App() {
   return (
@@ -72,6 +73,11 @@ function App() {
               exact
               path="/PILastScreen"
               element={<PILastScreen />}
+            ></Route>
+             <Route
+              exact
+              path="/Contact"
+              element={<Contact />}
             ></Route>
           </Routes>
         </Router>

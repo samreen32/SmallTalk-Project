@@ -89,7 +89,7 @@ export default function Navbar() {
                   &nbsp;
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/Contact">
                     Contact Us
                   </Link>
                   &nbsp;
