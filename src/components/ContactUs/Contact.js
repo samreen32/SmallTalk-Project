@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Contact() {
   return (
-    <div style={{ padding: "50px 100px 0 100px" }}>
+    <div style={{ padding: "7% 10%" }}>
       <div class="card">
         <div class="card-body" style={{ color: "gray" }}>
           <h2 class="card-title">

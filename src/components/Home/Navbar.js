@@ -76,9 +76,16 @@ export default function Navbar() {
 
               {/* Dropdown */}
               <ul className="dropdown-menu dropdown-width my-3">
+                &nbsp;
+                <li>
+                  <Link className="dropdown-item" to="/">
+                    My Progress
+                  </Link>
+                  &nbsp;
+                </li>
                 <li>
                   <Link className="dropdown-item" to="/InterviewWarmUp">
-                    My Progress
+                    Interview
                   </Link>
                 </li>
                 &nbsp;
@@ -95,14 +102,21 @@ export default function Navbar() {
                   &nbsp;
                 </li>
                 <li>
+                  <Link className="dropdown-item" to="/PIHome">
+                    Predictive Index
+                  </Link>
+                  &nbsp;
+                </li>
+                <li>
                   <Link
                     className="dropdown-item"
-                    to="/PIHome"
+                    to="/"
                     style={{ color: "red" }}
                   >
                     Logout
                   </Link>
                 </li>
+                &nbsp;
               </ul>
             </li>
           </ul>

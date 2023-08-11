@@ -271,11 +271,11 @@
 }
 
 .custom-dropdown .dropdown-menu {
-  left: -120px;
+  left: -210px;
 }
 
 .dropdown-width {
-  width: 200px;
+  width: 290px;
 }
 
 .img-container {
@@ -575,4 +575,8 @@ ul.checklist-2 li:before {
 
 .accordion .accordion-item .accordion-header button {
   color: black;
+}
+
+.accordion-button.collapsed {
+  background: red
 }
