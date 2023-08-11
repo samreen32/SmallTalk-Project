@@ -83,7 +83,7 @@ export default function Navbar() {
                 </li>
                 &nbsp;
                 <li>
-                  <Link className="dropdown-item" to="/PIHome">
+                  <Link className="dropdown-item" to="/FAQScreen">
                     FAQ's
                   </Link>
                   &nbsp;
@@ -97,7 +97,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     className="dropdown-item"
-                    to="/"
+                    to="/PIHome"
                     style={{ color: "red" }}
                   >
                     Logout

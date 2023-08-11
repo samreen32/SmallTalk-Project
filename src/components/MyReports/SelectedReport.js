@@ -261,6 +261,23 @@ export default function SelectedReport() {
     setChartData(updatedChartData);
   }, [queryParams]);
 
+  const levelDescriptions = {
+    beginner:
+      "At the beginner level of, individuals are starting to grasp basic conversational phrases. They can exchange simple greetings and engage in uncomplicated discussions about topics like the weather, daily routines, and personal hobbies. While they may stumble occasionally, they are eager to learn and improve their ability to participate in everyday chit-chat with friends and acquaintances.",
+
+    elementary:
+      "Elementary-level practitioners are gaining confidence in their conversational skills. They can comfortably initiate and sustain dialogues on familiar subjects, including personal interests, favorite foods, and leisure activities. While they might occasionally seek help with complex vocabulary, they're well on their way to becoming adept at handling light-hearted exchanges and social interactions.",
+
+    intermediate:
+      "Individuals at the intermediate level of exhibit proficiency in engaging discussions. They can confidently express opinions, share experiences, and discuss a broad array of topics, such as travel destinations, recent movies, and upcoming plans. Their ability to navigate conversations fluidly and respond thoughtfully makes them valuable contributors to social gatherings and casual conversations.",
+
+    upperIntermediate:
+      "At the upper-intermediate level, enthusiasts display finesse in steering conversations. They can delve into deeper subjects, such as cultural trends, personal goals, and societal issues, while maintaining a comfortable and engaging atmosphere. Their conversational prowess allows them to connect with others on a meaningful level, making them sought-after conversationalists.",
+
+    advanced:
+      "Advanced practitioners of   are virtuosos in the art of conversation. They effortlessly navigate intricate topics, including philosophy, art, and global affairs, while weaving in personal anecdotes and insightful perspectives. Their eloquence and charm make them captivating interlocutors who can turn any exchange into a memorable and enriching experience.",
+  };
+
   /* Fourth Div Tabs Changing */
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
@@ -785,10 +802,8 @@ export default function SelectedReport() {
               <div className="row">
                 <div className="col-md-8">
                   <p className="card-text">
-                    A person at this level can understand a wide range of
-                    demanding, longer texts, and recognize implicit meaning.
-                    They can express themselves fluently and spontaneously
-                    without much obvious searching for expressions.
+                    {" "}
+                    {levelDescriptions[highestLevel.toLowerCase()]}
                   </p>
                 </div>
                 <div className="col-md-4">
