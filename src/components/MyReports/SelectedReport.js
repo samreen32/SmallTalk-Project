@@ -40,6 +40,8 @@ export default function SelectedReport() {
   const words_per_minute = queryParams.get("words_per_minute");
   const total_words = queryParams.get("total_words"); //active vocabulary
   const totalUniqueWords = queryParams.get("total_unique_words");
+  const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
+  const normalizedScore = Math.min(Math.max(similarityScore, 0), 100);
   const context = queryParams.get("context");
   const grammar_mistakes = JSON.parse(
     decodeURIComponent(queryParams.get("grammar_mistakes"))
@@ -60,17 +62,6 @@ export default function SelectedReport() {
       suggestionsForMistake.forEach((suggestion, j) => {});
     }
   });
-
-  /* Function for showing audio on rammer mistakes */
-  const handleMouseEnter = () => {
-    console.log("mouse enter");
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    console.log("mouse Leave");
-    setIsHovering(false);
-  };
 
   /* Function to Highlight Prounciation Mistakes */
   const highlightProunMistakes = (text, suggestions) => {
@@ -261,6 +252,7 @@ export default function SelectedReport() {
     setChartData(updatedChartData);
   }, [queryParams]);
 
+  /* Descripiton for each Levels */
   const levelDescriptions = {
     beginner:
       "At the beginner level of, individuals are starting to grasp basic conversational phrases. They can exchange simple greetings and engage in uncomplicated discussions about topics like the weather, daily routines, and personal hobbies. While they may stumble occasionally, they are eager to learn and improve their ability to participate in everyday chit-chat with friends and acquaintances.",
@@ -291,6 +283,26 @@ export default function SelectedReport() {
     const msg = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(msg);
     setCurrentlyPlaying(msg);
+  };
+
+  /* Function for showing audio on rammer mistakes */
+  const handleMouseEnter = () => {
+    console.log("mouse enter");
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    console.log("mouse Leave");
+    setIsHovering(false);
+  };
+
+  /* Scores for Scale Meter */
+  const totalScore = {
+    beginner: 80,
+    elementary: 180,
+    intermediate: 126,
+    upperIntermediate: 138,
+    advanced: 150,
   };
 
   /* Bottom Content */
@@ -518,29 +530,6 @@ export default function SelectedReport() {
               </div>
 
               {/* Progress Bar */}
-              {/* <div className="row my-5">
-                <div
-                  class="progress"
-                  role="progressbar"
-                  aria-label="Example 20px high"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style={{ height: "20px" }}
-                >
-                  <div class="progress-bar" style={{ width: "25%" }}></div>
-                </div>
-              </div> */}
-
-              {/* <div
-                style={{
-                  backgroundImage: "radial-gradient(circle, white 0%, lightblue 100%)",
-                  color: "darkred",              
-                }}
-              >
-                Inline style in react background: linear-gradient
-              </div> */}
-
               <pre>
                 <div className="row my-5" style={{ padding: "40px 0 0 0" }}>
                   <div className="progress-container">
@@ -555,10 +544,20 @@ export default function SelectedReport() {
                         color: "darkred",
                       }}
                     >
-                      <div
-                        className="progress-bar"
-                        // style={{ width: "35%" }}
-                      ></div>
+                      {highestLevel && (
+                        <div
+                          className="progress-bar"
+                          style={{
+                            width: `${normalizedScore}%`,
+                            // width: `${
+                            //   ((totalScore[highestLevel.toLowerCase()] || 0) /
+                            //     180) *
+                            //   100
+                            // }%`,
+                            backgroundColor: "green",
+                          }}
+                        ></div>
+                      )}
                     </div>
                     <div className="ruler">
                       {[
@@ -791,33 +790,34 @@ export default function SelectedReport() {
       </div>
 
       {/* First div */}
-      <div className="row mb-3">
-        <div className="col-md-12" style={{ padding: "0 30px" }}>
-          <div className="card" style={{ borderRadius: "25px" }}>
-            <div className="card-body mx-4 ">
-              <div style={{ fontWeight: "bold", padding: "25px 0" }}>
-                <h8 className="card-title">Scores</h8>
-                <h3 className="card-title my-3"> {highestLevel}</h3>
-              </div>
-              <div className="row">
-                <div className="col-md-8">
-                  <p className="card-text">
-                    {" "}
-                    {levelDescriptions[highestLevel.toLowerCase()]}
-                  </p>
+      {highestLevel && (
+        <div className="row mb-3">
+          <div className="col-md-12" style={{ padding: "0 30px" }}>
+            <div className="card" style={{ borderRadius: "25px" }}>
+              <div className="card-body mx-4 ">
+                <div style={{ fontWeight: "bold", padding: "25px 0" }}>
+                  <h8 className="card-title">Scores</h8>
+                  <h3 className="card-title my-3"> {highestLevel}</h3>
                 </div>
-                <div className="col-md-4">
-                  <div
-                    className="row img-container"
-                    style={{ marginTop: "-155px" }}
-                  >
+                <div className="row">
+                  <div className="col-md-8">
+                    <p className="card-text">
+                      {levelDescriptions[highestLevel.toLowerCase()]}
+                    </p>
+                  </div>
+                  <div className="col-md-4">
                     <div
-                      style={{
-                        width: "330px",
-                        height: "330px",
-                      }}
+                      className="row img-container"
+                      style={{ marginTop: "-155px" }}
                     >
-                      {/* <Radar data={data} options={options} /> */}
+                      <div
+                        style={{
+                          width: "330px",
+                          height: "330px",
+                        }}
+                      >
+                        {/* <Radar data={data} options={options} /> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -825,7 +825,7 @@ export default function SelectedReport() {
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Second div's */}
       <div className="row mb-3" style={{ padding: "15px" }}>

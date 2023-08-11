@@ -175,6 +175,8 @@ function Reports() {
                           response.duration
                         }&words_per_minute=${
                           response.word_per_minute
+                        }&similarity_score=${
+                          response.similarity_score
                         }&total_words=${
                           response.vocabulary_proficiency["Total Words:"]
                         }&total_unique_words=${
