@@ -27,13 +27,9 @@ function App() {
         <Router>
           <Navbar />
           {/* <Register /> */}
-          {/* <Login />
-          <Register />
-          <InterviewHome />
-          <InterviewWarmUp /> */}
+          {/* <Login /> */}
           {/* <Sections /> */}
-          {/* <InterviewQs /> */}
-          {/* <PIHome/> */}
+
           <Routes>
             <Route exact path="/Login" element={<Login />}></Route>
             <Route exact path="/Register" element={<Register />}></Route>
@@ -75,16 +71,8 @@ function App() {
               path="/PILastScreen"
               element={<PILastScreen />}
             ></Route>
-             <Route
-              exact
-              path="/Contact"
-              element={<Contact />}
-            ></Route>
-            <Route
-              exact
-              path="/FAQScreen"
-              element={<FAQScreen />}
-            ></Route>
+            <Route exact path="/Contact" element={<Contact />}></Route>
+            <Route exact path="/FAQScreen" element={<FAQScreen />}></Route>
           </Routes>
         </Router>
       </div>

@@ -338,7 +338,12 @@ function PIFivthScreen() {
           Back
         </Link>
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-          <Link type="submit" className="btn btn-primary" style={{}} to="/PILastScreen">
+          <Link
+            type="submit"
+            className="btn"
+            style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
+            to="/PILastScreen"
+          >
             Submit
           </Link>
         </div>

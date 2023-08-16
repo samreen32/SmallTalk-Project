@@ -11,7 +11,7 @@ function Contact() {
           </h2>
           <p class="card-text my-2">
             If you have any questions, please reach out to
-            <Link> support@smalltalk2.me.</Link>
+            <Link> support@cdn.me.</Link>
           </p>
         </div>
       </div>

@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [responseData, setResponseData] = useState([]);
 
+  /***** Functions to format timer for interview ******/
   useEffect(() => {
     let intervalId;
     if (isTimerRunning) {
@@ -40,6 +41,7 @@ const AuthProvider = ({ children }) => {
     return `${formattedMins}:${formattedSecs}`;
   };
 
+  /***** Validation Checks ******/
   const isValidObjField = (obj) => {
     return Object.values(obj).every((value) => value.trim());
   };
@@ -83,8 +85,8 @@ const AuthProvider = ({ children }) => {
         isTimerRunning,
         setIsTimerRunning,
         formatTimer,
-        responseData, 
-        setResponseData
+        responseData,
+        setResponseData,
       }}
     >
       {children}

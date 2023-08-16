@@ -387,8 +387,8 @@ function PISecondScreen() {
           <div className="d-grid gap-2 d-md-flex justify-content-md-end">
             <Link
               type="submit"
-              className="btn btn-primary"
-              style={{}}
+              className="btn"
+              style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
               to="/PIThirdScreen"
             >
               Continue

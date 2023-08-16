@@ -8,14 +8,14 @@ function PILastScreen() {
         <b>The Predictive Index®</b>
       </h2>
       <label for="exampleInputEmail1" className="form-label my-5">
-        <div style={{ color: "gray", fontWeight: "bold" }}>Thank you! You're all set.</div>
+        <div style={{ color: "gray", fontWeight: "bold" }}>
+          Thank you! You're all set.
+        </div>
       </label>
       <div>
         <p>
-        
-            Thank you for completing The Predictive Index® Behavioral
-            Assessment. Your responses have been submitted.
-          
+          Thank you for completing The Predictive Index® Behavioral Assessment.
+          Your responses have been submitted.
         </p>
       </div>
       <div>

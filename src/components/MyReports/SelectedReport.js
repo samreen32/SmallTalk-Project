@@ -40,9 +40,10 @@ export default function SelectedReport() {
   const words_per_minute = queryParams.get("words_per_minute");
   const total_words = queryParams.get("total_words"); //active vocabulary
   const totalUniqueWords = queryParams.get("total_unique_words");
-  const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
-  const normalizedScore = Math.min(Math.max(similarityScore, 0), 100);
   const context = queryParams.get("context");
+  const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
+  const roundedScore = Math.round(similarityScore);
+  const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
   const grammar_mistakes = JSON.parse(
     decodeURIComponent(queryParams.get("grammar_mistakes"))
   );
@@ -437,7 +438,7 @@ export default function SelectedReport() {
               <p style={{ color: "#606070" }}>Rare words</p>
               <h5 className="card-title">
                 <b>
-                  7482&nbsp;<sub>%</sub>
+                  54&nbsp;<sub>%</sub>
                 </b>
               </h5>
               <p className="card-text">
@@ -455,7 +456,7 @@ export default function SelectedReport() {
               <p style={{ color: "#606070" }}>Frequently used words</p>
               <h5 className="card-title">
                 <b>
-                  7482&nbsp;<sub>%</sub>
+                  28&nbsp;<sub>%</sub>
                 </b>
               </h5>
               <p className="card-text">
@@ -497,7 +498,7 @@ export default function SelectedReport() {
                         <b>My speaking rate</b>
                         <br />
                         <h3 style={{ color: "black" }}>
-                          <b>127</b>
+                          <b>{normalizedScore}</b>
                         </h3>
                       </p>
                     </div>
