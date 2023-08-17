@@ -4,8 +4,13 @@ import "../App.css";
 import axios from "axios";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { UserLogin } from "../context/AuthContext";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import RegisterSmallTalk from "./RegisterSmallTalk";
 
 export default function LoginSmallTalk() {
+  let navigation = useNavigate();
+  const [isLoginScreen, setIsLoginScreen] = useState(true);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -20,7 +25,7 @@ export default function LoginSmallTalk() {
     showPassword,
     setShowPassword,
     showToast,
-    setIsErrorOpen
+    setIsErrorOpen,
   } = UserLogin();
 
   // Function to login a user
@@ -45,6 +50,7 @@ export default function LoginSmallTalk() {
         { headers }
       );
       showToast("You have been Login successfully!");
+      navigation("Navbar");
       console.log("User login successfully:", response.data);
     } catch (error) {
       console.error("Failed to login user:", error);
@@ -68,96 +74,23 @@ export default function LoginSmallTalk() {
 
   return (
     <>
-      <div className="container my-5">
-        <div className="card" style={{ width: "28rem" }}>
-          <div className="image-container">
-            <img
-              className="card-title"
-              src={rocket}
-              alt="img"
-              height={150}
-              width={150}
-            />
-          </div>
-
-          <div className="card-body">
-            <form className="form-container">
-              <TextField
-                label="Email"
-                variant="outlined"
-                name="email"
-                value={email}
-                onChange={onChange}
-                margin="normal"
-                sx={{ width: "100%" }}
-                required
-                error={error && !isValidEmail(email)}
-                helperText={
-                  error && !isValidEmail(email) && "Enter a valid email!"
-                }
+      {isLoginScreen ? (
+        <div className="my-5" style={{ padding: "50px 0 0 31%" }}>
+          <div className="card" style={{ width: "28rem" }}>
+            <div className="image-container">
+              <img
+                className="card-title"
+                src={rocket}
+                alt="img"
+                height={150}
+                width={150}
               />
-              <TextField
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={password}
-                onChange={onChange}
-                margin="normal"
-                sx={{ width: "100%" }}
-                required
-                error={error && (!password.trim() || password.length < 5)}
-                helperText={
-                  error &&
-                  (!password.trim() || password.length < 5) &&
-                  "Password must be at least 5 characters long!"
-                }
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleTogglePassword} edge="end">
-                        {/* Eye icon */}
-                        {showPassword ? (
-                          <i
-                            className="fa fa-eye"
-                            aria-hidden="true"
-                            style={{ fontSize: "16px" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-eye-slash"
-                            aria-hidden="true"
-                            style={{ fontSize: "16px" }}
-                          ></i>
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <div id="emailHelp" className="form-text">
-                <a
-                  href="ww.google.com"
-                  style={{
-                    textDecoration: "none",
-                    color: "gray",
-                    cursor: "pointer",
-                  }}
-                >
-                  Forgot Password?
-                </a>
-              </div>
-              <button
-                onClick={handleLogin}
-                className="button button--flex my-3"
+            </div>
+            <>
+              <div
+                className="container1 my-3"
+                style={{ padding: "60px 0 0 0" }}
               >
-                Login
-              </button>
-              <div className="arrow-line">
-                <span className="line"></span>
-                <p className="my-2">Or Register with</p>
-                <span className="line"></span>
-              </div>
-              <div className="container1">
                 <div className="rectangle">
                   <i className="fa fa-google" aria-hidden="true"></i> Google
                 </div>
@@ -165,10 +98,113 @@ export default function LoginSmallTalk() {
                   <i className="fa fa-apple" aria-hidden="true"></i> Apple ID
                 </div>
               </div>
-            </form>
+              <div
+                className="arrow-line"
+                style={{ padding: "15px 40px 0 40px" }}
+              >
+                <span className="line"></span>
+                <p className="my-2">Or</p>
+                <span className="line"></span>
+              </div>
+            </>
+
+            <div className="card-body" style={{ marginTop: "-28px" }}>
+              <form className="form-container">
+                <TextField
+                  label="Email"
+                  variant="outlined"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  margin="normal"
+                  sx={{ width: "100%" }}
+                  required
+                  error={error && !isValidEmail(email)}
+                  helperText={
+                    error && !isValidEmail(email) && "Enter a valid email!"
+                  }
+                />
+                <TextField
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  margin="normal"
+                  sx={{ width: "100%" }}
+                  required
+                  error={error && (!password.trim() || password.length < 5)}
+                  helperText={
+                    error &&
+                    (!password.trim() || password.length < 5) &&
+                    "Password must be at least 5 characters long!"
+                  }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={handleTogglePassword} edge="end">
+                          {/* Eye icon */}
+                          {showPassword ? (
+                            <i
+                              className="fa fa-eye"
+                              aria-hidden="true"
+                              style={{ fontSize: "16px" }}
+                            ></i>
+                          ) : (
+                            <i
+                              className="fa fa-eye-slash"
+                              aria-hidden="true"
+                              style={{ fontSize: "16px" }}
+                            ></i>
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <div id="emailHelp" className="form-text">
+                  <a
+                    href="ww.google.com"
+                    style={{
+                      textDecoration: "none",
+                      color: "gray",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Forgot Password?
+                  </a>
+                </div>
+                <button
+                  onClick={handleLogin}
+                  className="button button--flex my-3"
+                >
+                  Login
+                </button>
+                <div style={{ textAlign: "center" }}>
+                  <p>
+                    Don't have an account?{" "}
+                    <Link
+                      // to="/Register"
+                      style={{
+                        textDecoration: "none",
+                        color: "black",
+                        border: "none",
+                      }}
+                      onClick={() => setIsLoginScreen(false)}
+                    >
+                      <b>Sign Up</b>
+                    </Link>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <RegisterSmallTalk />
+        </>
+      )}
     </>
   );
 }

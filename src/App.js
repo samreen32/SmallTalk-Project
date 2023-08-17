@@ -25,14 +25,15 @@ function App() {
     <AuthProvider>
       <div style={{ fontFamily: "Roboto, sans-serif" }}>
         <Router>
-          <Navbar />
-          {/* <Register /> */}
+          {/* <Navbar /> */}
+          <Register />
           {/* <Login /> */}
           {/* <Sections /> */}
 
           <Routes>
             <Route exact path="/Login" element={<Login />}></Route>
             <Route exact path="/Register" element={<Register />}></Route>
+            <Route exact path="/Navbar" element={<Navbar />}></Route>
             <Route
               exact
               path="/InterviewWarmUp"
