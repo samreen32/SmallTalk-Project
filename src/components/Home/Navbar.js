@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../../App.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/img/logo-1.png";
 
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState(null);
+  const location = useLocation();
+  const name = location.state?.name || ""; 
+  console.log("name of user", name);
 
   const handleItemClick = (index) => {
     setActiveItem(index);
@@ -70,7 +73,7 @@ export default function Navbar() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Name &nbsp;
+                {name} &nbsp;
                 <i className="fa fa-user-circle fa-2xl" aria-hidden="true"></i>
               </Link>
 

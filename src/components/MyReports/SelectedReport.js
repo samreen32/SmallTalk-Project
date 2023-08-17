@@ -17,6 +17,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import meterBlack from "../../assets/img/meterBlack.jpg";
 import meterBlue from "../../assets/img/meterBlue.jpg";
 import cross from "../../assets/img/CrossIcon.png";
+import Navbar from "../Home/Navbar";
 
 ChartJS.register(
   Tooltip,
@@ -776,48 +777,51 @@ export default function SelectedReport() {
   ];
 
   return (
-    <div style={{ padding: "45px" }}>
-      <div className="row mx-1">
-        <div className="col-md-12">
-          <h4>
-            <p style={{ fontWeight: "bold" }}>
-              CDS English Speaking Level Test
+    <>
+      <Navbar />
+      <div style={{ padding: "45px" }}>
+        <div className="row mx-1">
+          <div className="col-md-12">
+            <h4>
+              <p style={{ fontWeight: "bold" }}>
+                CDS English Speaking Level Test
+              </p>
+            </h4>
+            <p className="mx-1">
+              Duration: {duration} &nbsp; Words: {words_per_minute}
             </p>
-          </h4>
-          <p className="mx-1">
-            Duration: {duration} &nbsp; Words: {words_per_minute}
-          </p>
+          </div>
         </div>
-      </div>
 
-      {/* First div */}
-      {highestLevel && (
-        <div className="row mb-3">
-          <div className="col-md-12" style={{ padding: "0 30px" }}>
-            <div className="card" style={{ borderRadius: "25px" }}>
-              <div className="card-body mx-4 ">
-                <div style={{ fontWeight: "bold", padding: "25px 0" }}>
-                  <h8 className="card-title">Scores</h8>
-                  <h3 className="card-title my-3"> {highestLevel}</h3>
-                </div>
-                <div className="row">
-                  <div className="col-md-8">
-                    <p className="card-text">
-                      {levelDescriptions[highestLevel.toLowerCase()]}
-                    </p>
+        {/* First div */}
+        {highestLevel && (
+          <div className="row mb-3">
+            <div className="col-md-12" style={{ padding: "0 30px" }}>
+              <div className="card" style={{ borderRadius: "25px" }}>
+                <div className="card-body mx-4 ">
+                  <div style={{ fontWeight: "bold", padding: "25px 0" }}>
+                    <h8 className="card-title">Scores</h8>
+                    <h3 className="card-title my-3"> {highestLevel}</h3>
                   </div>
-                  <div className="col-md-4">
-                    <div
-                      className="row img-container"
-                      style={{ marginTop: "-155px" }}
-                    >
+                  <div className="row">
+                    <div className="col-md-8">
+                      <p className="card-text">
+                        {levelDescriptions[highestLevel.toLowerCase()]}
+                      </p>
+                    </div>
+                    <div className="col-md-4">
                       <div
-                        style={{
-                          width: "330px",
-                          height: "330px",
-                        }}
+                        className="row img-container"
+                        style={{ marginTop: "-155px" }}
                       >
-                        {/* <Radar data={data} options={options} /> */}
+                        <div
+                          style={{
+                            width: "330px",
+                            height: "330px",
+                          }}
+                        >
+                          {/* <Radar data={data} options={options} /> */}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -825,148 +829,148 @@ export default function SelectedReport() {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Second div's */}
-      <div className="row mb-3" style={{ padding: "15px" }}>
-        <div className="col-md-6 mb-3">
-          <div className="card" style={{ borderRadius: "25px" }}>
-            <div className="card-body" style={{ padding: "35px" }}>
-              <h7 className="card-title">
-                <b>Nicely done</b>
-              </h7>
-              <p className="card-text my-4">
-                <ul className="checklist">
-                  <li className="my-1">
-                    You used 7 advanced <b>grammar constructions:</b> reported
-                    speech, relative clauses, passive voice, tenses,
-                    conditional, modals, phrasal verbs.
-                  </li>
-                  <li className="my-3">
-                    You’re an expert at using <b>phrasal verbs:</b> “find out”,
-                    “go on”.
-                  </li>
-                  <li className="my-1">
-                    You have a large <b>active vocabulary</b> and use more{" "}
-                    <b>high-level words</b> than most speakers of English do.
-                  </li>
-                </ul>
-              </p>
+        {/* Second div's */}
+        <div className="row mb-3" style={{ padding: "15px" }}>
+          <div className="col-md-6 mb-3">
+            <div className="card" style={{ borderRadius: "25px" }}>
+              <div className="card-body" style={{ padding: "35px" }}>
+                <h7 className="card-title">
+                  <b>Nicely done</b>
+                </h7>
+                <p className="card-text my-4">
+                  <ul className="checklist">
+                    <li className="my-1">
+                      You used 7 advanced <b>grammar constructions:</b> reported
+                      speech, relative clauses, passive voice, tenses,
+                      conditional, modals, phrasal verbs.
+                    </li>
+                    <li className="my-3">
+                      You’re an expert at using <b>phrasal verbs:</b> “find
+                      out”, “go on”.
+                    </li>
+                    <li className="my-1">
+                      You have a large <b>active vocabulary</b> and use more{" "}
+                      <b>high-level words</b> than most speakers of English do.
+                    </li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6 mb-3">
+            <div className="card" style={{ borderRadius: "25px" }}>
+              <div className="card-body" style={{ padding: "35px" }}>
+                <h7 className="card-title">
+                  <b>Things to improve</b>
+                </h7>
+                <p className="card-text my-4">
+                  <ul className="checklist-2">
+                    <li className="my-1">
+                      Only 22% of your sentences had a <b>complex structure.</b>
+                    </li>
+                    <li className="my-2">
+                      Use some <b>synonyms:</b> “photo”, “trip”, “group”,
+                      “free”, “time”, were used too often when talking about the
+                      same thing.
+                    </li>
+                    <li className="my-1">
+                      Add various linking words, such as ‘besides’, ‘to start
+                      with’, ‘in spite of’, ‘to my mind’, ‘in case of’,
+                      ‘therefore’.
+                    </li>
+                  </ul>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-md-6 mb-3">
-          <div className="card" style={{ borderRadius: "25px" }}>
-            <div className="card-body" style={{ padding: "35px" }}>
-              <h7 className="card-title">
-                <b>Things to improve</b>
-              </h7>
-              <p className="card-text my-4">
-                <ul className="checklist-2">
-                  <li className="my-1">
-                    Only 22% of your sentences had a <b>complex structure.</b>
-                  </li>
-                  <li className="my-2">
-                    Use some <b>synonyms:</b> “photo”, “trip”, “group”, “free”,
-                    “time”, were used too often when talking about the same
-                    thing.
-                  </li>
-                  <li className="my-1">
-                    Add various linking words, such as ‘besides’, ‘to start
-                    with’, ‘in spite of’, ‘to my mind’, ‘in case of’,
-                    ‘therefore’.
-                  </li>
-                </ul>
-              </p>
-            </div>
+
+        {/* Third div */}
+        <div className="row mb-3 justify-content-center">
+          <div className="col-md-8">
+            <Box sx={{ width: "100%" }}>
+              <BottomNavigation
+                showLabels
+                value={value}
+                onChange={handleTabChange}
+                style={{
+                  backgroundColor: "#f9f9fa",
+                  borderRadius: "50px",
+                  height: "85px",
+                  padding: "10px",
+                }}
+              >
+                <BottomNavigationAction
+                  label={
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "1.3vw",
+                        transition: "font-size 0.3s ease-in-out",
+                      }}
+                    >
+                      Vocabulary
+                    </span>
+                  }
+                  sx={{
+                    minWidth: "31%",
+                    color: value === 0 ? "black !important" : "#606070",
+                    backgroundColor: value === 0 ? "white" : "",
+                    borderRadius: value === 0 ? "50px" : "0",
+                  }}
+                  className="customWidth mx-1"
+                />
+
+                <BottomNavigationAction
+                  label={
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "1.3vw",
+                        transition: "font-size 0.3s ease-in-out",
+                      }}
+                    >
+                      Pronunciation &amp; Fluency
+                    </span>
+                  }
+                  sx={{
+                    minWidth: "33%",
+                    color: value === 1 ? "black !important" : "#606070",
+                    backgroundColor: value === 1 ? "white" : "",
+                    borderRadius: value === 1 ? "50px" : "0",
+                  }}
+                  className="customWidth mx-1"
+                />
+
+                <BottomNavigationAction
+                  label={
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "1.3vw",
+                        transition: "font-size 0.3s ease-in-out",
+                      }}
+                    >
+                      Grammar
+                    </span>
+                  }
+                  className="customWidth mx-1"
+                  sx={{
+                    minWidth: "31%",
+                    color: value === 2 ? "black !important" : "#606070",
+                    backgroundColor: value === 2 ? "white" : "",
+                    borderRadius: value === 2 ? "50px" : "0",
+                  }}
+                />
+              </BottomNavigation>
+            </Box>
           </div>
         </div>
+
+        {cardContent[value]}
       </div>
-
-      {/* Third div */}
-      <div className="row mb-3 justify-content-center">
-        <div className="col-md-8">
-          <Box sx={{ width: "100%" }}>
-            <BottomNavigation
-              showLabels
-              value={value}
-              onChange={handleTabChange}
-              style={{
-                backgroundColor: "#f9f9fa",
-                borderRadius: "50px",
-                height: "85px",
-                padding: "10px",
-              }}
-            >
-              <BottomNavigationAction
-                label={
-                  <span
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "1.3vw",
-                      transition: "font-size 0.3s ease-in-out",
-                    }}
-                  >
-                    Vocabulary
-                  </span>
-                }
-                sx={{
-                  minWidth: "31%",
-                  color: value === 0 ? "black !important" : "#606070",
-                  backgroundColor: value === 0 ? "white" : "",
-                  borderRadius: value === 0 ? "50px" : "0",
-                }}
-                className="customWidth mx-1"
-              />
-
-              <BottomNavigationAction
-                label={
-                  <span
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "1.3vw",
-                      transition: "font-size 0.3s ease-in-out",
-                    }}
-                  >
-                    Pronunciation &amp; Fluency
-                  </span>
-                }
-                sx={{
-                  minWidth: "33%",
-                  color: value === 1 ? "black !important" : "#606070",
-                  backgroundColor: value === 1 ? "white" : "",
-                  borderRadius: value === 1 ? "50px" : "0",
-                }}
-                className="customWidth mx-1"
-              />
-
-              <BottomNavigationAction
-                label={
-                  <span
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "1.3vw",
-                      transition: "font-size 0.3s ease-in-out",
-                    }}
-                  >
-                    Grammar
-                  </span>
-                }
-                className="customWidth mx-1"
-                sx={{
-                  minWidth: "31%",
-                  color: value === 2 ? "black !important" : "#606070",
-                  backgroundColor: value === 2 ? "white" : "",
-                  borderRadius: value === 2 ? "50px" : "0",
-                }}
-              />
-            </BottomNavigation>
-          </Box>
-        </div>
-      </div>
-
-      {cardContent[value]}
-    </div>
+    </>
   );
 }

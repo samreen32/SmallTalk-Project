@@ -50,7 +50,11 @@ function PIThirdScreen() {
           <Link
             type="submit"
             className="btn"
-            style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
+            style={{
+              backgroundColor: "#5cb3cf",
+              color: "floralwhite",
+              fontWeight: "bold",
+            }}
             to="/PIFourthScreen"
           >
             Continue

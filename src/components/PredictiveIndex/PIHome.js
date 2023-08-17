@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextField, Select, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
+import "../../App.css";
 
 function PIHome() {
   const [selectedLanguage, setSelectedLanguage] = useState("English");
@@ -234,7 +235,11 @@ function PIHome() {
         <Link
           type="submit"
           className="btn my-4"
-          style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
+          style={{
+            backgroundColor: "#5cb3cf",
+            color: "floralwhite",
+            fontWeight: "bold",
+          }}
           to="/PISecondScreen"
         >
           Continue

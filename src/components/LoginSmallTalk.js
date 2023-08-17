@@ -11,6 +11,9 @@ import RegisterSmallTalk from "./RegisterSmallTalk";
 export default function LoginSmallTalk() {
   let navigation = useNavigate();
   const [isLoginScreen, setIsLoginScreen] = useState(true);
+  const [isRegistrationScreenVisible, setIsRegistrationScreenVisible] =
+    useState(true);
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -49,9 +52,17 @@ export default function LoginSmallTalk() {
         `http://192.168.18.74:8000/user/login/${credentials.email}/${credentials.password}`,
         { headers }
       );
-      showToast("You have been Login successfully!");
-      navigation("Navbar");
-      console.log("User login successfully:", response.data);
+      if (response.data.id) {
+        showToast("You have been Login successfully!");
+        setIsLoginScreen(false);
+        setIsRegistrationScreenVisible(false);
+        navigation("/Navbar", { state: { name: response.data.name } });
+        console.log("User login successfully:", response.data);
+      } else {
+        console.error("No such user present", error);
+        showToast("Failed to login. Please check your credentials.");
+        setIsErrorOpen(true);
+      }
     } catch (error) {
       console.error("Failed to login user:", error);
       showToast("Failed to login. Please check your credentials.");
@@ -86,6 +97,7 @@ export default function LoginSmallTalk() {
                 width={150}
               />
             </div>
+            {/* Part before the login form */}
             <>
               <div
                 className="container1 my-3"
@@ -201,9 +213,7 @@ export default function LoginSmallTalk() {
           </div>
         </div>
       ) : (
-        <>
-          <RegisterSmallTalk />
-        </>
+        <>{isRegistrationScreenVisible && <RegisterSmallTalk />}</>
       )}
     </>
   );

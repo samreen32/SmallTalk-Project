@@ -10,6 +10,7 @@ import LoginSmallTalk from "./LoginSmallTalk";
 export default function RegisterSmallTalk() {
   let navigation = useNavigate();
   const [isRegistrationScreen, setIsRegistrationScreen] = useState(true);
+  const [isLoginScreenVisible, setIsLoginScreenVisible] = useState(true);
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -67,9 +68,18 @@ export default function RegisterSmallTalk() {
         credentials,
         { headers }
       );
-      showToast("You have been Register successfully!");
-      navigation("Navbar");
-      console.log("User created successfully:", response.data.message);
+      if (response.data.id) {
+        showToast("You have been Register successfully!");
+        setIsRegistrationScreen(false);
+        setIsLoginScreenVisible(false);
+        navigation("/Navbar", { state: { name: response.data.name } });
+        console.log("User created successfully:", response.data);
+        // console.log("name ", response.data.name);
+      } else {
+        console.error("User with these credentials already present", error);
+        showToast("Failed to register. User already present.");
+        setIsErrorOpen(true);
+      }
     } catch (error) {
       console.error("Failed to create user:", error);
       showToast("Failed to register. Please check your credentials.");
@@ -183,12 +193,14 @@ export default function RegisterSmallTalk() {
                     ),
                   }}
                 />
-                <button
+                <Link
+                  // to="Navbar"
                   onClick={handleRegister}
                   className="button button--flex my-3"
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   Register
-                </button>
+                </Link>
                 <div style={{ textAlign: "center" }}>
                   <p>
                     Already have account ?{" "}
@@ -211,7 +223,7 @@ export default function RegisterSmallTalk() {
         </div>
       ) : (
         <>
-          <LoginSmallTalk />
+          <>{isLoginScreenVisible && <LoginSmallTalk />}</>
         </>
       )}
     </>
