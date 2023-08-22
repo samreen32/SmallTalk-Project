@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -44,6 +45,7 @@
   align-items: center;
   height: 70vh;
 }
+
 .container1 {
   display: flex;
   justify-content: center;
@@ -58,6 +60,7 @@
   right: -50px;
   margin-right: 20px;
 }
+
 .form-container {
   padding: 20px;
 }
@@ -240,6 +243,7 @@
   margin: 7px;
   cursor: pointer;
 }
+
 .circle i {
   color: white;
 }
@@ -271,7 +275,7 @@
 }
 
 .custom-dropdown .dropdown-menu {
-  left: -210px;
+  left: -220px;
 }
 
 .dropdown-width {
@@ -317,13 +321,14 @@
   background-color: #3399ff;
   color: #fff;
 }
+
 @media (max-width: 518px) {
   .week-container {
     flex-wrap: wrap;
   }
 }
 
-/* Nvbar Styling*/
+/* Navbar Styling*/
 .navbar-nav .nav-link {
   position: relative;
   display: inline-block;
@@ -350,9 +355,11 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
+
 .nav-link-home:hover {
   color: var(--bs-nav-link-color);
 }
+
 .navbar-nav .nav-item:hover .nav-link::after {
   transform: translateX(-50%) scale(1);
 }
@@ -506,11 +513,12 @@ ul.checklist-2 li:before {
 .progress {
   height: 20px;
   background-color: #f0f0f0;
+  overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
-  transition: width 10s ease-in-out;
+  transition: width 0.3s ease-in-out;
 }
 
 .ruler {
@@ -524,9 +532,9 @@ ul.checklist-2 li:before {
 .ruler-mark {
   position: absolute;
   top: 0;
-  left: 0;
   transform: translateX(-50%);
   text-align: center;
+  width: calc(100% / 18);
 }
 
 .ruler-line {
@@ -534,44 +542,44 @@ ul.checklist-2 li:before {
   top: -6px;
   width: 1px;
   height: 10px;
-  left: 15px;
   background-color: #333;
 }
 
 .ruler-value {
   position: absolute;
-  top: -25px;
-  left: 10px;
+  top: -18px;
+  left: 0;
+  transform: translateX(-50%);
   font-size: 12px;
   color: #333;
 }
 
-.boring-text {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1vw;
-  color: #333;
-}
-
-.normal-text {
-  position: absolute;
-  top: 25px;
-  left: 100%;
-  transform: translateX(-60%);
-  font-size: 1vw;
-  color: #333;
-}
-
+.boring-text,
+.normal-text,
 .fast-text {
   position: absolute;
   top: 25px;
-  left: 100%;
-  transform: translateX(-60%);
+  left: 0;
   font-size: 1vw;
   color: #333;
 }
+
+@media (max-width: 450px) {
+
+  .ruler-line,
+  .ruler-value {
+    display: none;
+  }
+
+  .ruler-mark {
+    padding: 0 20% 0 0;
+  }
+
+  .fast-text {
+    white-space: normal;
+  }
+}
+
 
 .accordion .accordion-item .accordion-header button {
   color: black;
@@ -579,4 +587,18 @@ ul.checklist-2 li:before {
 
 .accordion-button.collapsed {
   background: red;
+}
+
+.btn-large-screen {
+  margin-top: 12px;
+  font-size: 14px;
+  padding: 10px 10px;
+  /* background-color: #5cb3cf;
+  color: floralwhite; */
+}
+
+.btn-small-screen {
+  margin-top: 10px;
+  /* background-color: #5cb3cf;
+  color: floralwhite; */
 }

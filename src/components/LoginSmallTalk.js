@@ -20,6 +20,7 @@ export default function LoginSmallTalk() {
   });
   const { email, password } = credentials;
   const {
+    setUserData,
     // isValidEmail,
     isValidObjField,
     updateError,
@@ -56,7 +57,10 @@ export default function LoginSmallTalk() {
         showToast("You have been Login successfully!");
         setIsLoginScreen(false);
         setIsRegistrationScreenVisible(false);
-        navigation("/Navbar", { state: { name: response.data.name } });
+        setUserData(response.data);
+        navigation("/Navbar", {
+          state: { name: response.data.name, id: response.data.id },
+        });
         console.log("User login successfully:", response.data);
       } else {
         console.error("No such user present", error);
@@ -86,7 +90,15 @@ export default function LoginSmallTalk() {
   return (
     <>
       {isLoginScreen ? (
-        <div className="my-5" style={{ padding: "50px 0 0 31%" }}>
+        <div
+          className="my-5"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+             minHeight: "70vh",
+          }}
+        >
           <div className="card" style={{ width: "28rem" }}>
             <div className="image-container">
               <img

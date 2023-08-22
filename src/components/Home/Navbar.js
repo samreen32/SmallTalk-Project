@@ -6,8 +6,10 @@ import logo from "../../assets/img/logo-1.png";
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState(null);
   const location = useLocation();
-  const name = location.state?.name || ""; 
+  const name = location.state?.name || "";
+  const id = location.state?.id || "";
   console.log("name of user", name);
+  console.log("id of user", id);
 
   const handleItemClick = (index) => {
     setActiveItem(index);
@@ -16,6 +18,7 @@ export default function Navbar() {
   const navItems = [
     { label: "Home", link: "/" },
     { label: "My Reports", link: "/Reports" },
+    { label: "FAQ's", link: "/FAQScreen" },
   ];
 
   return (

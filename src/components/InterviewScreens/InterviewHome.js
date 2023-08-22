@@ -6,18 +6,21 @@ import { TextField } from "@mui/material";
 import interview from "../../assets/img/interview.png";
 import circle from "../../assets/img/HalfCircle.png";
 import rectangle from "../../assets/img/rectangles.png";
+import Navbar from "../Home/Navbar";
 
 export default function InterviewHome() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      {/* <Box
+    <>
+      {/* <Navbar /> */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        {/* <Box
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -37,64 +40,65 @@ export default function InterviewHome() {
             position: "relative",
           }}
         > */}
-      {/* <img src={circle} alt="circle" className="circle-image" /> */}
+        {/* <img src={circle} alt="circle" className="circle-image" /> */}
 
-      <div
-        className="container"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-        }}
-      >
         <div
-          className="card"
+          className="container"
           style={{
-            width: "60%",
-            margin: "0 auto",
-            borderRadius: "15px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
           }}
         >
-          <div className="card-body">
-            <img src={interview} alt="..." className="my-3" />
-            <h3 className="card-title">
-              <b>Interview with CDS</b>
-            </h3>
-            <p className="card-text">For Leadership Potential.</p>
+          <div
+            className="card"
+            style={{
+              width: "60%",
+              margin: "0 auto",
+              borderRadius: "15px",
+            }}
+          >
+            <div className="card-body">
+              <img src={interview} alt="..." className="my-3" />
+              <h3 className="card-title">
+                <b>Interview with CDS</b>
+              </h3>
+              <p className="card-text">For Leadership Potential.</p>
 
-            <p className="card-text my-4">
-              This interview is for the role of Translation Interview.
-              <br />
-              This interview will consist of 10 questions and take approximately
-              56 minutes. You will be prompted to answer questions and write
-              notes. You may always go back and edit answers.
-              <div
-                className="my-3"
-                style={{ border: "dotted", color: "gray" }}
-              ></div>
-              <TextField
-                label="Enter Your Name"
-                variant="outlined"
-                name="name"
-                // value={name}
-                // onChange={onChange}
-                margin="normal"
-                sx={{ width: "100%" }}
-                required
-              />
-              <Link
-                to="/Interview_1"
-                className="btn my-2"
-                style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
-              >
-                View questions
-              </Link>
-            </p>
+              <p className="card-text my-4">
+                This interview is for the role of Translation Interview.
+                <br />
+                This interview will consist of 10 questions and take
+                approximately 56 minutes. You will be prompted to answer
+                questions and write notes. You may always go back and edit
+                answers.
+                <div
+                  className="my-3"
+                  style={{ border: "dotted", color: "gray" }}
+                ></div>
+                <TextField
+                  label="Enter Your Name"
+                  variant="outlined"
+                  name="name"
+                  // value={name}
+                  // onChange={onChange}
+                  margin="normal"
+                  sx={{ width: "100%" }}
+                  required
+                />
+                <Link
+                  to="/Interview_1"
+                  className="btn my-2"
+                  style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
+                >
+                  View questions
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      {/* <img
+        {/* <img
         src={rectangle}
         alt="rectangle"
         style={{
@@ -108,8 +112,9 @@ export default function InterviewHome() {
         
         }}
       /> */}
-      {/* </Paper>
+        {/* </Paper>
       </Box> */}
-    </div>
+      </div>
+    </>
   );
 }

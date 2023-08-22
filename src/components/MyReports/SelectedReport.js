@@ -42,9 +42,6 @@ export default function SelectedReport() {
   const total_words = queryParams.get("total_words"); //active vocabulary
   const totalUniqueWords = queryParams.get("total_unique_words");
   const context = queryParams.get("context");
-  const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
-  const roundedScore = Math.round(similarityScore);
-  const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
   const grammar_mistakes = JSON.parse(
     decodeURIComponent(queryParams.get("grammar_mistakes"))
   );
@@ -53,6 +50,10 @@ export default function SelectedReport() {
     mistake.start,
     mistake.end,
   ]);
+
+  const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
+  const roundedScore = Math.round(similarityScore);
+  const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
 
   /* Print Suggestions and Grammer Mistakes for table*/
   mistake_index_text.forEach((indexes, i) => {
@@ -300,7 +301,7 @@ export default function SelectedReport() {
 
   /* Scores for Scale Meter */
   const totalScore = {
-    beginner: 80,
+    beginner: 10,
     elementary: 180,
     intermediate: 126,
     upperIntermediate: 138,
@@ -322,12 +323,16 @@ export default function SelectedReport() {
               <div className="row">
                 {/* Doughnut Chart */}
                 <div className="col-md-6">
-                  <div style={{ fontWeight: "bold", padding: "25px 0" }}>
-                    <h8 className="card-title mx-3">Vocabulary statistics</h8>
+                  <div style={{ fontWeight: "bold", padding: "15px 0" }}>
+                    <h6 className="card-title mx-3">Vocabulary statistics</h6>
                   </div>
                   <div
                     className="chart-container"
-                    style={{ position: "relative", height: "300px" }}
+                    style={{
+                      position: "relative",
+                      height: "300px",
+                      maxWidth: "100%",
+                    }}
                   >
                     {chartData && <Doughnut data={chartData} />}
                   </div>
@@ -480,6 +485,7 @@ export default function SelectedReport() {
               <div style={{ fontWeight: "bold", padding: "25px 0" }}>
                 <h8 className="card-title">Speaking rate (words per minute)</h8>
               </div>
+
               <div className="row">
                 <div className="col-md-4">
                   <div className="row">
@@ -491,7 +497,6 @@ export default function SelectedReport() {
                         height={50}
                         style={{ float: "left" }}
                       />
-
                       <p
                         className="card-text"
                         style={{ color: "#9E9E9E", padding: "0 0 0 60px" }}
@@ -515,9 +520,11 @@ export default function SelectedReport() {
                         width={50}
                         height={50}
                         style={{ float: "left" }}
-                        className="mx-3"
                       />
-                      <p className="card-text" style={{ color: "#9E9E9E" }}>
+                      <p
+                        className="card-text"
+                        style={{ color: "#9E9E9E", padding: "0 0 0 60px" }}
+                      >
                         <b>
                           Common speaking rate for native speakers in the US
                         </b>
@@ -540,26 +547,18 @@ export default function SelectedReport() {
                       role="progressbar"
                       style={{
                         height: "25px",
-                        width: "183%",
                         backgroundImage:
                           "radial-gradient(circle, white 0%, lightblue 100%)",
                         color: "darkred",
                       }}
                     >
-                      {highestLevel && (
-                        <div
-                          className="progress-bar"
-                          style={{
-                            width: `${normalizedScore}%`,
-                            // width: `${
-                            //   ((totalScore[highestLevel.toLowerCase()] || 0) /
-                            //     180) *
-                            //   100
-                            // }%`,
-                            backgroundColor: "green",
-                          }}
-                        ></div>
-                      )}
+                      <div
+                        className="progress-bar"
+                        style={{
+                          width: `${normalizedScore}%`,
+                          backgroundColor: "green",
+                        }}
+                      ></div>
                     </div>
                     <div className="ruler">
                       {[
@@ -567,21 +566,21 @@ export default function SelectedReport() {
                         130, 140, 150, 160, 170,
                       ].map((value) => (
                         <div
+                          key={value}
                           className="ruler-mark"
                           style={{
                             left: `${value}%`,
-                            width: `${100 / (value + 10)}%`,
                           }}
                         >
                           <div className="ruler-line"></div>
                           <div className="ruler-value">{value}</div>
-                          {value === 70 && (
+                          {value === 80 && (
                             <div className="boring-text">may be boring</div>
                           )}
                           {value === 120 && (
                             <div className="normal-text">normal</div>
                           )}
-                          {value === 160 && (
+                          {value === 150 && (
                             <div className="fast-text">
                               too fast to understand
                             </div>
@@ -630,50 +629,48 @@ export default function SelectedReport() {
       <div className="row mb-3">
         <div className="col-md-12" style={{ padding: "0 30px" }}>
           <div className="card" style={{ borderRadius: "25px" }}>
-            <div className="card-body mx-4 ">
-              <div style={{ fontWeight: "bold", padding: "25px 0" }}>
-                <i className="fa fa-volume-up fa-xl" aria-hidden="true"></i>
+            <div className="card-body mx-2">
+              <div style={{ fontWeight: "bold", padding: "15px 0" }}>
+                <i className="fa fa-volume-up fa-lg" aria-hidden="true"></i>
                 <h8 className="card-title mx-3">
+                  {" "}
                   Most difficult words to pronounce
                 </h8>
               </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <table className="table" style={{ textAlign: "center" }}>
-                    <thead style={{ color: "#606070" }}>
-                      <tr>
-                        <th scope="col">Word</th>
-                        <th scope="col">Suggestions</th>
-                        <th scope="col">Audio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {mistake_index_text.map((indexes, i) => {
-                        const [start, end] = indexes;
-                        const mistakeText = context.substring(start, end);
+              <div className="table-responsive">
+                <table className="table" style={{ textAlign: "center" }}>
+                  <thead style={{ color: "#606070" }}>
+                    <tr>
+                      <th scope="col">Word</th>
+                      <th scope="col">Suggestions</th>
+                      <th scope="col">Audio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mistake_index_text.map((indexes, i) => {
+                      const [start, end] = indexes;
+                      const mistakeText = context.substring(start, end);
 
-                        const suggestionsForMistake = suggestions[i];
-                        const suggestionsList =
-                          suggestionsForMistake.join(", ");
+                      const suggestionsForMistake = suggestions[i];
+                      const suggestionsList = suggestionsForMistake.join(", ");
 
-                        return (
-                          <tr key={i}>
-                            <td>{mistakeText}</td>
-                            <td>{suggestionsList}</td>
-                            <td>
-                              <i
-                                className="fa fa-volume-up"
-                                aria-hidden="true"
-                                style={{ cursor: "pointer", color: "gray" }}
-                                onClick={() => handleAudioClick(mistakeText)}
-                              ></i>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                      return (
+                        <tr key={i}>
+                          <td>{mistakeText}</td>
+                          <td>{suggestionsList}</td>
+                          <td>
+                            <i
+                              className="fa fa-volume-up"
+                              aria-hidden="true"
+                              style={{ cursor: "pointer", color: "gray" }}
+                              onClick={() => handleAudioClick(mistakeText)}
+                            ></i>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -683,7 +680,7 @@ export default function SelectedReport() {
 
     /* Grmmer mistakes */
     <div>
-      {/* Articles in Grammer */}
+      {/* Common Mistakes in Grammer e.g. article */}
       <div className="row mb-3">
         <div className="col-md-12" style={{ padding: "0 30px" }}>
           <div className="card" style={{ borderRadius: "25px" }}>
@@ -692,8 +689,8 @@ export default function SelectedReport() {
                 <img src={cross} alt="cross icon" width={50} height={50} />
                 <h8 className="card-title mx-3">Common grammar problems</h8>
               </div>
-              <div className="row">
-                <div className="col-md-12">
+              <>
+                <div className="table-responsive">
                   <table className="table" style={{ textAlign: "center" }}>
                     <thead style={{ color: "#606070" }}>
                       <tr>
@@ -713,7 +710,7 @@ export default function SelectedReport() {
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </>
             </div>
           </div>
         </div>
@@ -778,7 +775,7 @@ export default function SelectedReport() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div style={{ padding: "45px" }}>
         <div className="row mx-1">
           <div className="col-md-12">
