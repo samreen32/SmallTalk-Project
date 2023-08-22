@@ -157,92 +157,103 @@ function Reports() {
             filteredData.map((response, index) => {
               number_id += 1;
               return ( */}
-          <>
-            {reportData.map((report, index) => (
-              <div
-                key={report.id}
-                className="card my-3"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontWeight: "bold",
-                  borderRadius: "18px",
-                  flexDirection: "column",
-                }}
-              >
+          {reportData.length === 0 ? (
+            <div className="my-5" style={{ textAlign: "center" }}>
+              <h1>Empty Report Section</h1>
+            </div>
+          ) : (
+            <>
+              {reportData.map((report, index) => (
                 <div
-                  className="card-body"
+                  key={report.id}
+                  className="card my-3"
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
                     alignItems: "center",
-                    width: "100%",
-                    flexWrap: "wrap",
-                    padding: "33px",
-                    backgroundColor: "#F9F9FA",
+                    fontWeight: "bold",
                     borderRadius: "18px",
-                    
+                    // flexDirection: "column",
                   }}
                 >
-                  {/* Number */}
-                  <div style={{ flex: "1" }}>
-                    {index + 1}. {report.name}
-                  </div>
-
-                  {/* Other details */}
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <div
-                      style={{ flex: "1", marginRight: "90px", color: "gray" }}
-                    >
-                      {report.details.duration}
+                  <div
+                    className="card-body"
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                      flexWrap: "wrap",
+                      padding: "33px",
+                      backgroundColor: "#F9F9FA",
+                      borderRadius: "18px",
+                    }}
+                  >
+                    {/* Number */}
+                    <div style={{ flex: "1" }}>
+                      {index + 1}. {report.name}
                     </div>
-                    <div style={{ marginRight: "160px", color: "gray" }}>
-                      <i className="fa fa-pencil mx-5" aria-hidden="true"></i>
-                      <i className="fa fa-trash mx-5" aria-hidden="true"></i>
-                    </div>
 
-                    <Link
-                      to={{
-                        pathname: "/SelectedReport",
-                        search: `?duration=${
-                          report.details.duration
-                        }&words_per_minute=${
-                          report.details.word_per_minute
-                        }&similarity_score=${
-                          report.details.similarity_score[0]
-                        }&total_words=${
-                          report.details.vocabulary_proficiency["Total Words:"]
-                        }&total_unique_words=${
-                          report.details.vocabulary_proficiency[
-                            "Total Unique Words:"
-                          ]
-                        }&context=${
-                          report.details.context
-                        }&grammar_mistakes=${encodeURIComponent(
-                          JSON.stringify(report.details.grammar_mistakes)
-                        )}&suggestions=${encodeURIComponent(
-                          JSON.stringify(report.details.suggestions)
-                        )}&level_words_percentage=${encodeURIComponent(
-                          JSON.stringify(
+                    {/* Other details */}
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        style={{
+                          flex: "1",
+                          marginRight: "90px",
+                          color: "gray",
+                        }}
+                      >
+                        {report.details.duration}
+                      </div>
+                      <div style={{ marginRight: "160px", color: "gray" }}>
+                        <i className="fa fa-pencil mx-5" aria-hidden="true"></i>
+                        <i className="fa fa-trash mx-5" aria-hidden="true"></i>
+                      </div>
+
+                      <Link
+                        to={{
+                          pathname: "/SelectedReport",
+                          search: `?duration=${
+                            report.details.duration
+                          }&words_per_minute=${
+                            report.details.word_per_minute
+                          }&similarity_score=${
+                            report.details.similarity_score[0]
+                          }&total_words=${
                             report.details.vocabulary_proficiency[
-                              "level_words_percentage"
+                              "Total Words:"
                             ]
-                          )
-                        )}`,
-                      }}
-                      style={{
-                        color: "black",
-                        fontWeight: "bolder",
-                        marginRight: "10px",
-                      }}
-                    >
-                      <i className="fa fa-chevron-right fa-xl"></i>
-                    </Link>
+                          }&total_unique_words=${
+                            report.details.vocabulary_proficiency[
+                              "Total Unique Words:"
+                            ]
+                          }&context=${
+                            report.details.context
+                          }&grammar_mistakes=${encodeURIComponent(
+                            JSON.stringify(report.details.grammar_mistakes)
+                          )}&suggestions=${encodeURIComponent(
+                            JSON.stringify(report.details.suggestions)
+                          )}&level_words_percentage=${encodeURIComponent(
+                            JSON.stringify(
+                              report.details.vocabulary_proficiency[
+                                "level_words_percentage"
+                              ]
+                            )
+                          )}`,
+                        }}
+                        style={{
+                          color: "black",
+                          fontWeight: "bolder",
+                          // marginRight: "10px",
+                        }}
+                      >
+                        <i className="fa fa-chevron-right fa-xl"></i>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </>
+              ))}
+            </>
+          )}
 
           {/* );
             })
