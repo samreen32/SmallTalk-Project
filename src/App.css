@@ -602,3 +602,26 @@ ul.checklist-2 li:before {
   /* background-color: #5cb3cf;
   color: floralwhite; */
 }
+
+.card-larger-screen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 33px;
+  background-color: #F9F9FA;
+  border-radius: 18px;
+}
+
+.card-small-screen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 33px;
+  background-color: #F9F9FA;
+  border-radius: 18px;
+  flex-direction: column;
+}

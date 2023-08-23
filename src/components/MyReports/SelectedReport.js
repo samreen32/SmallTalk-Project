@@ -187,7 +187,7 @@ export default function SelectedReport() {
       decodeURIComponent(level_words_percentage)
     );
 
-    let highestLevel = "";
+    let highestLevel = "Beginner";
     let highestPercentage = -1;
 
     for (const [level, percentage] of Object.entries(
@@ -200,7 +200,7 @@ export default function SelectedReport() {
     }
 
     highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
-    setHighestLevel(highestLevel);
+    setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
 
     const updatedChartData = {
       labels: Object.keys(levelWordsPercentageData).map((level) => {

@@ -55,6 +55,9 @@ export default function LoginSmallTalk() {
       );
       if (response.data.id) {
         showToast("You have been Login successfully!");
+        localStorage.setItem('authToken', response.data.token); 
+        console.log("token", response.data.token);
+        // localStorage.setItem('userData', JSON.stringify(response.data));
         setIsLoginScreen(false);
         setIsRegistrationScreenVisible(false);
         setUserData(response.data);
