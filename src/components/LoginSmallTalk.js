@@ -7,9 +7,11 @@ import { UserLogin } from "../context/AuthContext";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import RegisterSmallTalk from "./RegisterSmallTalk";
+import AppLoader from "./Loader/AppLoader";
 
 export default function LoginSmallTalk() {
   let navigation = useNavigate();
+
   const [isLoginScreen, setIsLoginScreen] = useState(true);
   const [isRegistrationScreenVisible, setIsRegistrationScreenVisible] =
     useState(true);
@@ -20,6 +22,8 @@ export default function LoginSmallTalk() {
   });
   const { email, password } = credentials;
   const {
+    isLoading,
+    setIsLoading,
     setUserData,
     // isValidEmail,
     isValidObjField,
@@ -45,7 +49,7 @@ export default function LoginSmallTalk() {
       if (!password.trim() || password.length < 5) {
         return updateError("Password must be 5 character long!", setError);
       }
-
+      setIsLoading(true);
       const headers = {
         "Content-Type": "application/json",
       };
@@ -53,9 +57,10 @@ export default function LoginSmallTalk() {
         `http://192.168.18.74:8000/user/login/${credentials.email}/${credentials.password}`,
         { headers }
       );
+
       if (response.data.id) {
         showToast("You have been Login successfully!");
-        localStorage.setItem('authToken', response.data.token); 
+        localStorage.setItem("authToken", response.data.token);
         console.log("token", response.data.token);
         // localStorage.setItem('userData', JSON.stringify(response.data));
         setIsLoginScreen(false);
@@ -65,15 +70,18 @@ export default function LoginSmallTalk() {
           state: { name: response.data.name, id: response.data.id },
         });
         console.log("User login successfully:", response.data);
+        setIsLoading(false);
       } else {
         console.error("No such user present", error);
         showToast("Failed to login. Please check your credentials.");
         setIsErrorOpen(true);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Failed to login user:", error);
       showToast("Failed to login. Please check your credentials.");
       setIsErrorOpen(true);
+      setIsLoading(false);
     }
   };
 
@@ -99,7 +107,7 @@ export default function LoginSmallTalk() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-             minHeight: "70vh",
+            minHeight: "70vh",
           }}
         >
           <div className="card" style={{ width: "28rem" }}>
@@ -225,6 +233,8 @@ export default function LoginSmallTalk() {
                 </div>
               </form>
             </div>
+         
+            {isLoading ? <AppLoader /> : null}
           </div>
         </div>
       ) : (

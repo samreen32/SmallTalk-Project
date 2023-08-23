@@ -3,20 +3,27 @@ import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
-import { Toolbar } from "@mui/material";
+import { TextField, Toolbar } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/Navbar";
 
 function Reports() {
-  let number_id = 0;
   const { userData } = UserLogin();
+  const { id } = userData;
   const [reportData, setReportData] = useState([]);
-  const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
+  const searchWords = searchQuery.split(" "); // Split search query into words
+  const reportDataFiltered = reportData.filter((report) =>
+    searchWords.every((word) =>
+      report.name.toLowerCase().includes(word.toLowerCase()) ||
+      report.details.duration.toLowerCase().includes(word.toLowerCase())
+    )
+  );
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const isScreenSmall = windowWidth <= 530;
 
+  /* Report card responsiveness */
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -26,10 +33,7 @@ function Reports() {
     };
   }, []);
 
-  const { id, name } = userData;
-  console.log("User ID:", id);
-  console.log("User Name:", name);
-
+  /* Functions for Search */
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -101,19 +105,6 @@ function Reports() {
   //   setResponseData(parsedData);
   // }
 
-  /* Filter responseData based on the search value */
-  // useEffect(() => {
-  //   setFilteredData(
-  //     responseData !== null
-  //       ? responseData.filter((item) =>
-  //           search.toLowerCase() === ""
-  //             ? item
-  //             : item.duration.toLowerCase().includes(search)
-  //         )
-  //       : []
-  //   );
-  // }, [responseData, search]);
-
   return (
     <>
       {/* <Navbar /> */}
@@ -138,43 +129,45 @@ function Reports() {
                   <StyledInputBase
                     placeholder="Search…"
                     inputProps={{ "aria-label": "search" }}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </Search>
 
                 {/* <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <input
-                className="form-control me-2 mx-5"
-                style={{ width: "75%", backgroundColor: "#f7f7f5" }}
-                type="text"
-                id="search"
-                name="search"
-                placeholder="Search"
-                aria-label="Search"
-                autocomplete="off"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              /> */}
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <input
+                  className="form-control me-2 mx-5"
+                  style={{ width: "75%", backgroundColor: "#f7f7f5" }}
+                  type="text"
+                  id="search"
+                  name="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  autocomplete="off"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                /> */}
               </form>
             </Toolbar>
             <br />
           </>
-
-          {/* {filteredData.length > 0 ? (
-            filteredData.map((response, index) => {
-              number_id += 1;
-              return ( */}
+          {/* <TextField
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ margin: "10px" }}
+          /> */}
 
           <>
-            {reportData.length === 0 ? (
+            {reportDataFiltered.length === 0 ? (
               <div className="my-5" style={{ textAlign: "center" }}>
                 <h1>Empty Report Section</h1>
               </div>
             ) : (
-              reportData.map((report, index) => (
+              reportDataFiltered.map((report, index) => (
                 <div
                   key={report.id}
                   className="card my-3"
@@ -237,14 +230,6 @@ function Reports() {
               ))
             )}
           </>
-
-          {/* );
-            })
-          ) : ( */}
-          {/* <div className="my-5" style={{ textAlign: "center" }}>
-              <h1>Empty Report Section</h1>
-            </div> */}
-          {/* )} */}
         </Box>
       </div>
     </>

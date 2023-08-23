@@ -83,6 +83,7 @@ function App() {
               <> */}
             <Route exact path="/Login" element={<Login />}></Route>
             <Route exact path="/Register" element={<Register />}></Route>
+
             {/* </>
             )} */}
           </Routes>

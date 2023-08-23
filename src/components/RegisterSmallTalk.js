@@ -103,7 +103,15 @@ export default function RegisterSmallTalk() {
   return (
     <>
       {isRegistrationScreen ? (
-        <div className="my-5" style={{ padding: "50px 0 0 31%" }}>
+        <div
+          className="my-5"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "70vh",
+          }}
+        >
           <div className="card" style={{ width: "28rem" }}>
             <div className="image-container">
               <img
