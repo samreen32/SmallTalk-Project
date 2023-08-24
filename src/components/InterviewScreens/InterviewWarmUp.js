@@ -5,7 +5,7 @@ import interview from "../../assets/img/interview.png";
 import timer from "../../assets/img/TimeCircle.png";
 import { Link } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
-import Navbar from "../Home/Navbar";
+import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 export default function InterviewWarmUp() {
   const { timerValue, setIsTimerRunning, formatTimer } = UserLogin();

@@ -9,7 +9,7 @@ import { UserLogin } from "../../context/AuthContext";
 import "../../App.css";
 import axios from "axios";
 import audioBufferToWav from "audiobuffer-to-wav";
-import Navbar from "../Home/Navbar";
+import Navbar from "../Home/HomeSections/Section1/Navbar";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 
 export default function InterviewQs() {

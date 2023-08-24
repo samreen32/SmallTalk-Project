@@ -17,7 +17,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import meterBlack from "../../assets/img/meterBlack.jpg";
 import meterBlue from "../../assets/img/meterBlue.jpg";
 import cross from "../../assets/img/CrossIcon.png";
-import Navbar from "../Home/Navbar";
+import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 ChartJS.register(
   Tooltip,

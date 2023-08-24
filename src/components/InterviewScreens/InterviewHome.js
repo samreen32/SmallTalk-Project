@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 import interview from "../../assets/img/interview.png";
 import circle from "../../assets/img/HalfCircle.png";
 import rectangle from "../../assets/img/rectangles.png";
-import Navbar from "../Home/Navbar";
+import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 export default function InterviewHome() {
   return (

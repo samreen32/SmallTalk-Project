@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import logo from "../../assets/img/logo-1.png";
+import logo from "../../../../assets/img/logo-1.png";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineClose } from "react-icons/md";
 import { PiCaretUpBold } from "react-icons/pi";
 import { useState } from "react";
 import { useLocation } from "react-router";
-import "../../App.css";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
@@ -94,19 +93,19 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
         </div>
         <ul className="navbar-nav navbar-links d-xl-flex d-lg-flex d-none gap-xl-4 gap-lg-4 gap-0 mt-xl-0 mt-lg-0 mt-4">
           <li className="nav-items">
-            <a href="" className="nav-link">
+            <Link to="/" className="nav-link">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-items">
-            <a href="" className="nav-link">
+            <Link to="/Reports" className="nav-link">
               My Report
-            </a>
+            </Link>
           </li>
           <li className="nav-items">
-            <a href="" className="nav-link">
+            <Link to="/FAQScreen" className="nav-link">
               FAQs
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="dropdown custom-dropdown d-flex gap-2 align-items-center">
@@ -139,28 +138,16 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
             </li>
             &nbsp;
             <li>
-              <Link className="dropdown-item" to="/FAQScreen">
-                FAQ's
-              </Link>
-              &nbsp;
-            </li>
-            <li>
               <Link className="dropdown-item" to="/Contact">
                 Contact Us
               </Link>
               &nbsp;
             </li>
             <li>
-              <Link className="dropdown-item" to="/PIHome">
-                Predictive Index
-              </Link>
-              &nbsp;
-            </li>
-            <li>
               <Link
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal1"
-                className="dropdown-item"
+               data-bs-toggle="modal"
+               data-bs-target="#exampleModal1"
+               className="dropdown-item"
                 style={{ color: "red" }}
               >
                 Logout
@@ -178,6 +165,45 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
           </button>
         </div>
       </nav>
+
+      {/* Logout Modal */}
+      <>
+        <div
+          className="modal fade"
+          id="exampleModal1"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <h6>Do you want to logout?</h6>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     </>
   );
 };

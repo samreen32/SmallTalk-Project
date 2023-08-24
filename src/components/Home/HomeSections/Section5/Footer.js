@@ -1,13 +1,15 @@
 import React from "react";
-import CDS from "../../assets/footer-logo.png";
+import CDS from "../../../../assets/footer-logo.png";
 import { FaFacebookF } from "react-icons/fa";
 import { BiLogoLinkedin } from "react-icons/bi";
 
-const footer = () => {
+const Footer = () => {
   return (
     <div id="footer" className="container-fluid">
       <div className="bg-cds py-5" style={{ backgroundColor: "#f2f2f5" }}>
         <div className="footer-grid">
+
+          {/* CDS Logo */}
           <div className="px-3 px-sm-3 px-md-0 px-lg-0 text-xl-center text-lg-center text-md-center text-start">
             <img src={CDS} className="footer-logo" alt="CDF" title="CDS" />
           </div>
@@ -57,4 +59,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;

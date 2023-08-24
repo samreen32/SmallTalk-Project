@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Login from "./components/LoginSmallTalk";
 import Register from "./components/RegisterSmallTalk";
-import Navbar from "./components/Home/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AuthProvider, { UserLogin } from "./context/AuthContext";
 import InterviewHome from "./components/InterviewScreens/InterviewHome";
@@ -17,50 +16,26 @@ import PIFivthScreen from "./components/PredictiveIndex/PIFivthScreen";
 import PILastScreen from "./components/PredictiveIndex/PILastScreen";
 import Contact from "./components/ContactUs/Contact";
 import FAQScreen from "./components/FAQ/FAQScreen";
-import Hero from "./components/Home/Hero";
-import Faqs from "./components/Home/Faqs";
-import Info from "./components/Home/Info";
-import Footer from "./components/Home/footer";
-// import Hero from "./HomePage/src/Components/Hero";
+import Main from "./components/Home/Main";
 
 function App() {
   // const {isLogIn} = UserLogin();
-  const [stickyNav, setstickyNav] = useState(false);
-  const [toTop, settoTop] = useState(false);
-  const [active, setActive] = useState(0);
 
   return (
     <AuthProvider>
       <div style={{ fontFamily: "Roboto, sans-serif" }}>
         <Router>
+          <Main />
           {/* <Register /> */}
-          {/* <Navbar_1 /> */}
-          <Navbar
-            stickyNav={stickyNav}
-            setstickyNav={setstickyNav}
-            toTop={toTop}
-            settoTop={settoTop}
-            active={active}
-            setActive={setActive}
-          />
-          <Hero
-            stickyNav={stickyNav}
-            setstickyNav={setstickyNav}
-            active={active}
-            setActive={setActive}
-          />
-          <Faqs />
-          <Info />
-          <Footer />
           {/* <InterviewWarmUp /> */}
-        
+
           {/* <Register />
           <Login /> */}
 
           <Routes>
             {/* {isLogIn ? (
               <> */}
-            <Route exact path="/Navbar" element={<Navbar />}></Route>
+            <Route exact path="/Main" element={<Main />}></Route>
             <Route
               exact
               path="/InterviewWarmUp"
@@ -106,21 +81,6 @@ function App() {
               <> */}
             <Route exact path="/Login" element={<Login />}></Route>
             <Route exact path="/Register" element={<Register />}></Route>
-            <Route
-              exact
-              path="/Hero"
-              element={
-                <Hero
-                  stickyNav={stickyNav}
-                  setstickyNav={setstickyNav}
-                  active={active}
-                  setActive={setActive}
-                />
-              }
-            ></Route>
-            <Route exact path="/Faqs" element={<Faqs />}></Route>
-            <Route exact path="/Info" element={<Info />}></Route>
-            <Route exact path="/Footer" element={<Footer />}></Route>
 
             {/* </>
             )} */}

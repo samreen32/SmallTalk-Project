@@ -6,7 +6,7 @@ import { styled, alpha } from "@mui/material/styles";
 import { TextField, Toolbar } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
-import Navbar from "../Home/Navbar";
+import Navbar from "../Home/HomeSections/Section1/Navbar";
 import EmptySearch from "../Loader/EmptySearch";
 
 function Reports() {

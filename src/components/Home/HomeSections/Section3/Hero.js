@@ -1,7 +1,8 @@
 import React from "react";
-import polygon from "../../assets/graph1.png";
-import robot from "../../assets/robo.png";
-import ProgressBar from "./ProgressBar";
+import polygon from "../../../../assets/graph1.png";
+import robot from "../../../../assets/robo.png";
+import ProgressBar from "../Section2/ProgressBar";
+import { Link } from "react-router-dom";
 
 const Hero = ({ stickyNav, active, setActive }) => {
   return (
@@ -29,9 +30,9 @@ const Hero = ({ stickyNav, active, setActive }) => {
             </p>
             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-flex  d-block justify-content-between">
               <div>
-                <a href="" className="test-start">
+                <Link to="/InterviewWarmUp" className="test-start">
                   Start
-                </a>
+                </Link>
               </div>
               <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
                 <img src={polygon} className="polygon" alt="" />
@@ -51,9 +52,9 @@ const Hero = ({ stickyNav, active, setActive }) => {
             </p>
             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-flex  d-block justify-content-between">
               <div>
-                <a href="" className="test-start">
+                <Link to="/PIHome" className="test-start">
                   Start
-                </a>
+                </Link>
               </div>
               <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
                 <img src={robot} className="robot" alt="" />
