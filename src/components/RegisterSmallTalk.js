@@ -6,6 +6,7 @@ import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { UserLogin } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import LoginSmallTalk from "./LoginSmallTalk";
+import AppLoader from "./Loader/AppLoader";
 
 export default function RegisterSmallTalk() {
   let navigation = useNavigate();
@@ -19,6 +20,9 @@ export default function RegisterSmallTalk() {
   const { name, email, password } = credentials;
   const {
     // isValidEmail,
+    isLoading,
+    setIsLoading,
+    setUserData,
     isValidObjField,
     updateError,
     error,
@@ -58,6 +62,7 @@ export default function RegisterSmallTalk() {
         return updateError("Password must be 5 character long!", setError);
       }
 
+      setIsLoading(true);
       const csrfToken = await getCSRFToken();
       const headers = {
         "Content-Type": "application/json",
@@ -72,18 +77,23 @@ export default function RegisterSmallTalk() {
         showToast("You have been Register successfully!");
         setIsRegistrationScreen(false);
         setIsLoginScreenVisible(false);
-        navigation("/Navbar", { state: { name: response.data.name } });
-        console.log("User created successfully:", response.data);
-        // console.log("name ", response.data.name);
+        setUserData(response.data);
+        navigation("/Navbar", {
+          state: { name: response.data.name, id: response.data.id },
+        });
+        console.log("User login successfully:", response.data);
+        setIsLoading(false);
       } else {
         console.error("User with these credentials already present", error);
         showToast("Failed to register. User already present.");
         setIsErrorOpen(true);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Failed to create user:", error);
       showToast("Failed to register. Please check your credentials.");
       setIsErrorOpen(true);
+      setIsLoading(false);
     }
   };
 
@@ -227,6 +237,8 @@ export default function RegisterSmallTalk() {
                 </div>
               </form>
             </div>
+
+            {isLoading ? <AppLoader /> : null}
           </div>
         </div>
       ) : (

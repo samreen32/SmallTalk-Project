@@ -53,7 +53,7 @@ export default function SelectedReport() {
 
   const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
   const roundedScore = Math.round(similarityScore);
-  const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
+  const normalizedScore = Math.min(Math.max(roundedScore, 0), 170);
 
   /* Print Suggestions and Grammer Mistakes for table*/
   mistake_index_text.forEach((indexes, i) => {
@@ -301,12 +301,21 @@ export default function SelectedReport() {
 
   /* Scores for Scale Meter */
   const totalScore = {
-    beginner: 10,
+    beginner: 120,
     elementary: 180,
     intermediate: 126,
     upperIntermediate: 138,
     advanced: 150,
   };
+
+  function generateGradientStops() {
+    const rulerValues = [
+      0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160,
+      170,
+    ];
+    const stops = rulerValues.map((value) => `lightblue ${value}%`).join(", ");
+    return `linear-gradient(to right, ${stops})`;
+  }
 
   /* Bottom Content */
   const cardContent = [
@@ -547,15 +556,16 @@ export default function SelectedReport() {
                       role="progressbar"
                       style={{
                         height: "25px",
-                        backgroundImage:
-                          "radial-gradient(circle, white 0%, lightblue 100%)",
+                        // width: "100%",
+                        // backgroundImage:
+                        //   "linear-gradient(to right, white 0%, lightblue 100%)",
                         color: "darkred",
                       }}
                     >
                       <div
                         className="progress-bar"
                         style={{
-                          width: `${normalizedScore}%`,
+                          width: `${(normalizedScore / 170) * 100}%`,
                           backgroundColor: "green",
                         }}
                       ></div>

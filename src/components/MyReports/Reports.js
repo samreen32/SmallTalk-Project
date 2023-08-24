@@ -7,6 +7,7 @@ import { TextField, Toolbar } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/Navbar";
+import EmptySearch from "../Loader/EmptySearch";
 
 function Reports() {
   const { userData } = UserLogin();
@@ -15,9 +16,10 @@ function Reports() {
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
   const searchWords = searchQuery.split(" "); // Split search query into words
   const reportDataFiltered = reportData.filter((report) =>
-    searchWords.every((word) =>
-      report.name.toLowerCase().includes(word.toLowerCase()) ||
-      report.details.duration.toLowerCase().includes(word.toLowerCase())
+    searchWords.every(
+      (word) =>
+        report.name.toLowerCase().includes(word.toLowerCase()) ||
+        report.details.duration.toLowerCase().includes(word.toLowerCase())
     )
   );
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -162,73 +164,68 @@ function Reports() {
           /> */}
 
           <>
-            {reportDataFiltered.length === 0 ? (
-              <div className="my-5" style={{ textAlign: "center" }}>
-                <h1>Empty Report Section</h1>
-              </div>
-            ) : (
-              reportDataFiltered.map((report, index) => (
+            {reportDataFiltered.map((report, index) => (
+              <div
+                key={report.id}
+                className="card my-3"
+                style={{
+                  borderRadius: "18px",
+                  overflow: "hidden",
+                  fontWeight: "bold",
+                }}
+              >
                 <div
-                  key={report.id}
-                  className="card my-3"
-                  style={{
-                    borderRadius: "18px",
-                    overflow: "hidden",
-                    fontWeight: "bold",
-                  }}
+                  className={`card-body ${
+                    isScreenSmall ? "card-small-screen" : "card-larger-screen"
+                  }`}
                 >
-                  <div
-                    className={`card-body ${
-                      isScreenSmall ? "card-small-screen" : "card-larger-screen"
-                    }`}
-                  >
-                    <div style={{ flex: "1", fontWeight: "bold" }}>
-                      {index + 1}. {report.name}
-                    </div>
-                    <div style={{ flex: "1", color: "gray" }}>
-                      {report.details.duration}
-                    </div>
-                    <div style={{ flex: "1", color: "gray" }}>
-                      <i className="fa fa-pencil mx-2" aria-hidden="true"></i>
-                      <i className="fa fa-trash mx-2" aria-hidden="true"></i>
-                    </div>
-                    <Link
-                      to={{
-                        pathname: "/SelectedReport",
-                        search: `?duration=${
-                          report.details.duration
-                        }&words_per_minute=${
-                          report.details.word_per_minute
-                        }&similarity_score=${
-                          report.details.similarity_score[0]
-                        }&total_words=${
-                          report.details.vocabulary_proficiency["Total Words:"]
-                        }&total_unique_words=${
-                          report.details.vocabulary_proficiency[
-                            "Total Unique Words:"
-                          ]
-                        }&context=${
-                          report.details.context
-                        }&grammar_mistakes=${encodeURIComponent(
-                          JSON.stringify(report.details.grammar_mistakes)
-                        )}&suggestions=${encodeURIComponent(
-                          JSON.stringify(report.details.suggestions)
-                        )}&level_words_percentage=${encodeURIComponent(
-                          JSON.stringify(
-                            report.details.vocabulary_proficiency[
-                              "level_words_percentage"
-                            ]
-                          )
-                        )}`,
-                      }}
-                      style={{ color: "black", fontWeight: "bolder" }}
-                    >
-                      <i className="fa fa-chevron-right fa-xl"></i>
-                    </Link>
+                  <div style={{ flex: "1", fontWeight: "bold" }}>
+                    {index + 1}. {report.name}
                   </div>
+                  <div style={{ flex: "1", color: "gray" }}>
+                    {report.details.duration}
+                  </div>
+                  <div style={{ flex: "1", color: "gray" }}>
+                    <i className="fa fa-pencil mx-2" aria-hidden="true"></i>
+                    <i className="fa fa-trash mx-2" aria-hidden="true"></i>
+                  </div>
+                  <Link
+                    to={{
+                      pathname: "/SelectedReport",
+                      search: `?duration=${
+                        report.details.duration
+                      }&words_per_minute=${
+                        report.details.word_per_minute
+                      }&similarity_score=${
+                        report.details.similarity_score[0]
+                      }&total_words=${
+                        report.details.vocabulary_proficiency["Total Words:"]
+                      }&total_unique_words=${
+                        report.details.vocabulary_proficiency[
+                          "Total Unique Words:"
+                        ]
+                      }&context=${
+                        report.details.context
+                      }&grammar_mistakes=${encodeURIComponent(
+                        JSON.stringify(report.details.grammar_mistakes)
+                      )}&suggestions=${encodeURIComponent(
+                        JSON.stringify(report.details.suggestions)
+                      )}&level_words_percentage=${encodeURIComponent(
+                        JSON.stringify(
+                          report.details.vocabulary_proficiency[
+                            "level_words_percentage"
+                          ]
+                        )
+                      )}`,
+                    }}
+                    style={{ color: "black", fontWeight: "bolder" }}
+                  >
+                    <i className="fa fa-chevron-right fa-xl"></i>
+                  </Link>
                 </div>
-              ))
-            )}
+              </div>
+            ))}
+            {reportDataFiltered.length == 0 && <EmptySearch />}
           </>
         </Box>
       </div>

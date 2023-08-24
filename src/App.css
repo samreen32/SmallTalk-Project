@@ -37,6 +37,23 @@
     transform: rotate(360deg);
   }
 }
+/* Add this to your existing CSS or create a new CSS file */
+/* Styling for the off-canvas */
+.offcanvas-end {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  width: 80%; /* Adjust this value as needed */
+}
+
+.offcanvas-end.show {
+  transform: translateX(0);
+}
+
+/* Adjust the width and other styles for the off-canvas */
+.offcanvas-body {
+  padding: 15px;
+  background-color: #fff;
+}
 
 /* CUSTOME STYLING */
 .container {
@@ -275,7 +292,7 @@
 }
 
 .custom-dropdown .dropdown-menu {
-  left: -220px;
+  left: -210px;
 }
 
 .dropdown-width {
@@ -512,7 +529,8 @@ ul.checklist-2 li:before {
 
 .progress {
   height: 20px;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-image: linear-gradient(to right, white 0%, lightblue 170%);
   overflow: hidden;
 }
 
@@ -593,14 +611,10 @@ ul.checklist-2 li:before {
   margin-top: 12px;
   font-size: 14px;
   padding: 10px 10px;
-  /* background-color: #5cb3cf;
-  color: floralwhite; */
 }
 
 .btn-small-screen {
   margin-top: 10px;
-  /* background-color: #5cb3cf;
-  color: floralwhite; */
 }
 
 .card-larger-screen {

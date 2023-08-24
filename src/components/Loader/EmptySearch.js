@@ -1,7 +1,7 @@
 import React from "react";
 import Lottie from "lottie-react";
 
-const AppLoader = () => {
+const EmptySearch = () => {
   return (
     <div
       style={{
@@ -17,7 +17,7 @@ const AppLoader = () => {
       }}
     >
       <Lottie
-        animationData={require("../../assets/animation/loader_3.json")}
+        animationData={require("../../assets/animation/emptySearch.json")}
         loop
         autoplay
         style={{ width: "100%", height: "100%" }}
@@ -26,4 +26,4 @@ const AppLoader = () => {
   );
 };
 
-export default AppLoader;
+export default EmptySearch;

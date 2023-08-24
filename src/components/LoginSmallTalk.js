@@ -11,7 +11,6 @@ import AppLoader from "./Loader/AppLoader";
 
 export default function LoginSmallTalk() {
   let navigation = useNavigate();
-
   const [isLoginScreen, setIsLoginScreen] = useState(true);
   const [isRegistrationScreenVisible, setIsRegistrationScreenVisible] =
     useState(true);
@@ -233,7 +232,7 @@ export default function LoginSmallTalk() {
                 </div>
               </form>
             </div>
-         
+            {/* <AppLoader /> */}
             {isLoading ? <AppLoader /> : null}
           </div>
         </div>
