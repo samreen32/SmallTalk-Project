@@ -11,7 +11,9 @@ const Hero = ({ stickyNav, active, setActive }) => {
       style={{ marginTop: stickyNav && "6rem" }}
     >
       <ProgressBar active={active} setActive={setActive} />
+
       <div className="test-section row gap-3 px-3 justify-content-center pt-xl-4 pt-lg-4 pt-md-3 pt-0">
+        {/* Speaking Level Test Div */}
         <div className="speak-test px-xl-3 px-lg-3 px-md-3 px-2">
           <div className="px-xl-4 px-lg-4 px-md-4 px-sm-2 px-1 pt-md-5 pt-3">
             <h2 className="test-title">Speaking Level Test</h2>
@@ -37,6 +39,8 @@ const Hero = ({ stickyNav, active, setActive }) => {
             </div>
           </div>
         </div>
+
+        {/* Predictive Index Div */}
         <div className="predictive px-xl-3 px-lg-3 px-md-3 px-2">
           <div className="px-xl-4 px-lg-4 px-md-4 px-sm-2 px-1 pt-md-5 pt-3">
             <h2 className="test-title">Predictive Index</h2>

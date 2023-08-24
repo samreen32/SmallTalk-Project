@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import Circle from "./Circle";
+
 const ProgressBar = ({ active, setActive }) => {
   const [width, setWidth] = useState(0);
   const [circle] = useState(3);
   const arr = [];
   const barStatus = ["Start Interview", "Start Predictive Index", "Complete"];
-  // useEffect(()=>{
-  //     if(active <= circle - 1){
-  //         setWidth(90/(circle - 1) * active);
-  //     }
-  // },[circle,active])
+
   for (let i = 0; i < circle; i++) {
     arr.push(
       <div className="circle-container" key={i}>
@@ -21,11 +18,13 @@ const ProgressBar = ({ active, setActive }) => {
       </div>
     );
   }
+
   // const handleNextClick = () => {
   //     if (active < circle) {
   //         setActive(active + 1);
   //     }
   // };
+
   return (
     <>
       <div className="container-bar mb-5">

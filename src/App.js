@@ -3,8 +3,6 @@ import Login from "./components/LoginSmallTalk";
 import Register from "./components/RegisterSmallTalk";
 import Navbar from "./components/Home/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Sections from "./components/Home/Sections";
-import TimerDays from "./components/Home/TimerDays";
 import AuthProvider, { UserLogin } from "./context/AuthContext";
 import InterviewHome from "./components/InterviewScreens/InterviewHome";
 import InterviewWarmUp from "./components/InterviewScreens/InterviewWarmUp";
@@ -23,7 +21,6 @@ import Hero from "./components/Home/Hero";
 import Faqs from "./components/Home/Faqs";
 import Info from "./components/Home/Info";
 import Footer from "./components/Home/footer";
-import Navbar_1 from "./components/Home/Navbar_1";
 // import Hero from "./HomePage/src/Components/Hero";
 
 function App() {
@@ -31,6 +28,7 @@ function App() {
   const [stickyNav, setstickyNav] = useState(false);
   const [toTop, settoTop] = useState(false);
   const [active, setActive] = useState(0);
+
   return (
     <AuthProvider>
       <div style={{ fontFamily: "Roboto, sans-serif" }}>
@@ -58,7 +56,6 @@ function App() {
         
           {/* <Register />
           <Login /> */}
-          {/* <Sections /> */}
 
           <Routes>
             {/* {isLogIn ? (

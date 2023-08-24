@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+
 const Faqs = () => {
   const faqWork = [
     {
@@ -33,6 +34,7 @@ const Faqs = () => {
         "Lorem ipsum dolor sit amet consectetur. Fermentum amet nulla posuere nunc sagittis fusce a at rhoncus. Enim varius purus nec egestas amet et.",
     },
   ];
+
   const faqPrepare = [
     {
       question: "How to prepare for language speaking ability test?",
@@ -69,9 +71,11 @@ const Faqs = () => {
   const [showStates, setShowStates] = useState(
     Array(faqWork.length).fill(false)
   );
+
   const [helloShowStates, setHelloShowStates] = useState(
     Array(faqPrepare.length).fill(false)
   );
+
   const toggleQuestion = (index) => {
     const updatedStates = showStates.map((state, i) =>
       i === index ? !state : false
@@ -89,6 +93,7 @@ const Faqs = () => {
   return (
     <div id="Faqs" className="container-fluid my-5">
       <div className="test-section row gap-3 px-3 justify-content-center">
+        {/* How To Work Div */}
         <div className="faq-work px-xl-3 px-lg-3 px-md-3 px-2">
           <div className="px-xl-4 px-lg-4 px-md-4 px-sm-2 px-1">
             <h2 className="faq-heading text-center mt-4">How To Work</h2>
@@ -116,6 +121,8 @@ const Faqs = () => {
             ))}
           </div>
         </div>
+
+        {/* How to Prepare Div */}
         <div className="faq-prepare px-xl-3 px-lg-3 px-md-3 px-2">
           <div className="px-xl-4 px-lg-4 px-md-4 px-sm-2 px-1">
             <h2 className="faq-heading text-center mt-4 ">How to Prepare</h2>
