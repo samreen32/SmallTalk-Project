@@ -10,7 +10,15 @@ import Navbar from "../Home/HomeSections/Section1/Navbar";
 import EmptySearch from "../Loader/EmptySearch";
 
 function Reports() {
-  const { userData } = UserLogin();
+  const {
+    userData,
+    stickyNav,
+    setstickyNav,
+    toTop,
+    settoTop,
+    active,
+    setActive,
+  } = UserLogin();
   const { id } = userData;
   const [reportData, setReportData] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
@@ -109,7 +117,14 @@ function Reports() {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar
+        stickyNav={stickyNav}
+        setstickyNav={setstickyNav}
+        toTop={toTop}
+        settoTop={settoTop}
+        active={active}
+        setActive={setActive}
+      />
       <div className="my-5" style={{ padding: "10px 70px 0 70px" }}>
         <Box sx={{ flexGrow: 1 }}>
           <>

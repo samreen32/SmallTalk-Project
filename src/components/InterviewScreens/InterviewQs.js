@@ -11,6 +11,7 @@ import axios from "axios";
 import audioBufferToWav from "audiobuffer-to-wav";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
+import { INTERVIEW_API_URL } from "../../Auth_API";
 
 export default function InterviewQs() {
   /* States for Smaller Screens */
@@ -29,6 +30,12 @@ export default function InterviewQs() {
 
   /* Context States */
   const {
+    stickyNav,
+    setstickyNav,
+    toTop,
+    settoTop,
+    active,
+    setActive,
     userData,
     formatTimer,
     timerValue,
@@ -36,24 +43,18 @@ export default function InterviewQs() {
     setTimerValue,
   } = UserLogin();
 
+  /* Get user id state */
   const [responseData, setResponseData] = useState([]);
-  const { id, name } = userData;
-
+  const { id } = userData;
   console.log("User ID:", id);
-  console.log("User Name:", name);
 
+  /* Store Report Name State */
   const [credentials, setCredentials] = useState({
     reportName: "",
   });
   const { reportName } = credentials;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
-
-  /* Function to handle finish interview state */
-  const handleFinishInterview = () => {
-    setIsTimerRunning(false);
-    setTimerValue(0);
   };
 
   /* Recording States */
@@ -199,7 +200,7 @@ export default function InterviewQs() {
 
   /* Interview Qs fetch from backend */
   useEffect(() => {
-    fetch("http://192.168.18.74:8000/question/get-question/")
+    fetch(`${INTERVIEW_API_URL}/get-question/`)
       .then((response) => response.json())
       .then((data) => {
         setInterviewQuestions(data);
@@ -224,15 +225,30 @@ export default function InterviewQs() {
   //   "Do you prefer working on one account, or can you comfortably work on several at the same time?",
   // ];
 
+  /* Function to handle finish interview state */
+  const handleFinishInterview = () => {
+    setIsTimerRunning(false);
+    setTimerValue(0);
+  };
+
   const handleNextQuestion = () => {
     if (currentQuestionIndex < interviewQuestions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     }
   };
 
+
+
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar
+        stickyNav={stickyNav}
+        setstickyNav={setstickyNav}
+        toTop={toTop}
+        settoTop={settoTop}
+        active={active}
+        setActive={setActive}
+      />
       <div
         style={{
           display: "flex",

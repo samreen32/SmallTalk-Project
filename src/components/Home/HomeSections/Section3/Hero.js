@@ -30,7 +30,7 @@ const Hero = ({ stickyNav, active, setActive }) => {
             </p>
             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-flex  d-block justify-content-between">
               <div>
-                <Link to="/InterviewWarmUp" className="test-start">
+                <Link to="/InterviewHome" className="test-start">
                   Start
                 </Link>
               </div>

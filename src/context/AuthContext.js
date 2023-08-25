@@ -4,6 +4,9 @@ import { Snackbar, Alert } from "@mui/material";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [stickyNav, setstickyNav] = useState(false);
+  const [toTop, settoTop] = useState(false);
+  const [active, setActive] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -71,6 +74,12 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        stickyNav,
+        setstickyNav,
+        toTop,
+        settoTop,
+        active,
+        setActive,
         userData,
         setUserData,
         isLogIn,

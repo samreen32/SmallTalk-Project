@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import RegisterSmallTalk from "./RegisterSmallTalk";
 import AppLoader from "./Loader/AppLoader";
+import { AUTH_API_URL } from "../Auth_API";
 
 export default function LoginSmallTalk() {
   let navigation = useNavigate();
@@ -53,7 +54,7 @@ export default function LoginSmallTalk() {
         "Content-Type": "application/json",
       };
       const response = await axios.get(
-        `http://192.168.18.74:8000/user/login/${credentials.email}/${credentials.password}`,
+        `${AUTH_API_URL}/login/${credentials.email}/${credentials.password}`,
         { headers }
       );
 
@@ -65,7 +66,7 @@ export default function LoginSmallTalk() {
         setIsLoginScreen(false);
         setIsRegistrationScreenVisible(false);
         setUserData(response.data);
-        navigation("/Navbar", {
+        navigation("/Main", {
           state: { name: response.data.name, id: response.data.id },
         });
         console.log("User login successfully:", response.data);

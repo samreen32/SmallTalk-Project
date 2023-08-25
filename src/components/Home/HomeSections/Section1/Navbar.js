@@ -109,7 +109,7 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
           </li>
         </ul>
         <div className="dropdown custom-dropdown d-flex gap-2 align-items-center">
-          <span className="user-name">Name{name}</span>
+          <span className="user-name">{name}</span>
           <a
             className="nav-link-home"
             href="#"
@@ -132,7 +132,7 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
               &nbsp;
             </li>
             <li>
-              <Link className="dropdown-item" to="/InterviewWarmUp">
+              <Link className="dropdown-item" to="/InterviewHome">
                 Interview
               </Link>
             </li>

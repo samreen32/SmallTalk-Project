@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -7,11 +7,22 @@ import interview from "../../assets/img/interview.png";
 import circle from "../../assets/img/HalfCircle.png";
 import rectangle from "../../assets/img/rectangles.png";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
+import { UserLogin } from "../../context/AuthContext";
 
 export default function InterviewHome() {
+  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
+    UserLogin();
+    
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar
+        stickyNav={stickyNav}
+        setstickyNav={setstickyNav}
+        toTop={toTop}
+        settoTop={settoTop}
+        active={active}
+        setActive={setActive}
+      />
       <div
         style={{
           display: "flex",
@@ -88,7 +99,7 @@ export default function InterviewHome() {
                   required
                 />
                 <Link
-                  to="/Interview_1"
+                  to="/InterviewWarmUp"
                   className="btn my-2"
                   style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
                 >

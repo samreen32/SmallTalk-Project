@@ -7,6 +7,7 @@ import { UserLogin } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import LoginSmallTalk from "./LoginSmallTalk";
 import AppLoader from "./Loader/AppLoader";
+import { AUTH_API_URL } from "../Auth_API";
 
 export default function RegisterSmallTalk() {
   let navigation = useNavigate();
@@ -69,7 +70,7 @@ export default function RegisterSmallTalk() {
         "X-CSRFToken": csrfToken,
       };
       const response = await axios.post(
-        "http://192.168.18.74:8000/user/add-user/",
+        `${AUTH_API_URL}/add-user/`,
         credentials,
         { headers }
       );
@@ -78,7 +79,7 @@ export default function RegisterSmallTalk() {
         setIsRegistrationScreen(false);
         setIsLoginScreenVisible(false);
         setUserData(response.data);
-        navigation("/Navbar", {
+        navigation("/Main", {
           state: { name: response.data.name, id: response.data.id },
         });
         console.log("User login successfully:", response.data);

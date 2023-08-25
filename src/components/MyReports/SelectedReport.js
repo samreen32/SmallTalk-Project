@@ -18,6 +18,7 @@ import meterBlack from "../../assets/img/meterBlack.jpg";
 import meterBlue from "../../assets/img/meterBlue.jpg";
 import cross from "../../assets/img/CrossIcon.png";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
+import { UserLogin } from "../../context/AuthContext";
 
 ChartJS.register(
   Tooltip,
@@ -29,6 +30,8 @@ ChartJS.register(
 );
 
 export default function SelectedReport() {
+  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
+    UserLogin();
   const [highestLevel, setHighestLevel] = useState(null);
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
@@ -785,7 +788,15 @@ export default function SelectedReport() {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar
+        stickyNav={stickyNav}
+        setstickyNav={setstickyNav}
+        toTop={toTop}
+        settoTop={settoTop}
+        active={active}
+        setActive={setActive}
+      />
+      
       <div style={{ padding: "45px" }}>
         <div className="row mx-1">
           <div className="col-md-12">

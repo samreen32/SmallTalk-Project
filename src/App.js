@@ -25,8 +25,8 @@ function App() {
     <AuthProvider>
       <div style={{ fontFamily: "Roboto, sans-serif" }}>
         <Router>
-          <Main />
-          {/* <Register /> */}
+          {/* <Main /> */}
+          <Register />
           {/* <InterviewWarmUp /> */}
 
           {/* <Register />
@@ -36,6 +36,11 @@ function App() {
             {/* {isLogIn ? (
               <> */}
             <Route exact path="/Main" element={<Main />}></Route>
+            <Route
+              exact
+              path="/InterviewHome"
+              element={<InterviewHome />}
+            ></Route>
             <Route
               exact
               path="/InterviewWarmUp"

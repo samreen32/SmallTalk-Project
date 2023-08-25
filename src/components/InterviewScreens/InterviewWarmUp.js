@@ -8,11 +8,28 @@ import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 export default function InterviewWarmUp() {
-  const { timerValue, setIsTimerRunning, formatTimer } = UserLogin();
+  const {
+    timerValue,
+    setIsTimerRunning,
+    formatTimer,
+    stickyNav,
+    setstickyNav,
+    toTop,
+    settoTop,
+    active,
+    setActive,
+  } = UserLogin();
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar
+        stickyNav={stickyNav}
+        setstickyNav={setstickyNav}
+        toTop={toTop}
+        settoTop={settoTop}
+        active={active}
+        setActive={setActive}
+      />
       <div
         style={{
           display: "flex",
