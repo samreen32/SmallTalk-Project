@@ -1,5 +1,5 @@
 import React from "react";
-import CDS from "../../../../assets/footer-logo.png";
+import CDS from "../../../../assets/img/CDS_Logo_Footer.png";
 import { FaFacebookF } from "react-icons/fa";
 import { BiLogoLinkedin } from "react-icons/bi";
 
@@ -8,10 +8,16 @@ const Footer = () => {
     <div id="footer" className="container-fluid">
       <div className="bg-cds py-5" style={{ backgroundColor: "#f2f2f5" }}>
         <div className="footer-grid">
-
           {/* CDS Logo */}
           <div className="px-3 px-sm-3 px-md-0 px-lg-0 text-xl-center text-lg-center text-md-center text-start">
-            <img src={CDS} className="footer-logo" alt="CDF" title="CDS" />
+            <img
+              src={CDS}
+              className="footer-logo"
+              alt="CDF"
+              title="CDS"
+              width="50%"
+              height="50%"
+            />
           </div>
 
           {/* We Offer Section */}
@@ -50,8 +56,18 @@ const Footer = () => {
       {/* Copyright Section */}
       <div className="bg-footer d-flex flex-column gap-3 align-items-center justify-content-center">
         <div className="social-media d-flex gap-3 justify-content-center">
-          <FaFacebookF className="social-icon" />
-          <BiLogoLinkedin className="social-icon" />
+          <a
+            href="https://www.facebook.com/caribglobaldataservices"
+            target="_blank"
+          >
+            <FaFacebookF className="social-icon" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/caribglobal-data-services-b.v./"
+            target="_blank"
+          >
+            <BiLogoLinkedin className="social-icon" />
+          </a>
         </div>
         <div className="copy-right">©2023 by Caribglobal Data Services</div>
       </div>

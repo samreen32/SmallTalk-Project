@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import rocket from "../assets/img/rocket.png";
+import registerLogo from "../assets/img/register-logo.png";
 import "../App.css";
 import axios from "axios";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
@@ -114,134 +115,153 @@ export default function RegisterSmallTalk() {
   return (
     <>
       {isRegistrationScreen ? (
-        <div
-          className="my-5"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: "70vh",
-          }}
-        >
-          <div className="card" style={{ width: "28rem" }}>
-            <div className="image-container">
-              <img
-                className="card-title"
-                src={rocket}
-                alt="img"
-                height={150}
-                width={150}
-              />
-            </div>
+        <>
+          <div
+            className="my-5"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "70vh",
+            }}
+          >
+            <div className="card" style={{ width: "28rem" }}>
 
-            <div className="card-body">
-              <div style={{ textAlign: "center" }}>
-                <h3>
-                  <b>Sign up</b>
-                </h3>
-                <p>Let’s get started with your 30 days free trail</p>
+              {/* CDS logo */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "-45px",
+                }}
+              >
+                <img
+                  src={registerLogo}
+                  width="40%"
+                  height="40%"
+                  alt="CDS logo"
+                />
               </div>
 
-              <form className="form-container">
-                <TextField
-                  label="Name"
-                  variant="outlined"
-                  name="name"
-                  value={name}
-                  onChange={onChange}
-                  margin="normal"
-                  sx={{ width: "100%" }}
-                  required
-                  error={error && (!name.trim() || name.length < 3)}
-                  helperText={
-                    error &&
-                    (!name.trim() || name.length < 3) &&
-                    "Name must be at least 3 characters long!"
-                  }
-                />
-                <TextField
-                  label="Email"
-                  variant="outlined"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                  margin="normal"
-                  sx={{ width: "100%" }}
-                  required
-                  error={error && !isValidEmail(email)}
-                  helperText={
-                    error && !isValidEmail(email) && "Enter a valid email!"
-                  }
-                />
-
-                <TextField
-                  label="Password"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                  margin="normal"
-                  sx={{ width: "100%" }}
-                  required
-                  error={error && (!password.trim() || password.length < 5)}
-                  helperText={
-                    error &&
-                    (!password.trim() || password.length < 5) &&
-                    "Password must be at least 5 characters long!"
-                  }
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleTogglePassword} edge="end">
-                          {/* Eye icon */}
-                          {showPassword ? (
-                            <i
-                              className="fa fa-eye"
-                              aria-hidden="true"
-                              style={{ fontSize: "16px" }}
-                            ></i>
-                          ) : (
-                            <i
-                              className="fa fa-eye-slash"
-                              aria-hidden="true"
-                              style={{ fontSize: "16px" }}
-                            ></i>
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Link
-                  // to="Navbar"
-                  onClick={handleRegister}
-                  className="button button--flex my-3"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  Register
-                </Link>
+              <div className="card-body">
                 <div style={{ textAlign: "center" }}>
-                  <p>
-                    Already have account ?{" "}
-                    <Link
-                      // to="/Login"
-                      style={{
-                        textDecoration: "none",
-                        color: "black",
-                        border: "none",
-                      }}
-                      onClick={() => setIsRegistrationScreen(false)}
-                    >
-                      <b>Log in</b>
-                    </Link>
-                  </p>
+                  <h3>
+                    <b>Sign up</b>
+                  </h3>
+                  <p>Let’s get started with your 30 days free trail</p>
                 </div>
-              </form>
-            </div>
 
-            {isLoading ? <AppLoader /> : null}
+                <form className="form-container">
+                  <TextField
+                    label="Name"
+                    variant="outlined"
+                    name="name"
+                    value={name}
+                    onChange={onChange}
+                    margin="normal"
+                    sx={{ width: "100%" }}
+                    required
+                    error={error && (!name.trim() || name.length < 3)}
+                    helperText={
+                      error &&
+                      (!name.trim() || name.length < 3) &&
+                      "Name must be at least 3 characters long!"
+                    }
+                  />
+                  <div className="image-container">
+                    <img
+                      className="card-title"
+                      src={rocket}
+                      alt="img"
+                      height={150}
+                      width={150}
+                    />
+                  </div>
+                  <TextField
+                    label="Email"
+                    variant="outlined"
+                    name="email"
+                    value={email}
+                    onChange={onChange}
+                    margin="normal"
+                    sx={{ width: "100%" }}
+                    required
+                    error={error && !isValidEmail(email)}
+                    helperText={
+                      error && !isValidEmail(email) && "Enter a valid email!"
+                    }
+                  />
+
+                  <TextField
+                    label="Password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={password}
+                    onChange={onChange}
+                    margin="normal"
+                    sx={{ width: "100%" }}
+                    required
+                    error={error && (!password.trim() || password.length < 5)}
+                    helperText={
+                      error &&
+                      (!password.trim() || password.length < 5) &&
+                      "Password must be at least 5 characters long!"
+                    }
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={handleTogglePassword} edge="end">
+                            {/* Eye icon */}
+                            {showPassword ? (
+                              <i
+                                className="fa fa-eye"
+                                aria-hidden="true"
+                                style={{ fontSize: "16px" }}
+                              ></i>
+                            ) : (
+                              <i
+                                className="fa fa-eye-slash"
+                                aria-hidden="true"
+                                style={{ fontSize: "16px" }}
+                              ></i>
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <Link
+                    // to="Navbar"
+                    onClick={handleRegister}
+                    className="button button--flex my-3"
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    Register
+                  </Link>
+                  <div style={{ textAlign: "center" }}>
+                    <p>
+                      Already have account ?{" "}
+                      <Link
+                        // to="/Login"
+                        style={{
+                          textDecoration: "none",
+                          color: "black",
+                          border: "none",
+                        }}
+                        onClick={() => setIsRegistrationScreen(false)}
+                      >
+                        <b>Log in</b>
+                      </Link>
+                    </p>
+                  </div>
+                </form>
+              </div>
+
+              {isLoading ? <AppLoader /> : null}
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <>
           <>{isLoginScreenVisible && <LoginSmallTalk />}</>

@@ -8,10 +8,13 @@ import { Link, useLocation } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 import EmptySearch from "../Loader/EmptySearch";
+import { REPORT_API_URL } from "../../Auth_API";
 
 function Reports() {
   const {
     userData,
+    reportData,
+    setReportData,
     stickyNav,
     setstickyNav,
     toTop,
@@ -20,7 +23,8 @@ function Reports() {
     setActive,
   } = UserLogin();
   const { id } = userData;
-  const [reportData, setReportData] = useState([]);
+  console.log("report data of user", reportData);
+
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
   const searchWords = searchQuery.split(" "); // Split search query into words
   const reportDataFiltered = reportData.filter((report) =>
@@ -90,9 +94,7 @@ function Reports() {
   useEffect(() => {
     const fetchReport = async () => {
       try {
-        const response = await fetch(
-          `http://192.168.18.74:8000/report/get-report/${id}`
-        );
+        const response = await fetch(`${REPORT_API_URL}/get-report/${id}`);
 
         if (response.ok) {
           const data = await response.json();
@@ -230,6 +232,10 @@ function Reports() {
                           report.details.vocabulary_proficiency[
                             "level_words_percentage"
                           ]
+                        )
+                      )}&level_words=${encodeURIComponent(
+                        JSON.stringify(
+                          report.details.vocabulary_proficiency["level_words"]
                         )
                       )}`,
                     }}

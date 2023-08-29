@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isLogIn, setIsLogIn] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [reportData, setReportData] = useState([]);
+  const [interviewName, setInterviewName] = useState("");
 
   /***** Functions to format timer for interview ******/
   useEffect(() => {
@@ -74,6 +76,8 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        interviewName,
+        setInterviewName,
         stickyNav,
         setstickyNav,
         toTop,
@@ -82,6 +86,8 @@ const AuthProvider = ({ children }) => {
         setActive,
         userData,
         setUserData,
+        reportData,
+        setReportData,
         isLogIn,
         setIsLogIn,
         isValidObjField,

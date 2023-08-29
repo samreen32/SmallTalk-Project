@@ -25,13 +25,38 @@ function FAQScreen() {
           <b>Table of Contents</b>
         </h5>
         <ul className="my-4">
-          <li>How does SmallTalk evaluate your level?</li>
-          <li>How is IELTS scored?</li>
-          <li>What’s the confidence metric?</li>
-          <li>How does the AI detect mistakes?</li>
-          <li>Which are the standard language and accent used by SmallTalk?</li>
-          <li>Does the tool recognize Indian and Filipino Accents?</li>
-          <li>What language do you use as a reference?</li>
+          <li>
+            What is the purpose of user testing with the Predictive Index and
+            interviews in different languages?
+          </li>
+          <li>
+            How does the Predictive Index assessment contribute to the selection
+            process?
+          </li>
+          <li>
+            What languages are the assessments and interviews available in?
+          </li>
+          <li>
+            Are candidates required to take the assessment in all three
+            languages?
+          </li>
+          <li>
+            How do you ensure the fairness of the assessment across different
+            languages?
+          </li>
+          <li>
+            Can candidates switch languages after starting the assessment or
+            interview process?
+          </li>
+          <li>
+            How long does the entire assessment and interview process usually
+            take?
+          </li>
+          <li>
+            How are the assessment results and interview feedback used in the
+            hiring decision?
+          </li>
+          <li>Is there a way to prepare for the assessment and interview?</li>
         </ul>
         <br />
         <div>
@@ -51,7 +76,10 @@ function FAQScreen() {
                     aria-expanded="true"
                     aria-controls="collapseOne"
                   >
-                    <b>How does SmallTalk evaluate your level?</b>
+                    <b>
+                      What is the purpose of user testing with the Predictive
+                      Index and interviews in different languages?
+                    </b>
                   </button>
                 </h2>
                 <div
@@ -60,27 +88,11 @@ function FAQScreen() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    SmallTalk assesses your level based on the Common European
-                    Framework of Reference for Languages (CEFR), an
-                    international standard for describing language ability. The
-                    CEFR has six levels – from A1 for the most basic beginner to
-                    C2 for the very highest level of ability. SmallTalk
-                    recognizes and analyzes speech without human assistance and
-                    with 95% accuracy with a possible error margin of 0.5 CEFR
-                    level. We involve certified teachers and professional
-                    examiners to develop our Deep Learning algorithms. We use AI
-                    models trained on thousands of hours of speech samples
-                    including multiple accents. We are constantly improving our
-                    technology focusing on people with different accents and
-                    English levels. SmallTalk AI analyzes speech using the
-                    following indicators: fluency and coherence, vocabulary,
-                    grammatical range and accuracy, and pronunciation.We assess
-                    the English level and find mistakes during a Zoom call
-                    better than average English teachers. The experiment we held
-                    demonstrated that our algorithms outperformed in both cases
-                    by 20%. Moreover, we provide a more complete speaking
-                    assessment and give useful recommendations on how to improve
-                    it.
+                    The purpose of this process is to assess candidates'
+                    suitability for specific roles within our company by
+                    evaluating their cognitive abilities, behavioral traits, and
+                    language proficiency. This helps us make informed hiring
+                    decisions that align with the requirements of the positions.
                   </div>
                 </div>
               </div>
@@ -95,7 +107,10 @@ function FAQScreen() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    <b>How is IELTS scored?</b>
+                    <b>
+                      How does the Predictive Index assessment contribute to the
+                      selection process?
+                    </b>
                   </button>
                 </h2>
                 <div
@@ -104,22 +119,11 @@ function FAQScreen() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    IELTS results are reported on a 9-band scale from 1 (the
-                    lowest) to 9 (the highest). Check out the official
-                    descriptions of the bands here.SmallTalk recognizes and
-                    analyzes speech without human assistance and with 95%
-                    accuracy with a possible error margin in one band. We
-                    involve certified teachers and professional examiners to
-                    develop our Deep Learning algorithms. We use AI models
-                    trained on thousands of hours of speech samples including
-                    multiple accents. We are constantly improving our technology
-                    focusing on people with different accents and English
-                    levels. SmallTalk AI analyzes speech using the following
-                    indicators: fluency and coherence, vocabulary, grammatical
-                    range and accuracy. We’re always comparing our predictions
-                    with the official exam certificates obtained by our users
-                    after they practice with SmallTalk. As per our research, 94%
-                    of our users are satisfied with the results.
+                    The Predictive Index assessment provides insights into
+                    candidates' natural behavioral tendencies and cognitive
+                    capabilities. It assists in matching candidates to roles
+                    where their strengths and work styles are likely to excel,
+                    enhancing the chances of a successful fit.
                   </div>
                 </div>
               </div>
@@ -134,7 +138,10 @@ function FAQScreen() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    <b>What’s the confidence metric?</b>
+                    <b>
+                      What languages are the assessments and interviews
+                      available in?
+                    </b>
                   </button>
                 </h2>
                 <div
@@ -143,20 +150,10 @@ function FAQScreen() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    Confidence is a metric showing how much your speech will be
-                    understandable for a native speaker and how confident you
-                    are when you talk.SmallTalk recognizes and analyzes speech
-                    without human assistance. We involve certified teachers and
-                    professional examiners to develop our Deep Learning
-                    algorithms. We use AI models trained on thousands of hours
-                    of speech samples including multiple accents. We are
-                    constantly improving our technology focusing on people with
-                    different accents and English levels. SmallTalk AI analyzes
-                    speech using the following indicators: fluency and
-                    coherence, lexical resource, grammatical range and accuracy.
-                    We’re constantly comparing our predictions with the official
-                    exam certificates obtained by our users after they practiced
-                    with SmallTalk.
+                    The assessments and interviews are available in English,
+                    Spanish, and Dutch. Candidates can choose the language they
+                    are most comfortable with for the assessment and interview
+                    process.
                   </div>
                 </div>
               </div>
@@ -171,7 +168,10 @@ function FAQScreen() {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    <b>How does the AI detect mistakes?</b>
+                    <b>
+                      Are candidates required to take the assessment in all
+                      three languages?
+                    </b>
                   </button>
                 </h2>
                 <div
@@ -180,9 +180,9 @@ function FAQScreen() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    Our tool recognizes and analyzes speech through cutting-edge
-                    deep learning algorithms with no human intervention and with
-                    flawless accuracy.
+                    No, candidates are only required to take the assessment and
+                    participate in the interview in one language of their
+                    choice: English, Spanish, or Dutch.
                   </div>
                 </div>
               </div>
@@ -198,8 +198,8 @@ function FAQScreen() {
                     aria-controls="collapseFive"
                   >
                     <b>
-                      Which are the standard language and accent used by
-                      SmallTalk?
+                      How do you ensure the fairness of the assessment across
+                      different languages?
                     </b>
                   </button>
                 </h2>
@@ -209,7 +209,10 @@ function FAQScreen() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    We use American English as reference.
+                    The assessment content has been carefully translated and
+                    adapted to ensure linguistic and cultural fairness across
+                    the three languages. The underlying constructs being
+                    measured remain consistent to ensure unbiased evaluation.
                   </div>
                 </div>
               </div>
@@ -224,7 +227,10 @@ function FAQScreen() {
                     aria-expanded="false"
                     aria-controls="collapseSix"
                   >
-                    <b>Does the tool recognize Indian and Filipino Accents?</b>
+                    <b>
+                      Can candidates switch languages after starting the
+                      assessment or interview process?
+                    </b>
                   </button>
                 </h2>
                 <div
@@ -233,8 +239,10 @@ function FAQScreen() {
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    Yes. The tool can recognize popular accents, such as Indian,
-                    Filipino, East European, and so on.
+                    Once the assessment or interview process has started,
+                    candidates cannot switch languages. It's important to choose
+                    the language in which they are most confident and
+                    proficient.
                   </div>
                 </div>
               </div>
@@ -249,7 +257,10 @@ function FAQScreen() {
                     aria-expanded="false"
                     aria-controls="collapseSeven"
                   >
-                    <b>What language do you use as a reference?</b>
+                    <b>
+                      How long does the entire assessment and interview process
+                      usually take?
+                    </b>
                   </button>
                 </h2>
                 <div
@@ -257,7 +268,74 @@ function FAQScreen() {
                   class="accordion-collapse collapse"
                   data-bs-parent="#accordionExample"
                 >
-                  <div class="accordion-body">American English.</div>
+                  <div class="accordion-body">
+                    The duration varies, but on average, candidates should
+                    allocate around 60-90 minutes for the assessment and 30-45
+                    minutes for the interview. It's recommended to choose a time
+                    when you can complete the process without interruptions.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    style={{ backgroundColor: "lightgray" }}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight"
+                    aria-expanded="false"
+                    aria-controls="collapseEight"
+                  >
+                    <b>
+                      How are the assessment results and interview feedback used
+                      in the hiring decision?
+                    </b>
+                  </button>
+                </h2>
+                <div
+                  id="collapseEight"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    The assessment results and interview feedback provide a
+                    comprehensive view of a candidate's suitability for the
+                    role. These factors, along with other considerations, are
+                    used collectively to make informed hiring decisions that
+                    align with the company's requirements and values.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    style={{ backgroundColor: "lightgray" }}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseNine"
+                    aria-expanded="false"
+                    aria-controls="collapseNine"
+                  >
+                    <b>
+                      Is there a way to prepare for the assessment and
+                      interview?
+                    </b>
+                  </button>
+                </h2>
+                <div
+                  id="collapseNine"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    While there's no specific preparation required, candidates
+                    can review the job description and company information to
+                    better understand the role and organization. Being authentic
+                    and candid during the interview also helps in accurately
+                    assessing your fit for the role.
+                  </div>
                 </div>
               </div>
             </div>

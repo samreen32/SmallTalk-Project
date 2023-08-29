@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import rocket from "../assets/img/rocket.png";
 import "../App.css";
+import registerLogo from "../assets/img/register-logo.png";
 import axios from "axios";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { UserLogin } from "../context/AuthContext";
@@ -111,15 +112,18 @@ export default function LoginSmallTalk() {
           }}
         >
           <div className="card" style={{ width: "28rem" }}>
-            <div className="image-container">
-              <img
-                className="card-title"
-                src={rocket}
-                alt="img"
-                height={150}
-                width={150}
-              />
+            {/* CDS logo */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "-90px",
+              }}
+            >
+              <img src={registerLogo} width="40%" height="40%" alt="CDS logo" />
             </div>
+
             {/* Part before the login form */}
             <>
               <div
@@ -159,6 +163,15 @@ export default function LoginSmallTalk() {
                     error && !isValidEmail(email) && "Enter a valid email!"
                   }
                 />
+                <div className="image-container" style={{ top: "33%" }}>
+                  <img
+                    className="card-title"
+                    src={rocket}
+                    alt="img"
+                    height={150}
+                    width={150}
+                  />
+                </div>
                 <TextField
                   label="Password"
                   type={showPassword ? "text" : "password"}

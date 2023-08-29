@@ -4,11 +4,11 @@ import Hero from "./HomeSections/Section3/Hero";
 import Faqs from "./HomeSections/Section4/Faqs";
 import Footer from "./HomeSections/Section5/Footer";
 import Info from "./HomeSections/Section5/Info";
+import { UserLogin } from "../../context/AuthContext";
 
 function Main() {
-  const [stickyNav, setstickyNav] = useState(false);
-  const [toTop, settoTop] = useState(false);
-  const [active, setActive] = useState(0);
+  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
+    UserLogin();
 
   return (
     <>

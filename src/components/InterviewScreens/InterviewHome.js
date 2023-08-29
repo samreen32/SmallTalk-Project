@@ -10,9 +10,35 @@ import Navbar from "../Home/HomeSections/Section1/Navbar";
 import { UserLogin } from "../../context/AuthContext";
 
 export default function InterviewHome() {
-  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
-    UserLogin();
-    
+  const {
+    stickyNav,
+    setstickyNav,
+    toTop,
+    settoTop,
+    active,
+    setActive,
+    error,
+    setError,
+    interviewName,
+    setInterviewName,
+  } = UserLogin();
+
+  // const [credentials, setCredentials] = useState({
+  //   name: "",
+  // });
+  // const { name } = credentials;
+
+  const onChange = (e) => {
+    setInterviewName(e.target.value);
+    setError(false);
+  };
+  // const onChange = (e) => {
+  //   setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  //   setError(false);
+  // };
+
+  const isNameValid = interviewName.trim().length >= 3;
+
   return (
     <>
       <Navbar
@@ -92,19 +118,30 @@ export default function InterviewHome() {
                   label="Enter Your Name"
                   variant="outlined"
                   name="name"
-                  // value={name}
-                  // onChange={onChange}
+                  value={interviewName}
+                  onChange={onChange}
                   margin="normal"
                   sx={{ width: "100%" }}
                   required
+                  error={error || (!isNameValid && interviewName.length > 0)}
+                  helperText={
+                    error || (!isNameValid && interviewName.length > 0)
+                      ? "Name must be at least 3 characters long!"
+                      : ""
+                  }
                 />
-                <Link
-                  to="/InterviewWarmUp"
-                  className="btn my-2"
-                  style={{ backgroundColor: "#5cb3cf", color: "floralwhite" }}
-                >
-                  View questions
-                </Link>
+                {isNameValid && (
+                  <Link
+                    to={`/InterviewWarmUp`}
+                    className="btn my-2"
+                    style={{
+                      backgroundColor: "#5cb3cf",
+                      color: "floralwhite",
+                    }}
+                  >
+                    View questions
+                  </Link>
+                )}
               </p>
             </div>
           </div>

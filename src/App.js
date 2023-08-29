@@ -27,7 +27,7 @@ function App() {
         <Router>
           {/* <Main /> */}
           <Register />
-          {/* <InterviewWarmUp /> */}
+          {/* <InterviewHome /> */}
 
           {/* <Register />
           <Login /> */}

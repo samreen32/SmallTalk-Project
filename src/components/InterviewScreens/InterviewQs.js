@@ -4,14 +4,15 @@ import Paper from "@mui/material/Paper";
 import interview from "../../assets/img/interview.png";
 import timer from "../../assets/img/TimeCircle.png";
 import question from "../../assets/img/questions.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import "../../App.css";
 import axios from "axios";
 import audioBufferToWav from "audiobuffer-to-wav";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
-import { TextField, InputAdornment, IconButton } from "@mui/material";
-import { INTERVIEW_API_URL } from "../../Auth_API";
+import { TextField } from "@mui/material";
+import { AUDIO_API_URL, AUTH_API_URL, INTERVIEW_API_URL } from "../../Auth_API";
+import AppLoader from "../Loader/AppLoader";
 
 export default function InterviewQs() {
   /* States for Smaller Screens */
@@ -30,6 +31,14 @@ export default function InterviewQs() {
 
   /* Context States */
   const {
+    interviewName,
+    isLoading,
+    setIsLoading,
+    setUserData,
+    updateError,
+    error,
+    setError,
+
     stickyNav,
     setstickyNav,
     toTop,
@@ -42,6 +51,8 @@ export default function InterviewQs() {
     setIsTimerRunning,
     setTimerValue,
   } = UserLogin();
+
+  console.log("name on interview qs screen", interviewName);
 
   /* Get user id state */
   const [responseData, setResponseData] = useState([]);
@@ -145,9 +156,12 @@ export default function InterviewQs() {
   /* Function to handle the audio and send it to server */
   const handleAudio = async () => {
     try {
-      const response = await axios.get(
-        "http://192.168.18.74:8000/user/get-csrf-token/"
-      );
+      if (!reportName.trim() || reportName.length < 3) {
+        return updateError("Enter a valid report name!", setError);
+      }
+
+      setIsLoading(true);
+      const response = await axios.get(`${AUTH_API_URL}/get-csrf-token/`);
       console.log("dhsf");
       if (!recordedAudio) {
         console.error("No audio recorded.");
@@ -161,8 +175,9 @@ export default function InterviewQs() {
 
       const formData = new FormData();
       formData.append("file", wavBlob);
-      // formData.append("user_id", id);
-      // formData.append("report_name", reportName);
+      formData.append("user_id", id);
+      formData.append("user_name", interviewName);
+      formData.append("report_name", reportName);
       console.log("recorded audio getting ", wavBlob);
 
       // Set the X-CSRF token in the request headers
@@ -170,7 +185,7 @@ export default function InterviewQs() {
       console.log("getting token", response.data.csrfToken);
 
       const result = await axios.post(
-        "http://192.168.18.74:8000/test/english/get-answer/",
+        `${AUDIO_API_URL}/get-answer/`,
         formData,
         {
           headers: {
@@ -180,9 +195,11 @@ export default function InterviewQs() {
       );
 
       setResponseData((prevData) => [...prevData, result.data]);
+      setIsLoading(false);
       console.log("Getting Response:", result.data);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
   };
 
@@ -211,7 +228,6 @@ export default function InterviewQs() {
       });
   }, []);
 
-  // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   // const interviewQuestions = [
   //   "Do you have any experience in a call center?",
   //   "Why do you want to work for us as a customer service agent?",
@@ -231,13 +247,35 @@ export default function InterviewQs() {
     setTimerValue(0);
   };
 
+  /* Interview Qs Modal to Restrict Timer */
+  const [timeSpentOnCurrentQuestion, setTimeSpentOnCurrentQuestion] =
+    useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  /* Handle Next Qs */
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < interviewQuestions.length - 1) {
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    if (timeSpentOnCurrentQuestion >= 1) {
+      if (currentQuestionIndex < interviewQuestions.length - 1) {
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      }
+    } else {
+      toggleModal();
     }
   };
 
+  useEffect(() => {
+    const timerInterval = setInterval(() => {
+      setTimeSpentOnCurrentQuestion((prevTime) => prevTime + 1);
+    }, 1000);
 
+    return () => {
+      clearInterval(timerInterval);
+      setTimeSpentOnCurrentQuestion(0);
+    };
+  }, [currentQuestionIndex]);
 
   return (
     <>
@@ -296,11 +334,15 @@ export default function InterviewQs() {
                 >
                   <span className="navbar-toggler-icon"></span>
                 </button>
+
                 <div
                   className="collapse navbar-collapse justify-content-end"
                   id="navbarNavDropdown"
                 >
                   <ul className="navbar-nav">
+                    <li className="nav-item my-2 mx-5">
+                      <p>1/2 Question</p>
+                    </li>
                     <li className="nav-item my-2">
                       <img src={timer} alt="timer" />
                     </li>
@@ -345,41 +387,81 @@ export default function InterviewQs() {
                 style={{
                   width: "100%",
                   borderRadius: "15px",
-                  textAlign: "center",
                 }}
               >
                 <div className="card-body" style={{ padding: "20px" }}>
-                  <img
-                    src={interview}
-                    alt="interview"
-                    className="my-3"
-                    style={{
-                      maxWidth: "100%",
-                    }}
-                  />
-
-                  {interviewQuestions.length > 0 && (
-                    <>
-                      <p className="card-text my-4">
+                  <div style={{ textAlign: "center" }}>
+                    <img
+                      src={interview}
+                      alt="interview"
+                      className="my-3"
+                      style={{
+                        maxWidth: "100%",
+                        display: "block",
+                        margin: "0 auto",
+                      }}
+                    />
+                    <br />
+                    {interviewQuestions.length > 0 && (
+                      <p className="card-text">
                         <b>
                           {interviewQuestions[currentQuestionIndex].type ===
-                          "text" ? (
-                            <>
-                              {interviewQuestions[currentQuestionIndex].details}
-                            </>
-                          ) : (
-                            <img
-                              src={`http://192.168.18.74:8000/question/get-question-image/${interviewQuestions[currentQuestionIndex].details}`}
-                              alt="img question"
-                              style={{
-                                maxWidth: "40%",
-                                height: "auto",
-                              }}
-                            />
-                          )}
+                            "image" &&
+                            interviewQuestions[currentQuestionIndex]
+                              .instruction}
                         </b>
                       </p>
-                    </>
+                    )}
+                  </div>
+
+                  {interviewQuestions.length > 0 && (
+                    <div className="card-text my-4">
+                      <p>
+                        <b>
+                          {interviewQuestions[currentQuestionIndex].type ===
+                            "text" &&
+                            interviewQuestions[currentQuestionIndex]
+                              .instruction}
+                        </b>
+                      </p>
+                      <br />
+
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection:
+                            interviewQuestions[currentQuestionIndex].type ===
+                            "text"
+                              ? "column"
+                              : "row",
+                          alignItems:
+                            interviewQuestions[currentQuestionIndex].type ===
+                            "text"
+                              ? "flex-start"
+                              : "center",
+                        }}
+                      >
+                        {interviewQuestions[currentQuestionIndex].type ===
+                        "text" ? (
+                          <>
+                            <p className="my-4" style={{ margin: "0 auto" }}>
+                              {interviewQuestions[currentQuestionIndex].details}
+                            </p>
+                          </>
+                        ) : (
+                          <img
+                            src={`${INTERVIEW_API_URL}/get-question-image/${interviewQuestions[currentQuestionIndex].details}`}
+                            alt="img question"
+                            style={{
+                              maxWidth: "40%",
+                              height: "auto",
+                              margin: "0 auto",
+                              display: "block",
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
@@ -560,6 +642,23 @@ export default function InterviewQs() {
                 </Link>
               )}
             </div>
+
+            {isLoading ? (
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <AppLoader />
+                  <a href="/Reports" style={{ marginTop: "-100px" }}>
+                    You can check your report at MyReport section
+                  </a>
+                </div>
+              </div>
+            ) : null}
           </Paper>
         </Box>
 
@@ -600,7 +699,7 @@ export default function InterviewQs() {
                 </p>
                 <p>
                   <img src={question} alt="questions" />
-                  &nbsp; 6/6 questions answered
+                  &nbsp; 10/10 questions answered
                 </p>
               </div>
               <div className="modal-footer">
@@ -658,10 +757,12 @@ export default function InterviewQs() {
                   margin="normal"
                   sx={{ width: "100%" }}
                   required
-                  // error={error && !isValidEmail(email)}
-                  // helperText={
-                  //   error && !isValidEmail(email) && "Enter a valid email!"
-                  // }
+                  error={error && (!reportName.trim() || reportName.length < 3)}
+                  helperText={
+                    error &&
+                    (!reportName.trim() || reportName.length < 3) &&
+                    "Report name must be at least 3 characters long!"
+                  }
                 />
               </div>
               <div className="modal-footer d-flex justify-content-center">
@@ -677,6 +778,51 @@ export default function InterviewQs() {
                 >
                   Done
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal Timer for Interview Questions.. bottom*/}
+        <div
+          className={`modal fade ${modalOpen ? "show" : ""}`}
+          id="exampleModal3"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden={!modalOpen}
+          style={{
+            display: modalOpen ? "block" : "none",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <div
+            className="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            style={{ maxWidth: "300px", borderRadius: "10px" }}
+          >
+            <div className="modal-content">
+              <div className="modal-body" style={{ textAlign: "center" }}>
+                <div className="" style={{ textAlign: "right" }}>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    onClick={toggleModal}
+                  ></button>
+                </div>
+                <h5 className="my-3">
+                  <i
+                    class="fa fa-info-circle fa-2xl my-3"
+                    style={{ color: "#61dafb" }}
+                    aria-hidden="true"
+                  ></i>{" "}
+                </h5>
+                <br />
+                <p>
+                  You have to provide the answer <br />
+                  in minimum of 30 seconds.
+                </p>
+                <br />
               </div>
             </div>
           </div>

@@ -17,7 +17,7 @@ function PIFivthScreen() {
         active={active}
         setActive={setActive}
       />
-      
+
       <div style={{ padding: "50px 150px 0 150px" }}>
         <h2>
           <b>The Predictive Index®</b>
@@ -42,7 +42,7 @@ function PIFivthScreen() {
                   value="option1"
                 />
                 <label className="form-check-label" for="inlineCheckbox1">
-                  1
+                  Social
                 </label>
               </div>
               <div className="form-check my-2">
@@ -53,7 +53,7 @@ function PIFivthScreen() {
                   value="option2"
                 />
                 <label className="form-check-label" for="inlineCheckbox2">
-                  2
+                  Neat
                 </label>
               </div>
               <div className="form-check my-2">
@@ -64,7 +64,7 @@ function PIFivthScreen() {
                   value="option3"
                 />
                 <label className="form-check-label" for="inlineCheckbox3">
-                  3
+                  Patient
                 </label>
               </div>
               <div className="form-check my-2">
@@ -75,7 +75,7 @@ function PIFivthScreen() {
                   value="option4"
                 />
                 <label className="form-check-label" for="inlineCheckbox4">
-                  4
+                  Reasonable
                 </label>
               </div>
               <div className="form-check my-2">
@@ -86,7 +86,7 @@ function PIFivthScreen() {
                   value="option5"
                 />
                 <label className="form-check-label" for="inlineCheckbox5">
-                  5
+                  Content
                 </label>
               </div>
               <div className="form-check my-2">
@@ -97,7 +97,7 @@ function PIFivthScreen() {
                   value="option6"
                 />
                 <label className="form-check-label" for="inlineCheckbox6">
-                  6
+                  Persistent
                 </label>
               </div>
               <div className="form-check my-2">
@@ -108,7 +108,7 @@ function PIFivthScreen() {
                   value="option7"
                 />
                 <label className="form-check-label" for="inlineCheckbox7">
-                  7
+                  Realistic
                 </label>
               </div>
               <div className="form-check my-2">
@@ -119,7 +119,7 @@ function PIFivthScreen() {
                   value="option8"
                 />
                 <label className="form-check-label" for="inlineCheckbox8">
-                  8
+                  Relaxed
                 </label>
               </div>
               <div className="form-check my-2">
@@ -130,7 +130,7 @@ function PIFivthScreen() {
                   value="option9"
                 />
                 <label className="form-check-label" for="inlineCheckbox9">
-                  9
+                  Dominant
                 </label>
               </div>
             </div>
@@ -144,7 +144,7 @@ function PIFivthScreen() {
                   value="option1"
                 />
                 <label className="form-check-label" for="inlineCheckbox1">
-                  1
+                  Contemplative
                 </label>
               </div>
               <div className="form-check my-2">
@@ -155,7 +155,7 @@ function PIFivthScreen() {
                   value="option2"
                 />
                 <label className="form-check-label" for="inlineCheckbox2">
-                  2
+                  Constant
                 </label>
               </div>
               <div className="form-check my-2">
@@ -166,7 +166,7 @@ function PIFivthScreen() {
                   value="option3"
                 />
                 <label className="form-check-label" for="inlineCheckbox3">
-                  3
+                  Understanding
                 </label>
               </div>
               <div className="form-check my-2">
@@ -177,7 +177,7 @@ function PIFivthScreen() {
                   value="option4"
                 />
                 <label className="form-check-label" for="inlineCheckbox4">
-                  4
+                  Bold
                 </label>
               </div>
               <div className="form-check my-2">
@@ -188,7 +188,7 @@ function PIFivthScreen() {
                   value="option5"
                 />
                 <label className="form-check-label" for="inlineCheckbox5">
-                  5
+                  Conventional
                 </label>
               </div>
               <div className="form-check my-2">
@@ -199,7 +199,7 @@ function PIFivthScreen() {
                   value="option6"
                 />
                 <label className="form-check-label" for="inlineCheckbox6">
-                  6
+                  Charismatic
                 </label>
               </div>
               <div className="form-check my-2">
@@ -210,7 +210,7 @@ function PIFivthScreen() {
                   value="option7"
                 />
                 <label className="form-check-label" for="inlineCheckbox7">
-                  7
+                  Convincing
                 </label>
               </div>
               <div className="form-check my-2">
@@ -221,7 +221,7 @@ function PIFivthScreen() {
                   value="option8"
                 />
                 <label className="form-check-label" for="inlineCheckbox8">
-                  8
+                  Polished
                 </label>
               </div>
               <div className="form-check my-2">
@@ -232,7 +232,7 @@ function PIFivthScreen() {
                   value="option9"
                 />
                 <label className="form-check-label" for="inlineCheckbox9">
-                  9
+                  Caring
                 </label>
               </div>
             </div>
@@ -246,7 +246,7 @@ function PIFivthScreen() {
                   value="option1"
                 />
                 <label className="form-check-label" for="inlineCheckbox1">
-                  1
+                  Engaging
                 </label>
               </div>
               <div className="form-check my-2">
@@ -257,7 +257,7 @@ function PIFivthScreen() {
                   value="option2"
                 />
                 <label className="form-check-label" for="inlineCheckbox2">
-                  2
+                  Firm
                 </label>
               </div>
               <div className="form-check my-2">
@@ -268,7 +268,7 @@ function PIFivthScreen() {
                   value="option3"
                 />
                 <label className="form-check-label" for="inlineCheckbox3">
-                  3
+                  Responsive
                 </label>
               </div>
               <div className="form-check my-2">
@@ -279,7 +279,7 @@ function PIFivthScreen() {
                   value="option4"
                 />
                 <label className="form-check-label" for="inlineCheckbox4">
-                  4
+                  Careful
                 </label>
               </div>
               <div className="form-check my-2">
@@ -290,7 +290,7 @@ function PIFivthScreen() {
                   value="option5"
                 />
                 <label className="form-check-label" for="inlineCheckbox5">
-                  5
+                  Aware
                 </label>
               </div>
               <div className="form-check my-2">
@@ -301,7 +301,7 @@ function PIFivthScreen() {
                   value="option6"
                 />
                 <label className="form-check-label" for="inlineCheckbox6">
-                  6
+                  Relentless
                 </label>
               </div>
               <div className="form-check my-2">
@@ -312,7 +312,7 @@ function PIFivthScreen() {
                   value="option7"
                 />
                 <label className="form-check-label" for="inlineCheckbox7">
-                  7
+                  Fascinating
                 </label>
               </div>
               <div className="form-check my-2">
@@ -323,7 +323,7 @@ function PIFivthScreen() {
                   value="option8"
                 />
                 <label className="form-check-label" for="inlineCheckbox8">
-                  8
+                  Rational
                 </label>
               </div>
               <div className="form-check my-2">
@@ -334,7 +334,7 @@ function PIFivthScreen() {
                   value="option9"
                 />
                 <label className="form-check-label" for="inlineCheckbox9">
-                  9
+                  Gentle
                 </label>
               </div>
             </div>

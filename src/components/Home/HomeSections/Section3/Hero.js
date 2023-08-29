@@ -17,20 +17,20 @@ const Hero = ({ stickyNav, active, setActive }) => {
         {/* Speaking Level Test Div */}
         <div className="speak-test px-xl-3 px-lg-3 px-md-3 px-2">
           <div className="px-xl-4 px-lg-4 px-md-4 px-sm-2 px-1 pt-md-5 pt-3">
-            <h2 className="test-title">Speaking Level Test</h2>
+            <h2 className="test-title">Oral Proficiency Assessment</h2>
             <p className="content mt-3">
-              Find out your English level and get level up recommendations{" "}
-              <br /> Free plan allows one attempt,{" "}
-              <span>
-                <a href="" className="plan">
-                  Pro plan
-                </a>
-              </span>{" "}
-              allows unlimited attempts
+              An assessment measuring language fluency through spoken
+              communication. <br />
+              It involves tasks like conversations and presentations to evaluate
+              fluency pronunciation, vocabulary, and overall proficiency{" "}
             </p>
             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-flex  d-block justify-content-between">
               <div>
-                <Link to="/InterviewHome" className="test-start">
+                <Link
+                  to="/InterviewHome"
+                  className="test-start"
+                  onClick={() => setActive(2)}
+                >
                   Start
                 </Link>
               </div>
@@ -46,13 +46,17 @@ const Hero = ({ stickyNav, active, setActive }) => {
           <div className="px-xl-4 px-lg-4 px-md-4 px-sm-2 px-1 pt-md-5 pt-3">
             <h2 className="test-title">Predictive Index</h2>
             <p className="content mt-3">
-              Please select the language in which you prefer to complete the
-              assessment. Your language selection is not reflected in your
-              assessment results.
+              Predictive Index test is a behavioral assessment tool that analyze
+              responses to series of questions and predict the behaviors and job
+              performance of candidate
             </p>
             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-flex  d-block justify-content-between">
               <div>
-                <Link to="/PIHome" className="test-start">
+                <Link
+                  to="/PIHome"
+                  onClick={() => setActive(3)}
+                  className="test-start"
+                >
                   Start
                 </Link>
               </div>

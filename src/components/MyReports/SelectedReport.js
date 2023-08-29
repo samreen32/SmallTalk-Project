@@ -30,8 +30,21 @@ ChartJS.register(
 );
 
 export default function SelectedReport() {
-  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
-    UserLogin();
+  const {
+    stickyNav,
+    setstickyNav,
+    toTop,
+    settoTop,
+    active,
+    setActive,
+    reportData,
+    setReportData,
+  } = UserLogin();
+
+  console.log("Report data on selected report", reportData);
+  // const duration = reportData.details.duration;
+  // console.log(duration, "duration of report")
+
   const [highestLevel, setHighestLevel] = useState(null);
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
@@ -56,7 +69,17 @@ export default function SelectedReport() {
 
   const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
   const roundedScore = Math.round(similarityScore);
-  const normalizedScore = Math.min(Math.max(roundedScore, 0), 170);
+  const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
+  const levelWords = JSON.parse(queryParams.get("level_words"));
+
+  const levelToCEFR = {
+    beginner: "A1",
+    elementary: "A2",
+    intermediate: "B1",
+    "upper-intermediate": "B2",
+    advanced: "C1",
+    proficiency: "C2",
+  };
 
   /* Print Suggestions and Grammer Mistakes for table*/
   mistake_index_text.forEach((indexes, i) => {
@@ -190,12 +213,20 @@ export default function SelectedReport() {
       decodeURIComponent(level_words_percentage)
     );
 
+    const levelOrder = [
+      "beginner",
+      "elementary",
+      "intermediate",
+      "upper-intermediate",
+      "advanced",
+      "proficiency",
+    ];
+
     let highestLevel = "Beginner";
     let highestPercentage = -1;
 
-    for (const [level, percentage] of Object.entries(
-      levelWordsPercentageData
-    )) {
+    for (const level of levelOrder) {
+      const percentage = levelWordsPercentageData[level];
       if (percentage > highestPercentage) {
         highestLevel = level;
         highestPercentage = percentage;
@@ -206,7 +237,7 @@ export default function SelectedReport() {
     setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
 
     const updatedChartData = {
-      labels: Object.keys(levelWordsPercentageData).map((level) => {
+      labels: levelOrder.map((level) => {
         const percentage = parseInt(levelWordsPercentageData[level]);
         let levelName = "";
         switch (level) {
@@ -225,6 +256,9 @@ export default function SelectedReport() {
           case "advanced":
             levelName = "Advanced (C1)";
             break;
+          case "proficiency":
+            levelName = "Proficiency (C2)";
+            break;
           default:
             levelName = level;
             break;
@@ -234,7 +268,7 @@ export default function SelectedReport() {
       datasets: [
         {
           borderWidth: 1,
-          data: Object.values(levelWordsPercentageData),
+          data: levelOrder.map((level) => levelWordsPercentageData[level]),
           backgroundColor: [
             "red",
             "blue",
@@ -364,39 +398,25 @@ export default function SelectedReport() {
                         </tr>
                       </thead>
                       <tbody style={{ padding: "15px" }}>
-                        <tr>
-                          <th scope="row">A1</th>
-                          <td>great, noise, phone, hear</td>
-                        </tr>
-                        <tr className="table-light">
-                          <th scope="row">A2</th>
-                          <td>find out, part of, order, add</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">B1</th>
-                          <td>
-                            public transport, concentrate, employment,
-                            individual, technology
-                          </td>
-                        </tr>
-                        <tr className="table-light">
-                          <th scope="row">B2</th>
-                          <td>
-                            avoid doing, contribute, preference, in public,
-                            number of
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">C1</th>
-                          <td>
-                            distraction, interaction, discomfort, campaign,
-                            unwanted
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">C2</th>
-                          <td>revive</td>
-                        </tr>
+                        {[
+                          "beginner",
+                          "elementary",
+                          "intermediate",
+                          "upper-intermediate",
+                          "advanced",
+                          "proficiency",
+                        ].map(
+                          (level, index) =>
+                            levelWords[level] && (
+                              <tr
+                                key={index}
+                                className={index % 2 === 0 ? "" : "table-light"}
+                              >
+                                <th scope="row">{levelToCEFR[level]}</th>
+                                <td>{levelWords[level].join(", ")}</td>
+                              </tr>
+                            )
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -561,45 +581,44 @@ export default function SelectedReport() {
                         height: "25px",
                         // width: "100%",
                         // backgroundImage:
-                        //   "linear-gradient(to right, white 0%, lightblue 100%)",
+                        //   "linear-gradient(to right, white 0%, lightgray 100%)",
                         color: "darkred",
                       }}
                     >
                       <div
                         className="progress-bar"
                         style={{
-                          width: `${(normalizedScore / 170) * 100}%`,
-                          backgroundColor: "green",
+                          width: `${(normalizedScore / 100) * 100}%`,
+                          backgroundColor: "#3790B7",
                         }}
                       ></div>
                     </div>
                     <div className="ruler">
-                      {[
-                        0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120,
-                        130, 140, 150, 160, 170,
-                      ].map((value) => (
-                        <div
-                          key={value}
-                          className="ruler-mark"
-                          style={{
-                            left: `${value}%`,
-                          }}
-                        >
-                          <div className="ruler-line"></div>
-                          <div className="ruler-value">{value}</div>
-                          {value === 80 && (
-                            <div className="boring-text">may be boring</div>
-                          )}
-                          {value === 120 && (
-                            <div className="normal-text">normal</div>
-                          )}
-                          {value === 150 && (
-                            <div className="fast-text">
-                              too fast to understand
-                            </div>
-                          )}
-                        </div>
-                      ))}
+                      {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
+                        (value) => (
+                          <div
+                            key={value}
+                            className="ruler-mark"
+                            style={{
+                              left: `${value}%`,
+                            }}
+                          >
+                            <div className="ruler-line"></div>
+                            <div className="ruler-value">{value}</div>
+                            {value === 10 && (
+                              <div className="boring-text">may be boring</div>
+                            )}
+                            {value === 50 && (
+                              <div className="normal-text">normal</div>
+                            )}
+                            {value === 80 && (
+                              <div className="fast-text">
+                                too fast to understand
+                              </div>
+                            )}
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
@@ -796,7 +815,7 @@ export default function SelectedReport() {
         active={active}
         setActive={setActive}
       />
-      
+
       <div style={{ padding: "45px" }}>
         <div className="row mx-1">
           <div className="col-md-12">

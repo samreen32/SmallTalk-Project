@@ -4,15 +4,16 @@ import { FaBars } from "react-icons/fa";
 import { MdOutlineClose } from "react-icons/md";
 import { PiCaretUpBold } from "react-icons/pi";
 import { useState } from "react";
-import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import { UserLogin } from "../../../../context/AuthContext";
 
 const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
-  const location = useLocation();
-  const name = location.state?.name || "";
-  const id = location.state?.id || "";
+  // const location = useLocation();
+  // const name = location.state?.name || "";
+  // const id = location.state?.id || "";
+  const { userData } = UserLogin();
+  const { name } = userData;
   console.log("name of user", name);
-  console.log("id of user", id);
 
   const [nav, setNav] = useState(false);
   const onOpen = () => {
@@ -65,12 +66,12 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
           </button>
         </div>
         <li className="nav-items">
-          <Link href="" className="nav-link">
+          <Link to="/Reports" className="nav-link">
             My Report
           </Link>
         </li>
         <li className="nav-items">
-          <Link href="" className="nav-link">
+          <Link to="/FAQScreen" className="nav-link">
             FAQs
           </Link>
         </li>
@@ -83,17 +84,19 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
         } px-xl-5 px-lg-5 px-md-3 px-2 navbar-expand-lg navbar-light d-flex justify-content-between`}
       >
         <div className="brand">
-          <img
-            src={logo}
-            alt="CDS Logo"
-            width="150%"
-            height="150%"
-            className="logo"
-          />
+          <Link to="/Main">
+            <img
+              src={logo}
+              alt="CDS Logo"
+              width="150%"
+              height="150%"
+              className="logo"
+            />
+          </Link>
         </div>
         <ul className="navbar-nav navbar-links d-xl-flex d-lg-flex d-none gap-xl-4 gap-lg-4 gap-0 mt-xl-0 mt-lg-0 mt-4">
           <li className="nav-items">
-            <Link to="/" className="nav-link">
+            <Link to="/Main" className="nav-link">
               Home
             </Link>
           </li>
@@ -109,7 +112,9 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
           </li>
         </ul>
         <div className="dropdown custom-dropdown d-flex gap-2 align-items-center">
-          <span className="user-name">{name}</span>
+          <span className="user-name">
+            {name.charAt(0).toUpperCase() + name.slice(1)}
+          </span>
           <a
             className="nav-link-home"
             href="#"
@@ -145,9 +150,9 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
             </li>
             <li>
               <Link
-               data-bs-toggle="modal"
-               data-bs-target="#exampleModal1"
-               className="dropdown-item"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+                className="dropdown-item"
                 style={{ color: "red" }}
               >
                 Logout
@@ -170,7 +175,7 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
       <>
         <div
           className="modal fade"
-          id="exampleModal1"
+          id="exampleModal2"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"

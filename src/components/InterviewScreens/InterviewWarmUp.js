@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import interview from "../../assets/img/interview.png";
 import timer from "../../assets/img/TimeCircle.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 
@@ -122,22 +122,23 @@ export default function InterviewWarmUp() {
                   </h3>
                   <>
                     <p className="card-text my-4">
-                      Smile: Start with a positive note, ask about the
-                      candidate’s day and help them relax. Thank them for
-                      meeting with you.
+                      Before you begin the test, let's warm up your speaking
+                      skills and get you ready for a successful assessment.
                     </p>
                     <p className="card-text">
-                      Introductions: Tell about (a) yourself, (b) the company,
-                      (c) the open role. Let the candidate introduce themselves.{" "}
+                      This warm-up session will help you feel more comfortable
+                      and confident in your verbal communication abilities.
+                      Follow the prompts, engage in short conversations, and
+                      focus on clear pronunciation and coherent expression.
                     </p>
                     <p className="card-text">
-                      Set the stage: Explain how the interview will be
-                      conducted. What topics will be discussed? How long will it
-                      take?
+                      This practice will ensure that you're fully prepared to
+                      showcase your language proficiency during the assessment.
+                      Let's get started!
                     </p>
                   </>
                   <Link
-                    to="/InterviewQs"
+                    to={`/InterviewQs`}
                     className="btn"
                     style={{
                       marginTop: "12px",
