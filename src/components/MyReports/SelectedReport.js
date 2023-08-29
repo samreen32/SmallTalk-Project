@@ -41,10 +41,6 @@ export default function SelectedReport() {
     setReportData,
   } = UserLogin();
 
-  console.log("Report data on selected report", reportData);
-  // const duration = reportData.details.duration;
-  // console.log(duration, "duration of report")
-
   const [highestLevel, setHighestLevel] = useState(null);
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
@@ -327,12 +323,10 @@ export default function SelectedReport() {
 
   /* Function for showing audio on rammer mistakes */
   const handleMouseEnter = () => {
-    console.log("mouse enter");
     setIsHovering(true);
   };
 
   const handleMouseLeave = () => {
-    console.log("mouse Leave");
     setIsHovering(false);
   };
 

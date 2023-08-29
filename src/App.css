@@ -641,3 +641,23 @@ ul.checklist-2 li:before {
   border-radius: 18px;
   flex-direction: column;
 }
+
+.questionCenter {
+  /* display: flex;
+  align-items: center;
+  margin-right: 150px;   */
+  padding: "0 40px 0 40px"
+}
+
+.question-center {
+  padding: 0 130px;
+  text-align: center;
+}
+
+/* Media query for screens up to 768px */
+@media (max-width: 991px) {
+  .question-center {
+    padding: 0;
+    text-align: left;
+  }
+}

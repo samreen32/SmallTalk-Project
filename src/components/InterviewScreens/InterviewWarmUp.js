@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import interview from "../../assets/img/interview.png";
 import timer from "../../assets/img/TimeCircle.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 

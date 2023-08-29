@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -23,7 +23,6 @@ function Reports() {
     setActive,
   } = UserLogin();
   const { id } = userData;
-  console.log("report data of user", reportData);
 
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
   const searchWords = searchQuery.split(" "); // Split search query into words
@@ -99,7 +98,6 @@ function Reports() {
         if (response.ok) {
           const data = await response.json();
           setReportData(data);
-          console.log("response data", data);
         } else {
           console.error("Failed to fetch report data");
         }

@@ -23,19 +23,10 @@ export default function InterviewHome() {
     setInterviewName,
   } = UserLogin();
 
-  // const [credentials, setCredentials] = useState({
-  //   name: "",
-  // });
-  // const { name } = credentials;
-
   const onChange = (e) => {
     setInterviewName(e.target.value);
     setError(false);
   };
-  // const onChange = (e) => {
-  //   setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  //   setError(false);
-  // };
 
   const isNameValid = interviewName.trim().length >= 3;
 

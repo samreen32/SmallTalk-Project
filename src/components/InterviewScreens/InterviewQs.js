@@ -34,11 +34,9 @@ export default function InterviewQs() {
     interviewName,
     isLoading,
     setIsLoading,
-    setUserData,
     updateError,
     error,
     setError,
-
     stickyNav,
     setstickyNav,
     toTop,
@@ -52,12 +50,9 @@ export default function InterviewQs() {
     setTimerValue,
   } = UserLogin();
 
-  console.log("name on interview qs screen", interviewName);
-
   /* Get user id state */
   const [responseData, setResponseData] = useState([]);
   const { id } = userData;
-  console.log("User ID:", id);
 
   /* Store Report Name State */
   const [credentials, setCredentials] = useState({
@@ -162,23 +157,19 @@ export default function InterviewQs() {
 
       setIsLoading(true);
       const response = await axios.get(`${AUTH_API_URL}/get-csrf-token/`);
-      console.log("dhsf");
       if (!recordedAudio) {
         console.error("No audio recorded.");
         return;
       }
-      console.log("end");
 
       const blob = await fetchBlobFromUrl(recordedAudio);
       const wavBlob = await blobToWav(blob);
-      console.log("converted audio to WAV:", wavBlob);
 
       const formData = new FormData();
       formData.append("file", wavBlob);
       formData.append("user_id", id);
       formData.append("user_name", interviewName);
       formData.append("report_name", reportName);
-      console.log("recorded audio getting ", wavBlob);
 
       // Set the X-CSRF token in the request headers
       axios.defaults.headers.common["X-CSRFToken"] = response.data.csrfToken;
@@ -196,7 +187,6 @@ export default function InterviewQs() {
 
       setResponseData((prevData) => [...prevData, result.data]);
       setIsLoading(false);
-      console.log("Getting Response:", result.data);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -208,7 +198,6 @@ export default function InterviewQs() {
     setTimerValue(0);
     setCurrentQuestionIndex(0);
     handleAudio();
-    console.log("Interview Ended!");
   };
 
   /* Interview Qs States */
@@ -221,7 +210,6 @@ export default function InterviewQs() {
       .then((response) => response.json())
       .then((data) => {
         setInterviewQuestions(data);
-        console.log("daattaa", data);
       })
       .catch((error) => {
         console.error("Error fetching interview questions:", error);
@@ -245,6 +233,7 @@ export default function InterviewQs() {
   const handleFinishInterview = () => {
     setIsTimerRunning(false);
     setTimerValue(0);
+    setCurrentQuestionIndex(0);
   };
 
   /* Interview Qs Modal to Restrict Timer */
@@ -276,6 +265,9 @@ export default function InterviewQs() {
       setTimeSpentOnCurrentQuestion(0);
     };
   }, [currentQuestionIndex]);
+
+  /* Lenght of Interview Questions */
+  const totalQuestions = interviewQuestions.length;
 
   return (
     <>
@@ -340,8 +332,8 @@ export default function InterviewQs() {
                   id="navbarNavDropdown"
                 >
                   <ul className="navbar-nav">
-                    <li className="nav-item my-2 mx-5">
-                      <p>1/2 Question</p>
+                    <li className="nav-item my-2 question-center">
+                      {currentQuestionIndex + 1}/{totalQuestions} Questions
                     </li>
                     <li className="nav-item my-2">
                       <img src={timer} alt="timer" />
@@ -699,7 +691,8 @@ export default function InterviewQs() {
                 </p>
                 <p>
                   <img src={question} alt="questions" />
-                  &nbsp; 10/10 questions answered
+                  &nbsp; {currentQuestionIndex + 1}/{totalQuestions} questions
+                  answered
                 </p>
               </div>
               <div className="modal-footer">
