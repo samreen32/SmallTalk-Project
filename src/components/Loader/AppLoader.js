@@ -20,7 +20,7 @@ const AppLoader = () => {
         animationData={require("../../assets/animation/loader_3.json")}
         loop
         autoplay
-       className="empty-report"
+        className="empty-report"
       />
     </div>
   );

@@ -6,14 +6,11 @@ import { PiCaretUpBold } from "react-icons/pi";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserLogin } from "../../../../context/AuthContext";
+import logout from "../../../../assets/img/logout.png";
 
 const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
-  // const location = useLocation();
-  // const name = location.state?.name || "";
-  // const id = location.state?.id || "";
   const { userData } = UserLogin();
   const { name } = userData;
-  console.log("name of user", name);
 
   const [nav, setNav] = useState(false);
   const onOpen = () => {
@@ -37,6 +34,12 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
+  };
+
+  /* Logout Modal */
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
   };
 
   return (
@@ -172,43 +175,65 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
       </nav>
 
       {/* Logout Modal */}
-      <>
+      <div
+        className={`modal fade ${modalOpen ? "show" : ""}`}
+        id="exampleModal2"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden={!modalOpen}
+        style={{
+          display: modalOpen ? "block" : "none",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        }}
+      >
         <div
-          className="modal fade"
-          id="exampleModal2"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
+          className="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          style={{ maxWidth: "300px", borderRadius: "10px" }}
         >
-          <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div className="modal-content">
-              <div className="modal-header">
+          <div className="modal-content">
+            <div className="modal-body" style={{ textAlign: "center" }}>
+              <div className="" style={{ textAlign: "right" }}>
                 <button
                   type="button"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  onClick={toggleModal}
                 ></button>
               </div>
-              <div className="modal-body">
-                <h6>Do you want to logout?</h6>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary">
-                  Yes
-                </button>
+              <h5 className="my-3">
+                <img src={logout} width={50} height={50} />{" "}
+              </h5>
+              <p>Want to logout?</p>
+              <br />
+              <div className="logout-buttons">
                 <button
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  style={{ borderRadius: "20px", width: "100px" }}
                 >
-                  No
+                  Not now
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button
+                  type="button"
+                  class="btn"
+                  style={{
+                    backgroundColor: "#259F6C",
+                    color: "white",
+                    borderRadius: "20px",
+                    width: "100px",
+                  }}
+                >
+                  Log out
                 </button>
               </div>
+              <br />
             </div>
           </div>
         </div>
-      </>
+      </div>
     </>
   );
 };

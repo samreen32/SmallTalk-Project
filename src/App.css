@@ -646,6 +646,7 @@ ul.checklist-2 li:before {
 .question-center {
   padding: 0 130px;
   text-align: center;
+  color: rgb(192, 184, 184);
 }
 
 @media (max-width: 991px) {
@@ -684,4 +685,10 @@ ul.checklist-2 li:before {
   .empty-report {
     padding: 100px
   }
+}
+
+.logout-buttons .button {
+  border-radius: 50%;
+  border-width: 50%;
+  border-color: #04d39c;
 }
