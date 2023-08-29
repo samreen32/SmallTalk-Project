@@ -10,6 +10,8 @@ const EmptySearch = () => {
         right: 0,
         top: 0,
         bottom: 0,
+        width: "100%",
+        height: "100%",
         justifyContent: "center",
         alignItems: "center",
         zIndex: 9999,
@@ -20,7 +22,7 @@ const EmptySearch = () => {
         animationData={require("../../assets/animation/emptySearch.json")}
         loop
         autoplay
-        style={{ width: "100%", height: "100%" }}
+        className="empty-report"
       />
     </div>
   );

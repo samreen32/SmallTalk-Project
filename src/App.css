@@ -642,22 +642,46 @@ ul.checklist-2 li:before {
   flex-direction: column;
 }
 
-.questionCenter {
-  /* display: flex;
-  align-items: center;
-  margin-right: 150px;   */
-  padding: "0 40px 0 40px"
-}
-
+/* Interview Qs Numbering Styling */
 .question-center {
   padding: 0 130px;
   text-align: center;
 }
 
-/* Media query for screens up to 768px */
 @media (max-width: 991px) {
   .question-center {
     padding: 0;
     text-align: left;
+  }
+}
+
+.empty-report {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 50px
+}
+
+@media (max-width: 800px) {
+  .empty-report {
+    padding: 200px
+  }
+}
+
+@media (max-width: 645px) {
+  .empty-report {
+    padding: 100px
+  }
+}
+
+@media (max-width: 500px) {
+  .empty-report {
+    padding: 20px
+  }
+}
+
+@media (min-width: 1024px) {
+  .empty-report {
+    padding: 100px
   }
 }

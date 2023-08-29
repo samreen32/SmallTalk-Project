@@ -246,7 +246,7 @@ export default function LoginSmallTalk() {
                 </div>
               </form>
             </div>
-            {/* <AppLoader /> */}
+            <AppLoader />
             {isLoading ? <AppLoader /> : null}
           </div>
         </div>

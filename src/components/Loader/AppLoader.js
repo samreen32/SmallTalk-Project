@@ -20,7 +20,7 @@ const AppLoader = () => {
         animationData={require("../../assets/animation/loader_3.json")}
         loop
         autoplay
-        style={{ width: "100%", height: "100%" }}
+       className="empty-report"
       />
     </div>
   );

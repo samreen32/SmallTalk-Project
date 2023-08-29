@@ -244,6 +244,7 @@ function Reports() {
                 </div>
               </div>
             ))}
+            {/* <EmptySearch /> */}
             {reportDataFiltered.length == 0 && <EmptySearch />}
           </>
         </Box>
