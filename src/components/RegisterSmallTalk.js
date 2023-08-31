@@ -38,9 +38,7 @@ export default function RegisterSmallTalk() {
   // Function to get the CSRF token
   async function getCSRFToken() {
     try {
-      const response = await axios.get(
-        "http://192.168.18.74:8000/user/get-csrf-token/"
-      );
+      const response = await axios.get(`${AUTH_API_URL}/get-csrf-token/`);
       return response.data.csrftoken;
     } catch (error) {
       console.error("Failed to get CSRF token:", error);
@@ -126,7 +124,6 @@ export default function RegisterSmallTalk() {
             }}
           >
             <div className="card" style={{ width: "28rem" }}>
-
               {/* CDS logo */}
               <div
                 style={{

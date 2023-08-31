@@ -19,6 +19,8 @@ import meterBlue from "../../assets/img/meterBlue.jpg";
 import cross from "../../assets/img/CrossIcon.png";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 import { UserLogin } from "../../context/AuthContext";
+import Chart from "react-google-charts";
+import polygon from "../../assets/img/Group 1.svg";
 
 ChartJS.register(
   Tooltip,
@@ -40,6 +42,8 @@ export default function SelectedReport() {
     reportData,
     setReportData,
   } = UserLogin();
+
+  console.log("report data in selected report", reportData);
 
   const [highestLevel, setHighestLevel] = useState(null);
   const [value, setValue] = useState(0);
@@ -203,6 +207,18 @@ export default function SelectedReport() {
   };
 
   /* Highest Level based on Words */
+  const getProficiencyLabel = (level) => {
+    const labels = {
+      beginner: "A1",
+      elementary: "A2",
+      intermediate: "B1",
+      "upper-intermediate": "B2",
+      advanced: "C1",
+      proficiency: "C2",
+    };
+    return labels[level];
+  };
+
   useEffect(() => {
     const level_words_percentage = queryParams.get("level_words_percentage");
     const levelWordsPercentageData = JSON.parse(
@@ -222,7 +238,7 @@ export default function SelectedReport() {
     let highestPercentage = -1;
 
     for (const level of levelOrder) {
-      const percentage = levelWordsPercentageData[level];
+      const percentage = parseInt(levelWordsPercentageData[level] || 0);
       if (percentage > highestPercentage) {
         highestLevel = level;
         highestPercentage = percentage;
@@ -232,61 +248,124 @@ export default function SelectedReport() {
     highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
     setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
 
-    const updatedChartData = {
-      labels: levelOrder.map((level) => {
-        const percentage = parseInt(levelWordsPercentageData[level]);
-        let levelName = "";
-        switch (level) {
-          case "beginner":
-            levelName = "Beginner (A1)";
-            break;
-          case "elementary":
-            levelName = "Elementary (A2)";
-            break;
-          case "intermediate":
-            levelName = "Intermediate (B1)";
-            break;
-          case "upper-intermediate":
-            levelName = "Upper-intermediate (B2)";
-            break;
-          case "advanced":
-            levelName = "Advanced (C1)";
-            break;
-          case "proficiency":
-            levelName = "Proficiency (C2)";
-            break;
-          default:
-            levelName = level;
-            break;
-        }
-        return `${percentage}% — ${levelName}`;
-      }),
-      datasets: [
-        {
-          borderWidth: 1,
-          data: levelOrder.map((level) => levelWordsPercentageData[level]),
-          backgroundColor: [
-            "red",
-            "blue",
-            "yellow",
-            "green",
-            "purple",
-            "orange",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-          ],
-        },
-      ],
-    };
+    // const MINIMUM_PERCENTAGE = 1;
 
+    // const updatedChartData = levelOrder.map((level) => {
+    //   const percentage = parseInt(levelWordsPercentageData[level] || 0);
+    //   const adjustedPercentage = Math.max(percentage, MINIMUM_PERCENTAGE);
+    //   return [
+    //     `${adjustedPercentage}% — ${getProficiencyLabel(level)} (${
+    //       level.charAt(0).toUpperCase() + level.slice(1)
+    //     })`,
+    //     adjustedPercentage,
+    //   ];
+    // });
+
+    const updatedChartData = levelOrder.map((level) => [
+      `${parseInt(levelWordsPercentageData[level])}% — ${
+        level.charAt(0).toUpperCase() + level.slice(1)
+      } (${getProficiencyLabel(level)})`,
+      parseInt(levelWordsPercentageData[level]),
+    ]);
+
+    // console.log("chart data", updatedChartData);
     setChartData(updatedChartData);
   }, [queryParams]);
+
+  /* Highest Level in Polygon display */
+  const levelCodes = {
+    beginner: "A1",
+    elementary: "A2",
+    intermediate: "B1",
+    "upper-intermediate": "B2",
+    advanced: "C1",
+    proficiency: "C2",
+  }
+
+  // useEffect(() => {
+  //   const level_words_percentage = queryParams.get("level_words_percentage");
+  //   const levelWordsPercentageData = JSON.parse(
+  //     decodeURIComponent(level_words_percentage)
+  //   );
+
+  //   const levelOrder = [
+  //     "beginner",
+  //     "elementary",
+  //     "intermediate",
+  //     "upper-intermediate",
+  //     "advanced",
+  //     "proficiency",
+  //   ];
+
+  //   let highestLevel = "Beginner";
+  //   let highestPercentage = -1;
+
+  //   for (const level of levelOrder) {
+  //     const percentage = levelWordsPercentageData[level];
+  //     if (percentage > highestPercentage) {
+  //       highestLevel = level;
+  //       highestPercentage = percentage;
+  //     }
+  //   }
+
+  //   highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
+  //   setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
+
+  //   const updatedChartData = {
+  //     labels: levelOrder.map((level) => {
+  //       const percentage = parseInt(levelWordsPercentageData[level]);
+  //       let levelName = "";
+  //       switch (level) {
+  //         case "beginner":
+  //           levelName = "Beginner (A1)";
+  //           break;
+  //         case "elementary":
+  //           levelName = "Elementary (A2)";
+  //           break;
+  //         case "intermediate":
+  //           levelName = "Intermediate (B1)";
+  //           break;
+  //         case "upper-intermediate":
+  //           levelName = "Upper-intermediate (B2)";
+  //           break;
+  //         case "advanced":
+  //           levelName = "Advanced (C1)";
+  //           break;
+  //         case "proficiency":
+  //           levelName = "Proficiency (C2)";
+  //           break;
+  //         default:
+  //           levelName = level;
+  //           break;
+  //       }
+  //       return `${percentage}% — ${levelName}`;
+  //     }),
+  //     datasets: [
+  //       {
+  //         borderWidth: 1,
+  //         data: levelOrder.map((level) => levelWordsPercentageData[level]),
+  //         backgroundColor: [
+  //           "red",
+  //           "blue",
+  //           "yellow",
+  //           "green",
+  //           "purple",
+  //           "orange",
+  //         ],
+  //         borderColor: [
+  //           "rgba(255, 99, 132, 1)",
+  //           "rgba(54, 162, 235, 1)",
+  //           "rgba(255, 206, 86, 1)",
+  //           "rgba(75, 192, 192, 1)",
+  //           "rgba(153, 102, 255, 1)",
+  //           "rgba(255, 159, 64, 1)",
+  //         ],
+  //       },
+  //     ],
+  //   };
+
+  //   setChartData(updatedChartData);
+  // }, [queryParams]);
 
   /* Descripiton for each Levels */
   const levelDescriptions = {
@@ -347,6 +426,7 @@ export default function SelectedReport() {
     const stops = rulerValues.map((value) => `lightblue ${value}%`).join(", ");
     return `linear-gradient(to right, ${stops})`;
   }
+;
 
   /* Bottom Content */
   const cardContent = [
@@ -364,17 +444,42 @@ export default function SelectedReport() {
                 {/* Doughnut Chart */}
                 <div className="col-md-6">
                   <div style={{ fontWeight: "bold", padding: "15px 0" }}>
-                    <h6 className="card-title mx-3">Vocabulary statistics</h6>
+                    <h6 className="card-title mx-3">
+                      <b>Vocabulary statistics</b>
+                    </h6>
                   </div>
                   <div
                     className="chart-container"
-                    style={{
-                      position: "relative",
-                      height: "300px",
-                      maxWidth: "100%",
-                    }}
+                    style={
+                      {
+                        // position: "relative",
+                        // height: "300px",
+                        // maxWidth: "100%",
+                        // marginBottom: "60px",
+                      }
+                    }
                   >
-                    {chartData && <Doughnut data={chartData} />}
+                    {/* {chartData && <Doughnut data={chartData} />} */}
+                    {chartData && (
+                      <Chart
+                        chartType="PieChart"
+                        width={"100%"}
+                        height={"300px"}
+                        loader={<div>Loading Chart</div>}
+                        data={[["Level", "Percentage"], ...chartData]}
+                        options={{
+                          pieHole: 0.4,
+                          colors: [
+                            "red",
+                            "blue",
+                            "yellow",
+                            "green",
+                            "purple",
+                            "orange",
+                          ],
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -439,8 +544,8 @@ export default function SelectedReport() {
                 </b>
               </h5>
               <p className="card-text">
-                correspond to level C1, the next level C2 starts with 10000
-                words
+                correspond to level C1, the next level C2 starts with{" "}
+                {total_words}&nbsp; words
               </p>
             </div>
           </div>
@@ -830,28 +935,42 @@ export default function SelectedReport() {
             <div className="col-md-12" style={{ padding: "0 30px" }}>
               <div className="card" style={{ borderRadius: "25px" }}>
                 <div className="card-body mx-4 ">
-                  <div style={{ fontWeight: "bold", padding: "25px 0" }}>
-                    <h8 className="card-title">Scores</h8>
-                    <h3 className="card-title my-3"> {highestLevel}</h3>
-                  </div>
                   <div className="row">
                     <div className="col-md-8">
+                      <div style={{ fontWeight: "bold", padding: "25px 0" }}>
+                        <h8 className="card-title">Scores</h8>
+                        <h3 className="card-title my-3"> {highestLevel}</h3>
+                      </div>
                       <p className="card-text">
                         {levelDescriptions[highestLevel.toLowerCase()]}
                       </p>
                     </div>
                     <div className="col-md-4">
-                      <div
-                        className="row img-container"
-                        style={{ marginTop: "-155px" }}
-                      >
+                      <div className="row img-container">
                         <div
+                          className="mt-neg d-flex justify-content-center align-items-center"
                           style={{
-                            width: "330px",
-                            height: "330px",
+                            width: "100%",
+                            height: "360px",
+                            position: "relative",
+                            padding: "0 0 0 25%",
                           }}
                         >
-                          {/* <Radar data={data} options={options} /> */}
+                          <img
+                            src={polygon}
+                            className="report_polygon img-fluid"
+                            alt="polygon level"
+                          />
+                          <p
+                            className="level-text position-absolute text-center m-0 "
+                            style={{
+                              color: "#2e68ff",
+                              fontWeight: "bold",
+                              width: "100%",
+                            }}
+                          >
+                            {levelCodes[highestLevel.toLowerCase()]}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -861,6 +980,7 @@ export default function SelectedReport() {
             </div>
           </div>
         )}
+        {/* <Radar data={data} options={options} /> */}
 
         {/* Second div's */}
         <div className="row mb-3" style={{ padding: "15px" }}>

@@ -294,7 +294,7 @@
 }
 
 .custom-dropdown .dropdown-menu {
-  left: -210px;
+  left: -225px;
 }
 
 .dropdown-width {
@@ -308,7 +308,7 @@
 }
 
 .img-container img {
-  max-width: 250px;
+  max-width: 300px;
 }
 
 .week-container {
@@ -692,3 +692,8 @@ ul.checklist-2 li:before {
   border-width: 50%;
   border-color: #04d39c;
 }
+
+/* .chart-container {
+  margin-right: 40%;
+  padding: 0 20% 0 0;
+} */

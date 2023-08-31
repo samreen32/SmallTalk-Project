@@ -11,6 +11,9 @@ import EmptySearch from "../Loader/EmptySearch";
 import { REPORT_API_URL } from "../../Auth_API";
 
 function Reports() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const isScreenSmall = windowWidth <= 530;
+
   const {
     userData,
     reportData,
@@ -33,9 +36,7 @@ function Reports() {
         report.details.duration.toLowerCase().includes(word.toLowerCase())
     )
   );
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const isScreenSmall = windowWidth <= 530;
-
+ 
   /* Report card responsiveness */
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -98,6 +99,7 @@ function Reports() {
         if (response.ok) {
           const data = await response.json();
           setReportData(data);
+          console.log("Report data in Reports section", reportDataFiltered)
         } else {
           console.error("Failed to fetch report data");
         }
