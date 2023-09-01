@@ -1,21 +1,11 @@
 import React from "react";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 import "../../App.css";
-import { UserLogin } from "../../context/AuthContext";
 
 function FAQScreen() {
-  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
-    UserLogin();
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
+      <Navbar />
       <div style={{ padding: "7% 10%" }}>
         <h2 style={{ textAlign: "center" }}>
           <b>Frequently Asked Questions</b>

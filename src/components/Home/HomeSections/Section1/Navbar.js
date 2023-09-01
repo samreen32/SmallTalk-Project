@@ -8,9 +8,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserLogin } from "../../../../context/AuthContext";
 import logout from "../../../../assets/img/logout.png";
 
-const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
+const Navbar = () => {
   let navigation = useNavigate();
-  const { userData } = UserLogin();
+  const { userData, stickyNav, setstickyNav, toTop, settoTop } = UserLogin();
   const { name } = userData || {};
 
   const [nav, setNav] = useState(false);

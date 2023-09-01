@@ -11,12 +11,6 @@ import { UserLogin } from "../../context/AuthContext";
 
 export default function InterviewHome() {
   const {
-    stickyNav,
-    setstickyNav,
-    toTop,
-    settoTop,
-    active,
-    setActive,
     error,
     setError,
     interviewName,
@@ -32,14 +26,7 @@ export default function InterviewHome() {
 
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
+      <Navbar/>
       <div
         style={{
           display: "flex",

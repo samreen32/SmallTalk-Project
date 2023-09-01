@@ -3,8 +3,11 @@ import polygon from "../../../../assets/graph1.png";
 import robot from "../../../../assets/robo.png";
 import ProgressBar from "../Section2/ProgressBar";
 import { Link } from "react-router-dom";
+import { UserLogin } from "../../../../context/AuthContext";
 
-const Hero = ({ stickyNav, active, setActive }) => {
+const Hero = () => {
+  const { stickyNav, active, setActive } = UserLogin();
+
   return (
     <div
       id="hero"
@@ -29,7 +32,7 @@ const Hero = ({ stickyNav, active, setActive }) => {
                 <Link
                   to="/InterviewHome"
                   className="test-start"
-                  onClick={() => setActive(2)}
+                  // onClick={() => setActive(2)}
                 >
                   Start
                 </Link>
@@ -54,7 +57,7 @@ const Hero = ({ stickyNav, active, setActive }) => {
               <div>
                 <Link
                   to="/PIHome"
-                  onClick={() => setActive(3)}
+                  // onClick={() => setActive(3)}
                   className="test-start"
                 >
                   Start

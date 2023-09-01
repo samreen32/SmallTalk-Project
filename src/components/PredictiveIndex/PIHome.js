@@ -15,22 +15,7 @@ function PIHome() {
     email: "",
   });
   const { fName, mName, lName, email } = credentials;
-  const {
-    stickyNav,
-    setstickyNav,
-    toTop,
-    settoTop,
-    active,
-    setActive,
-    isValidObjField,
-    updateError,
-    error,
-    setError,
-    showPassword,
-    setShowPassword,
-    showToast,
-    setIsErrorOpen,
-  } = UserLogin();
+  const { error } = UserLogin();
 
   const handleCheckboxChange = (event) => {
     setShowInput(event.target.checked);
@@ -51,15 +36,8 @@ function PIHome() {
 
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
-      
+      <Navbar />
+
       <div style={{ padding: "7% 10%" }}>
         <h2 className="md-8">
           <b>

@@ -1,23 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 function PILastScreen() {
-  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
-    UserLogin();
-
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
-      
+      <Navbar />
+
       <div style={{ padding: "50px 150px 0 150px" }}>
         <h2>
           <b>The Predictive Index®</b>

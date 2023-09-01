@@ -43,10 +43,9 @@ export default function SelectedReport() {
     setReportData,
   } = UserLogin();
 
-  console.log("report data in selected report", reportData);
-  const currentLevelCode = levelCodes[highestLevel.toLowerCase()];
-  let nextLevelCode = "";
-  const levels = Object.keys(levelCodes);
+  const defaultLevel = "Beginner";
+  const [highestLevel, setHighestLevel] = useState(defaultLevel);
+
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
@@ -67,12 +66,10 @@ export default function SelectedReport() {
     mistake.start,
     mistake.end,
   ]);
-
   const similarityScore = parseFloat(queryParams.get("similarity_score")) || 0;
   const roundedScore = Math.round(similarityScore);
   const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
   const levelWords = JSON.parse(queryParams.get("level_words"));
-
   const levelToCEFR = {
     beginner: "A1",
     elementary: "A2",
@@ -273,9 +270,6 @@ export default function SelectedReport() {
   //   setChartData(updatedChartData);
   // }, [queryParams]);
 
-  const defaultLevel = "Beginner";
-  const [highestLevel, setHighestLevel] = useState(defaultLevel);
-
   /* Display Highest Level in Polygon */
   const levelCodes = {
     beginner: "A1",
@@ -380,12 +374,14 @@ export default function SelectedReport() {
 
   
   /* Display Current Level and Next Level in Active Vocabulary 4 div */
+  const currentLevelCode = levelCodes[highestLevel.toLowerCase()];
+  let nextLevelCode = "";
+  const levels = Object.keys(levelCodes);
   const currentLevelIndex = levels.indexOf(highestLevel.toLowerCase());
   if (currentLevelIndex !== -1 && currentLevelIndex < levels.length - 1) {
     nextLevelCode = levelCodes[levels[currentLevelIndex + 1]];
   }
 
-  
   /* Descripiton for each Levels */
   const levelDescriptions = {
     beginner:

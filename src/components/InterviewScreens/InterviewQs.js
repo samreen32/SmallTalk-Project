@@ -193,6 +193,7 @@ export default function InterviewQs() {
         replace: true,
       });
       setInterviewName("");
+      setActive(2);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -283,14 +284,7 @@ export default function InterviewQs() {
 
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
+      <Navbar />
       <div
         style={{
           display: "flex",

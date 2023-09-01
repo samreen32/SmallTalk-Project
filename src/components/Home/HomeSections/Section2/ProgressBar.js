@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Circle from "./Circle";
+import { UserLogin } from "../../../../context/AuthContext";
 
-const ProgressBar = ({ active, setActive }) => {
+const ProgressBar = () => {
+  const {active, setActive} = UserLogin();
   const [width, setWidth] = useState(0);
   const [circle] = useState(3);
   const arr = [];

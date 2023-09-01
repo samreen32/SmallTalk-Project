@@ -4,19 +4,11 @@ import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 function PIFivthScreen() {
-  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
-    UserLogin();
+  const { setActive } = UserLogin();
 
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
+      <Navbar />
 
       <div style={{ padding: "50px 150px 0 150px" }}>
         <h2>
@@ -361,6 +353,7 @@ function PIFivthScreen() {
                 color: "floralwhite",
                 fontWeight: "bold",
               }}
+              onClick={() => setActive(3)}
               to="/PILastScreen"
             >
               Submit

@@ -1,24 +1,13 @@
 import React from "react";
 import { TextField, Select, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
-import { UserLogin } from "../../context/AuthContext";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 
 function PISecondScreen() {
-  const { stickyNav, setstickyNav, toTop, settoTop, active, setActive } =
-    UserLogin();
-
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
-      
+      <Navbar />
+
       <div style={{ padding: "50px 110px 0 110px" }}>
         <label for="exampleInputEmail1" className="form-label">
           <div className="form-text">
