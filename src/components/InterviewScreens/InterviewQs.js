@@ -52,7 +52,7 @@ export default function InterviewQs() {
 
   /* Get user id state */
   const [responseData, setResponseData] = useState([]);
-  const { id } = userData;
+  const { id } = userData || {};
 
   /* Store Report Name State */
   const [credentials, setCredentials] = useState({

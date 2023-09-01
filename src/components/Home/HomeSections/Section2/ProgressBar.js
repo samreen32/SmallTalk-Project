@@ -13,8 +13,6 @@ const ProgressBar = ({ active, setActive }) => {
     setWidth(progressBarWidth);
   }, [active, circle]);
 
-
-
   for (let i = 0; i < circle; i++) {
     arr.push(
       <div className="circle-container" key={i}>

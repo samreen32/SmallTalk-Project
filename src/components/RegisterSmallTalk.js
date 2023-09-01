@@ -21,7 +21,7 @@ export default function RegisterSmallTalk() {
   });
   const { name, email, password } = credentials;
   const {
-    // isValidEmail,
+    getCSRFToken,
     isLoading,
     setIsLoading,
     setUserData,
@@ -34,16 +34,6 @@ export default function RegisterSmallTalk() {
     showToast,
     setIsErrorOpen,
   } = UserLogin();
-
-  // Function to get the CSRF token
-  async function getCSRFToken() {
-    try {
-      const response = await axios.get(`${AUTH_API_URL}/get-csrf-token/`);
-      return response.data.csrftoken;
-    } catch (error) {
-      console.error("Failed to get CSRF token:", error);
-    }
-  }
 
   // Function to create a user
   const handleRegister = async (e) => {
@@ -61,27 +51,33 @@ export default function RegisterSmallTalk() {
       if (!password.trim() || password.length < 5) {
         return updateError("Password must be 5 character long!", setError);
       }
-
       setIsLoading(true);
       const csrfToken = await getCSRFToken();
+
       const headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": csrfToken,
       };
+
       const response = await axios.post(
         `${AUTH_API_URL}/add-user/`,
         credentials,
         { headers }
       );
       if (response.data.id) {
-        showToast("You have been Register successfully!");
+        localStorage.setItem("csrfToken", csrfToken);
+        localStorage.setItem("userData", JSON.stringify(response.data));
+        console.log("token in localstorage", csrfToken);
+
         setIsRegistrationScreen(false);
         setIsLoginScreenVisible(false);
         setUserData(response.data);
+        showToast("You have been Register successfully!");
         navigation("/Main", {
           state: { name: response.data.name, id: response.data.id },
+          replace: true,
         });
-        console.log("User login successfully:", response.data);
+        console.log("User register successfully:", response.data);
         setIsLoading(false);
       } else {
         console.error("User with these credentials already present", error);

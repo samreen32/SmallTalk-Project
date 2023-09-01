@@ -13,6 +13,7 @@ import { AUTH_API_URL } from "../Auth_API";
 
 export default function LoginSmallTalk() {
   let navigation = useNavigate();
+
   const [isLoginScreen, setIsLoginScreen] = useState(true);
   const [isRegistrationScreenVisible, setIsRegistrationScreenVisible] =
     useState(true);
@@ -23,6 +24,8 @@ export default function LoginSmallTalk() {
   });
   const { email, password } = credentials;
   const {
+    setIsLogIn,
+    getCSRFToken,
     isLoading,
     setIsLoading,
     setUserData,
@@ -51,24 +54,31 @@ export default function LoginSmallTalk() {
         return updateError("Password must be 5 character long!", setError);
       }
       setIsLoading(true);
+      const csrfToken = await getCSRFToken();
+
       const headers = {
         "Content-Type": "application/json",
       };
+
       const response = await axios.get(
         `${AUTH_API_URL}/login/${credentials.email}/${credentials.password}`,
         { headers }
       );
 
       if (response.data.id) {
-        showToast("You have been Login successfully!");
-        localStorage.setItem("authToken", response.data.token);
-        console.log("token", response.data.token);
-        // localStorage.setItem('userData', JSON.stringify(response.data));
+        localStorage.setItem("csrfToken", csrfToken);
+        localStorage.setItem("userData", JSON.stringify(response.data));
+        console.log("token in login localstorage", csrfToken);
+
+        setCredentials({ email: "", password: "" });
         setIsLoginScreen(false);
         setIsRegistrationScreenVisible(false);
         setUserData(response.data);
+        console.log(response.data, "user data in login");
+        showToast("You have been Login successfully!");
         navigation("/Main", {
           state: { name: response.data.name, id: response.data.id },
+          replace: true,
         });
         console.log("User login successfully:", response.data);
         setIsLoading(false);

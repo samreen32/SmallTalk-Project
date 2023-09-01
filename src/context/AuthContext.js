@@ -1,9 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Snackbar, Alert } from "@mui/material";
+import axios from "axios";
+import { AUTH_API_URL } from "../Auth_API";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const storedToken = localStorage.getItem("csrfToken");
+  const [token, setToken] = useState(storedToken);
+
+  const storedUserData = localStorage.getItem("userData");
+  const [userData, setUserData] = useState(
+    storedUserData ? JSON.parse(storedUserData) : {}
+  );
+
   const [stickyNav, setstickyNav] = useState(false);
   const [toTop, settoTop] = useState(false);
   const [active, setActive] = useState(0);
@@ -15,8 +25,6 @@ const AuthProvider = ({ children }) => {
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [timerValue, setTimerValue] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [isLogIn, setIsLogIn] = useState(false);
-  const [userData, setUserData] = useState(null);
   const [reportData, setReportData] = useState([]);
   const [interviewName, setInterviewName] = useState("");
 
@@ -73,23 +81,33 @@ const AuthProvider = ({ children }) => {
     setIsErrorOpen(false);
   };
 
+  /***** Get and Store CSRF Token ******/
+  async function getCSRFToken() {
+    try {
+      const response = await axios.get(`${AUTH_API_URL}/get-csrf-token/`);
+      console.log("token in csrf", response.data.csrfToken);
+      return response.data.csrfToken;
+    } catch (error) {
+      console.error("Failed to get CSRF token:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("csrfToken", token);
+    } else {
+      localStorage.removeItem("csrfToken");
+    }
+  }, [token]);
+
   return (
     <AuthContext.Provider
       value={{
-        interviewName,
-        setInterviewName,
-        stickyNav,
-        setstickyNav,
-        toTop,
-        settoTop,
-        active,
-        setActive,
+        getCSRFToken: getCSRFToken,
         userData,
         setUserData,
-        reportData,
-        setReportData,
-        isLogIn,
-        setIsLogIn,
+        token,
+        setToken,
         isValidObjField,
         updateError,
         showToast,
@@ -100,6 +118,16 @@ const AuthProvider = ({ children }) => {
         setIsLoading,
         showPassword,
         setShowPassword,
+        stickyNav,
+        setstickyNav,
+        toTop,
+        settoTop,
+        active,
+        setActive,
+        interviewName,
+        setInterviewName,
+        reportData,
+        setReportData,
         timerValue,
         setTimerValue,
         isTimerRunning,

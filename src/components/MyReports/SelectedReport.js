@@ -81,6 +81,16 @@ export default function SelectedReport() {
     proficiency: "C2",
   };
 
+  /* Highest Level in Polygon display */
+  const levelCodes = {
+    beginner: "A1",
+    elementary: "A2",
+    intermediate: "B1",
+    "upper-intermediate": "B2",
+    advanced: "C1",
+    proficiency: "C2",
+  };
+
   /* Print Suggestions and Grammer Mistakes for table*/
   mistake_index_text.forEach((indexes, i) => {
     const [start, end] = indexes;
@@ -219,69 +229,6 @@ export default function SelectedReport() {
     return labels[level];
   };
 
-  useEffect(() => {
-    const level_words_percentage = queryParams.get("level_words_percentage");
-    const levelWordsPercentageData = JSON.parse(
-      decodeURIComponent(level_words_percentage)
-    );
-
-    const levelOrder = [
-      "beginner",
-      "elementary",
-      "intermediate",
-      "upper-intermediate",
-      "advanced",
-      "proficiency",
-    ];
-
-    let highestLevel = "Beginner";
-    let highestPercentage = -1;
-
-    for (const level of levelOrder) {
-      const percentage = parseInt(levelWordsPercentageData[level] || 0);
-      if (percentage > highestPercentage) {
-        highestLevel = level;
-        highestPercentage = percentage;
-      }
-    }
-
-    highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
-    setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
-
-    // const MINIMUM_PERCENTAGE = 1;
-
-    // const updatedChartData = levelOrder.map((level) => {
-    //   const percentage = parseInt(levelWordsPercentageData[level] || 0);
-    //   const adjustedPercentage = Math.max(percentage, MINIMUM_PERCENTAGE);
-    //   return [
-    //     `${adjustedPercentage}% — ${getProficiencyLabel(level)} (${
-    //       level.charAt(0).toUpperCase() + level.slice(1)
-    //     })`,
-    //     adjustedPercentage,
-    //   ];
-    // });
-
-    const updatedChartData = levelOrder.map((level) => [
-      `${parseInt(levelWordsPercentageData[level])}% — ${
-        level.charAt(0).toUpperCase() + level.slice(1)
-      } (${getProficiencyLabel(level)})`,
-      parseInt(levelWordsPercentageData[level]),
-    ]);
-
-    // console.log("chart data", updatedChartData);
-    setChartData(updatedChartData);
-  }, [queryParams]);
-
-  /* Highest Level in Polygon display */
-  const levelCodes = {
-    beginner: "A1",
-    elementary: "A2",
-    intermediate: "B1",
-    "upper-intermediate": "B2",
-    advanced: "C1",
-    proficiency: "C2",
-  }
-
   // useEffect(() => {
   //   const level_words_percentage = queryParams.get("level_words_percentage");
   //   const levelWordsPercentageData = JSON.parse(
@@ -301,7 +248,7 @@ export default function SelectedReport() {
   //   let highestPercentage = -1;
 
   //   for (const level of levelOrder) {
-  //     const percentage = levelWordsPercentageData[level];
+  //     const percentage = parseInt(levelWordsPercentageData[level] || 0);
   //     if (percentage > highestPercentage) {
   //       highestLevel = level;
   //       highestPercentage = percentage;
@@ -311,61 +258,114 @@ export default function SelectedReport() {
   //   highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
   //   setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
 
-  //   const updatedChartData = {
-  //     labels: levelOrder.map((level) => {
-  //       const percentage = parseInt(levelWordsPercentageData[level]);
-  //       let levelName = "";
-  //       switch (level) {
-  //         case "beginner":
-  //           levelName = "Beginner (A1)";
-  //           break;
-  //         case "elementary":
-  //           levelName = "Elementary (A2)";
-  //           break;
-  //         case "intermediate":
-  //           levelName = "Intermediate (B1)";
-  //           break;
-  //         case "upper-intermediate":
-  //           levelName = "Upper-intermediate (B2)";
-  //           break;
-  //         case "advanced":
-  //           levelName = "Advanced (C1)";
-  //           break;
-  //         case "proficiency":
-  //           levelName = "Proficiency (C2)";
-  //           break;
-  //         default:
-  //           levelName = level;
-  //           break;
-  //       }
-  //       return `${percentage}% — ${levelName}`;
-  //     }),
-  //     datasets: [
-  //       {
-  //         borderWidth: 1,
-  //         data: levelOrder.map((level) => levelWordsPercentageData[level]),
-  //         backgroundColor: [
-  //           "red",
-  //           "blue",
-  //           "yellow",
-  //           "green",
-  //           "purple",
-  //           "orange",
-  //         ],
-  //         borderColor: [
-  //           "rgba(255, 99, 132, 1)",
-  //           "rgba(54, 162, 235, 1)",
-  //           "rgba(255, 206, 86, 1)",
-  //           "rgba(75, 192, 192, 1)",
-  //           "rgba(153, 102, 255, 1)",
-  //           "rgba(255, 159, 64, 1)",
-  //         ],
-  //       },
-  //     ],
-  //   };
+  //   // const MINIMUM_PERCENTAGE = 1;
 
+  //   // const updatedChartData = levelOrder.map((level) => {
+  //   //   const percentage = parseInt(levelWordsPercentageData[level] || 0);
+  //   //   const adjustedPercentage = Math.max(percentage, MINIMUM_PERCENTAGE);
+  //   //   return [
+  //   //     `${adjustedPercentage}% — ${getProficiencyLabel(level)} (${
+  //   //       level.charAt(0).toUpperCase() + level.slice(1)
+  //   //     })`,
+  //   //     adjustedPercentage,
+  //   //   ];
+  //   // });
+
+  //   const updatedChartData = levelOrder.map((level) => [
+  //     `${parseInt(levelWordsPercentageData[level])}% — ${
+  //       level.charAt(0).toUpperCase() + level.slice(1)
+  //     } (${getProficiencyLabel(level)})`,
+  //     parseInt(levelWordsPercentageData[level]),
+  //   ]);
+
+  //   // console.log("chart data", updatedChartData);
   //   setChartData(updatedChartData);
   // }, [queryParams]);
+
+  useEffect(() => {
+    const level_words_percentage = queryParams.get("level_words_percentage");
+    const levelWordsPercentageData = JSON.parse(
+      decodeURIComponent(level_words_percentage)
+    );
+
+    const levelOrder = [
+      "beginner",
+      "elementary",
+      "intermediate",
+      "upper-intermediate",
+      "advanced",
+      "proficiency",
+    ];
+
+    let highestLevel = "Beginner";
+    let highestPercentage = -1;
+
+    for (const level of levelOrder) {
+      const percentage = levelWordsPercentageData[level];
+      if (percentage > highestPercentage) {
+        highestLevel = level;
+        highestPercentage = percentage;
+      }
+    }
+
+    highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
+    setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
+
+    const updatedChartData = {
+      labels: levelOrder.map((level) => {
+        const percentage = parseInt(levelWordsPercentageData[level]);
+        let levelName = "";
+        switch (level) {
+          case "beginner":
+            levelName = "Beginner (A1)";
+            break;
+          case "elementary":
+            levelName = "Elementary (A2)";
+            break;
+          case "intermediate":
+            levelName = "Intermediate (B1)";
+            break;
+          case "upper-intermediate":
+            levelName = "Upper-intermediate (B2)";
+            break;
+          case "advanced":
+            levelName = "Advanced (C1)";
+            break;
+          case "proficiency":
+            levelName = "Proficiency (C2)";
+            break;
+          default:
+            levelName = level;
+            break;
+        }
+        return `${percentage}% — ${levelName}`;
+      }),
+      datasets: [
+        {
+          borderWidth: 1,
+          data: levelOrder.map((level) => levelWordsPercentageData[level]),
+          backgroundColor: [
+            "red",
+            "blue",
+            "yellow",
+            "green",
+            "purple",
+            "orange",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+        },
+      ],
+    };
+
+    setChartData(updatedChartData);
+  }, [queryParams]);
 
   /* Descripiton for each Levels */
   const levelDescriptions = {
@@ -426,8 +426,8 @@ export default function SelectedReport() {
     const stops = rulerValues.map((value) => `lightblue ${value}%`).join(", ");
     return `linear-gradient(to right, ${stops})`;
   }
-;
 
+  
   /* Bottom Content */
   const cardContent = [
     /* For Vocabulary */
@@ -450,17 +450,15 @@ export default function SelectedReport() {
                   </div>
                   <div
                     className="chart-container"
-                    style={
-                      {
-                        // position: "relative",
-                        // height: "300px",
-                        // maxWidth: "100%",
-                        // marginBottom: "60px",
-                      }
-                    }
+                    style={{
+                      position: "relative",
+                      height: "300px",
+                      maxWidth: "100%",
+                      // marginBottom: "60px",
+                    }}
                   >
-                    {/* {chartData && <Doughnut data={chartData} />} */}
-                    {chartData && (
+                    {chartData && <Doughnut data={chartData} />}
+                    {/* {chartData && (
                       <Chart
                         chartType="PieChart"
                         width={"100%"}
@@ -479,7 +477,7 @@ export default function SelectedReport() {
                           ],
                         }}
                       />
-                    )}
+                    )} */}
                   </div>
                 </div>
 

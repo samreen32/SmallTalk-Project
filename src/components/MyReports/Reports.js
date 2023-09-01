@@ -25,7 +25,7 @@ function Reports() {
     active,
     setActive,
   } = UserLogin();
-  const { id } = userData;
+  const { id } = userData || {};
 
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
   const searchWords = searchQuery.split(" "); // Split search query into words

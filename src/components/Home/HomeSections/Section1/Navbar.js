@@ -4,13 +4,14 @@ import { FaBars } from "react-icons/fa";
 import { MdOutlineClose } from "react-icons/md";
 import { PiCaretUpBold } from "react-icons/pi";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserLogin } from "../../../../context/AuthContext";
 import logout from "../../../../assets/img/logout.png";
 
 const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
+  let navigation = useNavigate();
   const { userData } = UserLogin();
-  const { name } = userData;
+  const { name } = userData || {};
 
   const [nav, setNav] = useState(false);
   const onOpen = () => {
@@ -40,6 +41,14 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const toggleModal = () => {
     setModalOpen(!modalOpen);
+  };
+
+  /* Logout Function to remove token */
+  const handleLogout = async () => {
+    localStorage.removeItem("csrfToken");
+    navigation("/", {
+      replace: true,
+    });
   };
 
   return (
@@ -116,7 +125,9 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
         </ul>
         <div className="dropdown custom-dropdown d-flex gap-2 align-items-center">
           <span className="user-name">
-            {name.charAt(0).toUpperCase() + name.slice(1)}
+            {typeof name === "string" && name.length > 0
+              ? name.charAt(0).toUpperCase() + name.slice(1)
+              : "User"}
           </span>
           <a
             className="nav-link-home"
@@ -225,6 +236,7 @@ const Navbar = ({ stickyNav, setstickyNav, toTop, settoTop }) => {
                     borderRadius: "20px",
                     width: "100px",
                   }}
+                  onClick={handleLogout}
                 >
                   Log out
                 </button>
