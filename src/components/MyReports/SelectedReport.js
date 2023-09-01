@@ -44,8 +44,9 @@ export default function SelectedReport() {
   } = UserLogin();
 
   console.log("report data in selected report", reportData);
-
-  const [highestLevel, setHighestLevel] = useState(null);
+  const currentLevelCode = levelCodes[highestLevel.toLowerCase()];
+  let nextLevelCode = "";
+  const levels = Object.keys(levelCodes);
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
@@ -73,16 +74,6 @@ export default function SelectedReport() {
   const levelWords = JSON.parse(queryParams.get("level_words"));
 
   const levelToCEFR = {
-    beginner: "A1",
-    elementary: "A2",
-    intermediate: "B1",
-    "upper-intermediate": "B2",
-    advanced: "C1",
-    proficiency: "C2",
-  };
-
-  /* Highest Level in Polygon display */
-  const levelCodes = {
     beginner: "A1",
     elementary: "A2",
     intermediate: "B1",
@@ -217,17 +208,17 @@ export default function SelectedReport() {
   };
 
   /* Highest Level based on Words */
-  const getProficiencyLabel = (level) => {
-    const labels = {
-      beginner: "A1",
-      elementary: "A2",
-      intermediate: "B1",
-      "upper-intermediate": "B2",
-      advanced: "C1",
-      proficiency: "C2",
-    };
-    return labels[level];
-  };
+  // const getProficiencyLabel = (level) => {
+  //   const labels = {
+  //     beginner: "A1",
+  //     elementary: "A2",
+  //     intermediate: "B1",
+  //     "upper-intermediate": "B2",
+  //     advanced: "C1",
+  //     proficiency: "C2",
+  //   };
+  //   return labels[level];
+  // };
 
   // useEffect(() => {
   //   const level_words_percentage = queryParams.get("level_words_percentage");
@@ -282,6 +273,19 @@ export default function SelectedReport() {
   //   setChartData(updatedChartData);
   // }, [queryParams]);
 
+  const defaultLevel = "Beginner";
+  const [highestLevel, setHighestLevel] = useState(defaultLevel);
+
+  /* Display Highest Level in Polygon */
+  const levelCodes = {
+    beginner: "A1",
+    elementary: "A2",
+    intermediate: "B1",
+    "upper-intermediate": "B2",
+    advanced: "C1",
+    proficiency: "C2",
+  };
+
   useEffect(() => {
     const level_words_percentage = queryParams.get("level_words_percentage");
     const levelWordsPercentageData = JSON.parse(
@@ -308,8 +312,15 @@ export default function SelectedReport() {
       }
     }
 
-    highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
-    setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
+    // highestLevel = highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
+    // setHighestLevel(highestPercentage > 0 ? highestLevel : "Beginner");
+    setHighestLevel(() => {
+      if (highestPercentage > 0) {
+        return highestLevel.charAt(0).toUpperCase() + highestLevel.slice(1);
+      } else {
+        return defaultLevel;
+      }
+    });
 
     const updatedChartData = {
       labels: levelOrder.map((level) => {
@@ -367,6 +378,14 @@ export default function SelectedReport() {
     setChartData(updatedChartData);
   }, [queryParams]);
 
+  
+  /* Display Current Level and Next Level in Active Vocabulary 4 div */
+  const currentLevelIndex = levels.indexOf(highestLevel.toLowerCase());
+  if (currentLevelIndex !== -1 && currentLevelIndex < levels.length - 1) {
+    nextLevelCode = levelCodes[levels[currentLevelIndex + 1]];
+  }
+
+  
   /* Descripiton for each Levels */
   const levelDescriptions = {
     beginner:
@@ -427,7 +446,6 @@ export default function SelectedReport() {
     return `linear-gradient(to right, ${stops})`;
   }
 
-  
   /* Bottom Content */
   const cardContent = [
     /* For Vocabulary */
@@ -542,8 +560,9 @@ export default function SelectedReport() {
                 </b>
               </h5>
               <p className="card-text">
-                correspond to level C1, the next level C2 starts with{" "}
-                {total_words}&nbsp; words
+                Corresponds to level {currentLevelCode}, the next level{" "}
+                {nextLevelCode ? `${nextLevelCode}` : "is not defined"} starts
+                with {total_words}&nbsp; words
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import interview from "../../assets/img/interview.png";
 import timer from "../../assets/img/TimeCircle.png";
 import question from "../../assets/img/questions.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserLogin } from "../../context/AuthContext";
 import "../../App.css";
 import axios from "axios";
@@ -15,6 +15,7 @@ import { AUDIO_API_URL, AUTH_API_URL, INTERVIEW_API_URL } from "../../Auth_API";
 import AppLoader from "../Loader/AppLoader";
 
 export default function InterviewQs() {
+  let navigation = useNavigate();
   /* States for Smaller Screens */
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const isScreenSmall = windowWidth <= 396;
@@ -32,6 +33,7 @@ export default function InterviewQs() {
   /* Context States */
   const {
     interviewName,
+    setInterviewName,
     isLoading,
     setIsLoading,
     updateError,
@@ -187,6 +189,10 @@ export default function InterviewQs() {
 
       setResponseData((prevData) => [...prevData, result.data]);
       setIsLoading(false);
+      navigation("/Reports", {
+        replace: true,
+      });
+      setInterviewName("");
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -206,14 +212,20 @@ export default function InterviewQs() {
 
   /* Interview Qs fetch from backend */
   useEffect(() => {
-    fetch(`${INTERVIEW_API_URL}/get-question/`)
-      .then((response) => response.json())
-      .then((data) => {
-        setInterviewQuestions(data);
-      })
-      .catch((error) => {
+    const fetchInterviewQuestions = async () => {
+      try {
+        const response = await fetch(`${INTERVIEW_API_URL}/get-question/`);
+        if (response.ok) {
+          const data = await response.json();
+          setInterviewQuestions(data);
+        } else {
+          throw new Error("Failed to fetch interview questions");
+        }
+      } catch (error) {
         console.error("Error fetching interview questions:", error);
-      });
+      }
+    };
+    fetchInterviewQuestions();
   }, []);
 
   // const interviewQuestions = [
