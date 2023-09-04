@@ -6,14 +6,6 @@ import { AUTH_API_URL } from "../Auth_API";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const storedToken = localStorage.getItem("csrfToken");
-  const [token, setToken] = useState(storedToken);
-
-  const storedUserData = localStorage.getItem("userData");
-  const [userData, setUserData] = useState(
-    storedUserData ? JSON.parse(storedUserData) : {}
-  );
-
   const [stickyNav, setstickyNav] = useState(false);
   const [toTop, settoTop] = useState(false);
   const [active, setActive] = useState(0);
@@ -91,6 +83,14 @@ const AuthProvider = ({ children }) => {
       console.error("Failed to get CSRF token:", error);
     }
   }
+
+  const storedToken = localStorage.getItem("csrfToken");
+  const [token, setToken] = useState(storedToken);
+
+  const storedUserData = localStorage.getItem("userData");
+  const [userData, setUserData] = useState(
+    storedUserData ? JSON.parse(storedUserData) : {}
+  );
 
   useEffect(() => {
     if (token) {

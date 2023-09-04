@@ -11,6 +11,7 @@ import {
   ArcElement,
 } from "chart.js";
 import { Radar, Doughnut } from "react-chartjs-2";
+import CanvasJSReact from "@canvasjs/react-charts";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -21,6 +22,7 @@ import Navbar from "../Home/HomeSections/Section1/Navbar";
 import { UserLogin } from "../../context/AuthContext";
 import Chart from "react-google-charts";
 import polygon from "../../assets/img/Group 1.svg";
+const { CanvasJSChart } = CanvasJSReact;
 
 ChartJS.register(
   Tooltip,
@@ -317,62 +319,73 @@ export default function SelectedReport() {
     });
 
     const updatedChartData = {
-      labels: levelOrder.map((level) => {
-        const percentage = parseInt(levelWordsPercentageData[level]);
-        let levelName = "";
-        switch (level) {
-          case "beginner":
-            levelName = "Beginner (A1)";
-            break;
-          case "elementary":
-            levelName = "Elementary (A2)";
-            break;
-          case "intermediate":
-            levelName = "Intermediate (B1)";
-            break;
-          case "upper-intermediate":
-            levelName = "Upper-intermediate (B2)";
-            break;
-          case "advanced":
-            levelName = "Advanced (C1)";
-            break;
-          case "proficiency":
-            levelName = "Proficiency (C2)";
-            break;
-          default:
-            levelName = level;
-            break;
-        }
-        return `${percentage}% — ${levelName}`;
-      }),
-      datasets: [
+      data: [
         {
-          borderWidth: 1,
-          data: levelOrder.map((level) => levelWordsPercentageData[level]),
-          backgroundColor: [
-            "red",
-            "blue",
-            "yellow",
-            "green",
-            "purple",
-            "orange",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-          ],
+          type: "doughnut",
+          showInLegend: true,
+          legendText: "{label}",
+          indexLabel: "{label}: {y}%", // Customize the label format
+          dataPoints: levelWordsPercentageData,
         },
       ],
     };
 
+    // const updatedChartData = {
+    //   labels: levelOrder.map((level) => {
+    //     const percentage = parseInt(levelWordsPercentageData[level]);
+    //     let levelName = "";
+    //     switch (level) {
+    //       case "beginner":
+    //         levelName = "Beginner (A1)";
+    //         break;
+    //       case "elementary":
+    //         levelName = "Elementary (A2)";
+    //         break;
+    //       case "intermediate":
+    //         levelName = "Intermediate (B1)";
+    //         break;
+    //       case "upper-intermediate":
+    //         levelName = "Upper-intermediate (B2)";
+    //         break;
+    //       case "advanced":
+    //         levelName = "Advanced (C1)";
+    //         break;
+    //       case "proficiency":
+    //         levelName = "Proficiency (C2)";
+    //         break;
+    //       default:
+    //         levelName = level;
+    //         break;
+    //     }
+    //     return `${percentage}% — ${levelName}`;
+    //   }),
+    //   datasets: [
+    //     {
+    //       borderWidth: 1,
+    //       data: levelOrder.map((level) => levelWordsPercentageData[level]),
+    //       backgroundColor: [
+    //         "red",
+    //         "blue",
+    //         "yellow",
+    //         "green",
+    //         "purple",
+    //         "orange",
+    //       ],
+    //       borderColor: [
+    //         "rgba(255, 99, 132, 1)",
+    //         "rgba(54, 162, 235, 1)",
+    //         "rgba(255, 206, 86, 1)",
+    //         "rgba(75, 192, 192, 1)",
+    //         "rgba(153, 102, 255, 1)",
+    //         "rgba(255, 159, 64, 1)",
+    //       ],
+    //     },
+    //   ],
+    // };
+
     setChartData(updatedChartData);
   }, [queryParams]);
 
-  
   /* Display Current Level and Next Level in Active Vocabulary 4 div */
   const currentLevelCode = levelCodes[highestLevel.toLowerCase()];
   let nextLevelCode = "";
@@ -393,7 +406,7 @@ export default function SelectedReport() {
     intermediate:
       "Individuals at the intermediate level of exhibit proficiency in engaging discussions. They can confidently express opinions, share experiences, and discuss a broad array of topics, such as travel destinations, recent movies, and upcoming plans. Their ability to navigate conversations fluidly and respond thoughtfully makes them valuable contributors to social gatherings and casual conversations.",
 
-    upperIntermediate:
+    "upper-intermediate":
       "At the upper-intermediate level, enthusiasts display finesse in steering conversations. They can delve into deeper subjects, such as cultural trends, personal goals, and societal issues, while maintaining a comfortable and engaging atmosphere. Their conversational prowess allows them to connect with others on a meaningful level, making them sought-after conversationalists.",
 
     advanced:
@@ -442,6 +455,23 @@ export default function SelectedReport() {
     return `linear-gradient(to right, ${stops})`;
   }
 
+  // const options = {
+  //   data: [
+  //     {
+  //       type: "pie",
+  //       showInLegend: true,
+  //       legendText: "{label}",
+  //       dataPoints: [
+  //         { label: "Apple", y: 10 },
+  //         { label: "Banana", y: 15 },
+  //         { label: "Cherry", y: 7 },
+  //         { label: "Date", y: 5 },
+  //         { label: "Elderberry", y: 20 },
+  //       ],
+  //     },
+  //   ],
+  // };
+
   /* Bottom Content */
   const cardContent = [
     /* For Vocabulary */
@@ -466,12 +496,13 @@ export default function SelectedReport() {
                     className="chart-container"
                     style={{
                       position: "relative",
-                      height: "300px",
-                      maxWidth: "100%",
+                      // height: "100px",
+                      // maxWidth: "80%",
                       // marginBottom: "60px",
                     }}
                   >
-                    {chartData && <Doughnut data={chartData} />}
+                    {chartData && <CanvasJSChart options={chartData} />}
+                    {/* {chartData && <Doughnut data={chartData} />} */}
                     {/* {chartData && (
                       <Chart
                         chartType="PieChart"

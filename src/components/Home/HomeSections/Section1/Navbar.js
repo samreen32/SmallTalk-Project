@@ -10,7 +10,15 @@ import logout from "../../../../assets/img/logout.png";
 
 const Navbar = () => {
   let navigation = useNavigate();
-  const { userData, stickyNav, setstickyNav, toTop, settoTop } = UserLogin();
+  const {
+    userData,
+    token,
+    setToken,
+    stickyNav,
+    setstickyNav,
+    toTop,
+    settoTop,
+  } = UserLogin();
   const { name } = userData || {};
 
   const [nav, setNav] = useState(false);
@@ -50,6 +58,34 @@ const Navbar = () => {
       replace: true,
     });
   };
+
+  /* Function to remove token after 1 min if user does not interact with page */
+  useEffect(() => {
+    let idleTimer;
+    const resetTimer = () => {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        localStorage.removeItem("csrfToken");
+        localStorage.removeItem("userData");
+        console.log("Token removed");
+        navigation("/", { replace: true });
+        setToken(null);
+      }, 60000);
+    };
+
+    const handleUserInteraction = () => {
+      resetTimer();
+    };
+
+    window.addEventListener("mousemove", handleUserInteraction);
+    window.addEventListener("keydown", handleUserInteraction);
+    resetTimer();
+    return () => {
+      window.removeEventListener("mousemove", handleUserInteraction);
+      window.removeEventListener("keydown", handleUserInteraction);
+      clearTimeout(idleTimer);
+    };
+  }, []);
 
   return (
     <>
@@ -231,7 +267,7 @@ const Navbar = () => {
                   type="button"
                   class="btn"
                   style={{
-                    backgroundColor: "#259F6C",
+                    backgroundColor: "#5cb3cf",
                     color: "white",
                     borderRadius: "20px",
                     width: "100px",
