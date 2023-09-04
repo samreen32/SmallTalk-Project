@@ -324,7 +324,7 @@ export default function SelectedReport() {
           type: "doughnut",
           showInLegend: true,
           legendText: "{label}",
-          indexLabel: "{label}: {y}%", // Customize the label format
+          indexLabel: "{label}: {y}%", 
           dataPoints: levelWordsPercentageData,
         },
       ],

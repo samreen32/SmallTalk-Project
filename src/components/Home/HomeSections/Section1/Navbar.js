@@ -62,29 +62,29 @@ const Navbar = () => {
   /* Function to remove token after 1 min if user does not interact with page */
   useEffect(() => {
     let idleTimer;
-    const resetTimer = () => {
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        localStorage.removeItem("csrfToken");
-        localStorage.removeItem("userData");
-        console.log("Token removed");
-        navigation("/", { replace: true });
-        setToken(null);
-      }, 60000);
-    };
+    // const resetTimer = () => {
+    //   clearTimeout(idleTimer);
+    //   idleTimer = setTimeout(() => {
+    //     localStorage.removeItem("csrfToken");
+    //     localStorage.removeItem("userData");
+    //     console.log("Token removed");
+    //     navigation("/", { replace: true });
+    //     setToken(null);
+    //   }, 60000);
+    // };
 
-    const handleUserInteraction = () => {
-      resetTimer();
-    };
+    // const handleUserInteraction = () => {
+    //   resetTimer();
+    // };
 
-    window.addEventListener("mousemove", handleUserInteraction);
-    window.addEventListener("keydown", handleUserInteraction);
-    resetTimer();
-    return () => {
-      window.removeEventListener("mousemove", handleUserInteraction);
-      window.removeEventListener("keydown", handleUserInteraction);
-      clearTimeout(idleTimer);
-    };
+    // window.addEventListener("mousemove", handleUserInteraction);
+    // window.addEventListener("keydown", handleUserInteraction);
+    // resetTimer();
+    // return () => {
+    //   window.removeEventListener("mousemove", handleUserInteraction);
+    //   window.removeEventListener("keydown", handleUserInteraction);
+    //   clearTimeout(idleTimer);
+    // };
   }, []);
 
   return (

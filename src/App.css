@@ -697,3 +697,86 @@ ul.checklist-2 li:before {
   margin-right: 40%;
   padding: 0 20% 0 0;
 } */
+
+.jumbotron {
+  margin: 0px auto;
+  padding: 240px 30px;
+  background-color: #5CB3CF;
+  color: floralwhite;
+}
+
+.project-button {
+  background-color: #5cb3cf;
+  color: floralwhite;
+  font-weight: bold;
+}
+
+.contact-bg {
+  background-color: #f1f1f5;
+  border-radius: 12px;
+  width: 20%;
+  margin: auto;
+  display: block;
+  text-align: center;
+  align-items: center;
+}
+
+.contact-p {
+  color: #5CB3CF;
+  font-weight: bold;
+}
+
+.contentFooter {
+  padding: 5% 20% 0 20%;
+  text-align: center;
+  border: none;
+  margin-top: 650px;
+}
+
+@media (max-width: 1000px) {
+  .contentFooter {
+    margin-top: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contentFooter {
+    margin-top: 720px;
+  }
+}
+
+@media (max-width: 550px) {
+  .contentFooter {
+    margin-top: 800px;
+  }
+}
+
+@media (max-width: 358px) {
+  .contentFooter {
+    margin-top: 840px;
+  }
+}
+
+@media (max-width: 306px) {
+  .contentFooter {
+    margin-top: 860px;
+  }
+}
+
+@media (max-width: 289px) {
+  .contentFooter {
+    margin-top: 890px;
+  }
+}
+
+@media (max-width: 258px) {
+  .contentFooter {
+    margin-top: 920px;
+  }
+}
+
+@media (max-width: 250px) {
+  .contentFooter {
+    margin-top: 950px;
+  }
+}

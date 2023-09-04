@@ -232,12 +232,7 @@ function PIHome() {
           {/* Continue Button */}
           <Link
             type="submit"
-            className="btn my-4"
-            style={{
-              backgroundColor: "#5cb3cf",
-              color: "floralwhite",
-              fontWeight: "bold",
-            }}
+            className="btn project-button my-4"
             to="/PISecondScreen"
           >
             Continue

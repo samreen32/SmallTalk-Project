@@ -25,7 +25,8 @@ function Stack() {
     <div style={{ fontFamily: "Roboto, sans-serif" }}>
       <Router>
         <Routes>
-          <Route path="/" element={token ? <Main /> : <Register />} />
+        
+          <Route path="/" element={token ? <Main /> : <Contact />} />
           <Route exact path="/Main" element={<Main />} />
           <Route path="/Login" element={<Login />} />
           <Route exact path="/InterviewHome" element={<InterviewHome />} />
