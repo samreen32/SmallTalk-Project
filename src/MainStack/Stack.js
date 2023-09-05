@@ -17,6 +17,7 @@ import PILastScreen from "../components/PredictiveIndex/PILastScreen";
 import Contact from "../components/ContactUs/Contact";
 import FAQScreen from "../components/FAQ/FAQScreen";
 import Main from "../components/Home/Main";
+import Dashboard from "../components/Dashboard/main";
 
 function Stack() {
   const { token } = UserLogin();
@@ -25,7 +26,7 @@ function Stack() {
     <div style={{ fontFamily: "Roboto, sans-serif" }}>
       <Router>
         <Routes>
-          <Route path="/" element={token ? <Main /> : <Contact />} />
+          <Route path="/" element={token ? <Main /> : <Dashboard />} />
           <Route exact path="/Main" element={<Main />} />
           <Route path="/Login" element={<Login />} />
           <Route exact path="/InterviewHome" element={<InterviewHome />} />

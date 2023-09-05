@@ -318,70 +318,70 @@ export default function SelectedReport() {
       }
     });
 
-    const updatedChartData = {
-      data: [
-        {
-          type: "doughnut",
-          showInLegend: true,
-          legendText: "{label}",
-          indexLabel: "{label}: {y}%", 
-          dataPoints: levelWordsPercentageData,
-        },
-      ],
-    };
-
     // const updatedChartData = {
-    //   labels: levelOrder.map((level) => {
-    //     const percentage = parseInt(levelWordsPercentageData[level]);
-    //     let levelName = "";
-    //     switch (level) {
-    //       case "beginner":
-    //         levelName = "Beginner (A1)";
-    //         break;
-    //       case "elementary":
-    //         levelName = "Elementary (A2)";
-    //         break;
-    //       case "intermediate":
-    //         levelName = "Intermediate (B1)";
-    //         break;
-    //       case "upper-intermediate":
-    //         levelName = "Upper-intermediate (B2)";
-    //         break;
-    //       case "advanced":
-    //         levelName = "Advanced (C1)";
-    //         break;
-    //       case "proficiency":
-    //         levelName = "Proficiency (C2)";
-    //         break;
-    //       default:
-    //         levelName = level;
-    //         break;
-    //     }
-    //     return `${percentage}% — ${levelName}`;
-    //   }),
-    //   datasets: [
+    //   data: [
     //     {
-    //       borderWidth: 1,
-    //       data: levelOrder.map((level) => levelWordsPercentageData[level]),
-    //       backgroundColor: [
-    //         "red",
-    //         "blue",
-    //         "yellow",
-    //         "green",
-    //         "purple",
-    //         "orange",
-    //       ],
-    //       borderColor: [
-    //         "rgba(255, 99, 132, 1)",
-    //         "rgba(54, 162, 235, 1)",
-    //         "rgba(255, 206, 86, 1)",
-    //         "rgba(75, 192, 192, 1)",
-    //         "rgba(153, 102, 255, 1)",
-    //         "rgba(255, 159, 64, 1)",
-    //       ],
+    //       type: "doughnut",
+    //       showInLegend: true,
+    //       legendText: "{label}",
+    //       indexLabel: "{label}: {y}%", 
+    //       dataPoints: levelWordsPercentageData,
     //     },
     //   ],
     // };
+
+    const updatedChartData = {
+      labels: levelOrder.map((level) => {
+        const percentage = parseInt(levelWordsPercentageData[level]);
+        let levelName = "";
+        switch (level) {
+          case "beginner":
+            levelName = "Beginner (A1)";
+            break;
+          case "elementary":
+            levelName = "Elementary (A2)";
+            break;
+          case "intermediate":
+            levelName = "Intermediate (B1)";
+            break;
+          case "upper-intermediate":
+            levelName = "Upper-intermediate (B2)";
+            break;
+          case "advanced":
+            levelName = "Advanced (C1)";
+            break;
+          case "proficiency":
+            levelName = "Proficiency (C2)";
+            break;
+          default:
+            levelName = level;
+            break;
+        }
+        return `${percentage}% — ${levelName}`;
+      }),
+      datasets: [
+        {
+          borderWidth: 1,
+          data: levelOrder.map((level) => levelWordsPercentageData[level]),
+          backgroundColor: [
+            "red",
+            "blue",
+            "yellow",
+            "green",
+            "purple",
+            "orange",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+        },
+      ],
+    };
 
     setChartData(updatedChartData);
   }, [queryParams]);
@@ -501,8 +501,8 @@ export default function SelectedReport() {
                       // marginBottom: "60px",
                     }}
                   >
-                    {chartData && <CanvasJSChart options={chartData} />}
-                    {/* {chartData && <Doughnut data={chartData} />} */}
+                    {/* {chartData && <CanvasJSChart options={chartData} />} */}
+                    {chartData && <Doughnut data={chartData} />}
                     {/* {chartData && (
                       <Chart
                         chartType="PieChart"
