@@ -186,7 +186,7 @@ const Navbar = () => {
           <ul className="dropdown-menu dropdown-width my-3">
             &nbsp;
             <li>
-              <Link className="dropdown-item" to="/">
+              <Link className="dropdown-item" to="/Dashboard">
                 My Progress
               </Link>
               &nbsp;

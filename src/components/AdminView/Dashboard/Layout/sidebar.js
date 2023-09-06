@@ -8,7 +8,7 @@ import { FaUserPlus } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { GrFormClose } from "react-icons/gr";
-import DashboardLogo from "../../../assets/img/dashLogo.png";
+import DashboardLogo from "../../../../assets/img/dashLogo.png";
 
 const Sidebar = ({ setToggle, setsideToggle }) => {
   const onClose = () => {

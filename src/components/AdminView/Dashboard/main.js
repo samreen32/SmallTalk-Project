@@ -1,17 +1,66 @@
 import React from "react";
 import Dashboard from "./Layout/dashboard";
 import Graph from "./graph";
-import DashFoot from "./dashFoot";
+import DashFoot from "../../AdminView/Dashboard/dashFoot";
+import { AUTH_API_URL, REPORT_API_URL } from "../../../Auth_API";
+
+/* Function to count total users */
+const countTotalUsers = async () => {
+  try {
+    const response = await fetch(`${AUTH_API_URL}/user_count/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.total_users;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+    return 0;
+  }
+};
+
+const totalUsers = await countTotalUsers();
+
+/* Function to count total reports */
+const countTotalReports = async () => {
+  try {
+    const response = await fetch(`${REPORT_API_URL}/get_total_report/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.total_reports;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+    return 0;
+  }
+};
+
+const totalReports = await countTotalReports();
 
 const data = [
   {
     title: "Total Valid User",
-    value: 112312.24,
+    value: totalUsers,
     icon: true,
   },
   {
     title: "Total Reports",
-    value: 2256,
+    value: totalReports,
   },
   {
     title: "Total CV's",
@@ -19,7 +68,7 @@ const data = [
   },
   {
     title: "Total Oral Assessments",
-    value: 3115,
+    value: totalReports,
   },
 ];
 

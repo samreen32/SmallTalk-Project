@@ -17,7 +17,8 @@ import PILastScreen from "../components/PredictiveIndex/PILastScreen";
 import Contact from "../components/ContactUs/Contact";
 import FAQScreen from "../components/FAQ/FAQScreen";
 import Main from "../components/Home/Main";
-import Dashboard from "../components/Dashboard/main";
+import Dashboard from "../components/AdminView/Dashboard/main";
+import UserDetails from "../components/AdminView/UserDash/UserDetails";
 
 function Stack() {
   const { token } = UserLogin();
@@ -29,6 +30,8 @@ function Stack() {
           <Route path="/" element={token ? <Main /> : <Register />} />
           <Route exact path="/Main" element={<Main />} />
           <Route path="/Login" element={<Login />} />
+          <Route exact path="/Dashboard" element={<Dashboard />} />
+          <Route exact path="/UserDetails" element={<UserDetails />} />
           <Route exact path="/InterviewHome" element={<InterviewHome />} />
           <Route exact path="/InterviewWarmUp" element={<InterviewWarmUp />} />
           <Route exact path="/InterviewQs" element={<InterviewQs />} />

@@ -1,7 +1,6 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { AiFillDelete } from "react-icons/ai";
-import { BiSolidNavigation } from "react-icons/bi";
+import { IoIosShareAlt } from "react-icons/io";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -46,7 +45,6 @@ const DashFoot = () => {
 
   const [tableData, setTableData] = useState(initialTableData);
   const [searchedData, setSearchedData] = useState(initialTableData);
-  const [deletedRows, setDeletedRows] = useState([]);
 
   const onChangeData = (e) => {
     const value = e.target.value.toLowerCase();
@@ -63,14 +61,6 @@ const DashFoot = () => {
         setSearchedData(tableData);
       }
     }
-  };
-
-  const onDeleteRow = (index) => {
-    setDeletedRows([...deletedRows, index]);
-    const updatedData = tableData.filter((_, i) => i !== index);
-    setTableData(updatedData);
-    const updatedSearchedData = searchedData.filter((_, i) => i !== index);
-    setSearchedData(updatedSearchedData);
   };
 
   return (
@@ -111,14 +101,8 @@ const DashFoot = () => {
                     <td className="py-3">{item.oral}</td>
                     <td className="py-3">{item.index}</td>
                     <td className="py-3">
-                      <button
-                        className="del-btn"
-                        onClick={() => onDeleteRow(index)}
-                      >
-                        <AiFillDelete className="del-btn" />
-                      </button>
-                      <NavLink to="" className="nav-btn">
-                        <BiSolidNavigation />
+                      <NavLink to="/UserDetails" className="nav-btn">
+                        <IoIosShareAlt />
                       </NavLink>
                     </td>
                   </tr>

@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./sidebar";
 import Topnav from "./topnav";
-import CustomHook from "../Configure/customHook";
+import CustomHook from "../../../AdminView/Dashboard/Configure/customHook";
 
 const dashboard = ({ children, title }) => {
   const [setToggle, setsideToggle, onOpen] = CustomHook();
