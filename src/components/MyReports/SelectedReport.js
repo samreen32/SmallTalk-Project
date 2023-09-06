@@ -11,7 +11,6 @@ import {
   ArcElement,
 } from "chart.js";
 import { Radar, Doughnut } from "react-chartjs-2";
-import CanvasJSReact from "@canvasjs/react-charts";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -20,9 +19,8 @@ import meterBlue from "../../assets/img/meterBlue.jpg";
 import cross from "../../assets/img/CrossIcon.png";
 import Navbar from "../Home/HomeSections/Section1/Navbar";
 import { UserLogin } from "../../context/AuthContext";
-import Chart from "react-google-charts";
 import polygon from "../../assets/img/Group 1.svg";
-const { CanvasJSChart } = CanvasJSReact;
+import ReactApexChart from "react-apexcharts";
 
 ChartJS.register(
   Tooltip,
@@ -45,11 +43,6 @@ export default function SelectedReport() {
     setReportData,
   } = UserLogin();
 
-  const defaultLevel = "Beginner";
-  const [highestLevel, setHighestLevel] = useState(defaultLevel);
-
-  const [value, setValue] = useState(0);
-  const [chartData, setChartData] = useState(null);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
 
@@ -272,6 +265,12 @@ export default function SelectedReport() {
   //   setChartData(updatedChartData);
   // }, [queryParams]);
 
+  const defaultLevel = "Beginner";
+  const [highestLevel, setHighestLevel] = useState(defaultLevel);
+
+  const [value, setValue] = useState(0);
+  const [chartData, setChartData] = useState(null);
+
   /* Display Highest Level in Polygon */
   const levelCodes = {
     beginner: "A1",
@@ -282,21 +281,21 @@ export default function SelectedReport() {
     proficiency: "C2",
   };
 
+  const level_words_percentage = queryParams.get("level_words_percentage");
+  const levelWordsPercentageData = JSON.parse(
+    decodeURIComponent(level_words_percentage)
+  );
+
+  const levelOrder = [
+    "beginner",
+    "elementary",
+    "intermediate",
+    "upper-intermediate",
+    "advanced",
+    "proficiency",
+  ];
+
   useEffect(() => {
-    const level_words_percentage = queryParams.get("level_words_percentage");
-    const levelWordsPercentageData = JSON.parse(
-      decodeURIComponent(level_words_percentage)
-    );
-
-    const levelOrder = [
-      "beginner",
-      "elementary",
-      "intermediate",
-      "upper-intermediate",
-      "advanced",
-      "proficiency",
-    ];
-
     let highestLevel = "Beginner";
     let highestPercentage = -1;
 
@@ -317,18 +316,6 @@ export default function SelectedReport() {
         return defaultLevel;
       }
     });
-
-    // const updatedChartData = {
-    //   data: [
-    //     {
-    //       type: "doughnut",
-    //       showInLegend: true,
-    //       legendText: "{label}",
-    //       indexLabel: "{label}: {y}%", 
-    //       dataPoints: levelWordsPercentageData,
-    //     },
-    //   ],
-    // };
 
     const updatedChartData = {
       labels: levelOrder.map((level) => {
@@ -455,6 +442,29 @@ export default function SelectedReport() {
     return `linear-gradient(to right, ${stops})`;
   }
 
+  // const chartData_ = {
+  //   labels: ["Category A", "Category B", "Category C", "Category D"],
+  //   series: [30, 20, 25, 15],
+  // };
+
+  // Options for the pie chart
+  // const chartOptions = {
+  //   labels: chartData_.labels,
+  //   responsive: [
+  //     {
+  //       breakpoint: 480,
+  //       options: {
+  //         chart: {
+  //           width: 200,
+  //         },
+  //         legend: {
+  //           position: "bottom",
+  //         },
+  //       },
+  //     },
+  //   ],
+  // };
+
   // const options = {
   //   data: [
   //     {
@@ -496,13 +506,43 @@ export default function SelectedReport() {
                     className="chart-container"
                     style={{
                       position: "relative",
-                      // height: "100px",
-                      // maxWidth: "80%",
-                      // marginBottom: "60px",
+                      height: "300px",
+                      maxWidth: "80%",
+                      marginBottom: "60px",
                     }}
                   >
+                    {/* {chartData && <Doughnut data={chartData} />} */}
+                    {chartData && (
+                      <ReactApexChart
+                        options={{
+                          labels: chartData.labels,
+                        }}
+                        series={chartData.datasets[0].data}
+                        type="pie"
+                        width="400"
+                      />
+                    )}
+                    {/* <ReactApexChart
+                      options={chartOptions}
+                      series={chartData_.series}
+                      type="pie"
+                      width="100%"
+                    /> */}
+                    {/* {chartData && (
+                      <ReactApexChart
+                        options={{
+                          labels: chartData.labels,
+                          legend: {
+                            show: true,
+                            position: "bottom",
+                          },
+                        }}
+                        series={chartData.series}
+                        type="pie"
+                        width="100%"
+                      />
+                    )} */}
                     {/* {chartData && <CanvasJSChart options={chartData} />} */}
-                    {chartData && <Doughnut data={chartData} />}
                     {/* {chartData && (
                       <Chart
                         chartType="PieChart"

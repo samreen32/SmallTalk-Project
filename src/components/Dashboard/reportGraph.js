@@ -18,7 +18,7 @@ class ReportGraph extends React.Component {
         xaxis: {
           categories: this.getPreviousMonths(8),
         },
-        colors: ["#F5F5F5"],
+        colors: ["#43ADDB"],
         fill: {
           type: "gradient",
           gradient: {

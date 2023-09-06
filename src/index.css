@@ -104,18 +104,20 @@ nav {
   border: none;
 }
 
-.speak-test {
-  border-radius: 8px;
-  background: #F5F5F5;
-  border: 4px solid transparent;
-  border-bottom-color: #F4B844;
-}
-
+.speak-test,
 .predictive {
   border-radius: 8px;
   background: #F5F5F5;
   border: 4px solid transparent;
   border-bottom-color: #F4B844;
+  flex: 1;
+  margin: 0 2px;
+}
+
+.test-section-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .test-section {
@@ -140,6 +142,13 @@ nav {
   text-decoration: none;
   color: #005CE7;
   font-weight: 600;
+}
+
+.cvUpload {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-top: 3rem;
 }
 
 .polygon {
@@ -186,7 +195,7 @@ nav {
   width: 250px;
   height: 250px;
   object-fit: cover;
-  margin-top: 1.rem;
+  margin-top: 1.0rem;
 }
 
 .faq-work {
@@ -675,6 +684,11 @@ nav {
 }
 
 @media (max-width: 410px) {
+  .cvUpload {
+    height: 170px;
+    width: 170px;
+  }
+
   .robot {
     height: 200px;
     width: 200px;
@@ -753,6 +767,11 @@ nav {
 }
 
 @media (max-width: 334px) {
+  .cvUpload {
+    height: 150px;
+    width: 150px;
+  }
+
   .polygon {
     height: 200px;
     width: 200px;

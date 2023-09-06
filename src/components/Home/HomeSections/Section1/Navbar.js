@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserLogin } from "../../../../context/AuthContext";
 import logout from "../../../../assets/img/logout.png";
+import { elements } from "chart.js";
 
 const Navbar = () => {
   let navigation = useNavigate();
@@ -53,6 +54,10 @@ const Navbar = () => {
 
   /* Logout Function to remove token */
   const handleLogout = async () => {
+    const element = document.querySelectorAll(".modal-backdrop");
+    element.forEach((item) => {
+      item.style.display = "none";
+    });
     localStorage.removeItem("csrfToken");
     navigation("/", {
       replace: true,
