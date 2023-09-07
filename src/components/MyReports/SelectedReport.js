@@ -65,14 +65,6 @@ export default function SelectedReport() {
   const roundedScore = Math.round(similarityScore);
   const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
   const levelWords = JSON.parse(queryParams.get("level_words"));
-  const levelToCEFR = {
-    beginner: "A1",
-    elementary: "A2",
-    intermediate: "B1",
-    "upper-intermediate": "B2",
-    advanced: "C1",
-    proficiency: "C2",
-  };
 
   /* Print Suggestions and Grammer Mistakes for table*/
   mistake_index_text.forEach((indexes, i) => {
@@ -511,8 +503,8 @@ export default function SelectedReport() {
                       marginBottom: "60px",
                     }}
                   >
-                    {/* {chartData && <Doughnut data={chartData} />} */}
-                    {chartData && (
+                    {chartData && <Doughnut data={chartData} />}
+                    {/* {chartData && (
                       <ReactApexChart
                         options={{
                           labels: chartData.labels,
@@ -521,7 +513,7 @@ export default function SelectedReport() {
                         type="pie"
                         width="400"
                       />
-                    )}
+                    )} */}
                     {/* <ReactApexChart
                       options={chartOptions}
                       series={chartData_.series}
@@ -594,7 +586,7 @@ export default function SelectedReport() {
                                 key={index}
                                 className={index % 2 === 0 ? "" : "table-light"}
                               >
-                                <th scope="row">{levelToCEFR[level]}</th>
+                                <th scope="row">{levelCodes[level]}</th>
                                 <td>{levelWords[level].join(", ")}</td>
                               </tr>
                             )
