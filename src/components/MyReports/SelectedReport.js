@@ -32,16 +32,7 @@ ChartJS.register(
 );
 
 export default function SelectedReport() {
-  const {
-    stickyNav,
-    setstickyNav,
-    toTop,
-    settoTop,
-    active,
-    setActive,
-    reportData,
-    setReportData,
-  } = UserLogin();
+  const { levelDescriptions, levelCodes } = UserLogin();
 
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -65,6 +56,20 @@ export default function SelectedReport() {
   const roundedScore = Math.round(similarityScore);
   const normalizedScore = Math.min(Math.max(roundedScore, 0), 100);
   const levelWords = JSON.parse(queryParams.get("level_words"));
+
+  // if (
+  //   duration &&
+  //   words_per_minute &&
+  //   total_words &&
+  //   totalUniqueWords &&
+  //   context &&
+  //   grammar_mistakes &&
+  //   similarityScore &&
+  //   levelWords
+  // ) {
+  //   const newUrl = window.location.pathname;
+  //   window.history.pushState({}, "", newUrl);
+  // }
 
   /* Print Suggestions and Grammer Mistakes for table*/
   mistake_index_text.forEach((indexes, i) => {
@@ -263,16 +268,6 @@ export default function SelectedReport() {
   const [value, setValue] = useState(0);
   const [chartData, setChartData] = useState(null);
 
-  /* Display Highest Level in Polygon */
-  const levelCodes = {
-    beginner: "A1",
-    elementary: "A2",
-    intermediate: "B1",
-    "upper-intermediate": "B2",
-    advanced: "C1",
-    proficiency: "C2",
-  };
-
   const level_words_percentage = queryParams.get("level_words_percentage");
   const levelWordsPercentageData = JSON.parse(
     decodeURIComponent(level_words_percentage)
@@ -373,24 +368,6 @@ export default function SelectedReport() {
   if (currentLevelIndex !== -1 && currentLevelIndex < levels.length - 1) {
     nextLevelCode = levelCodes[levels[currentLevelIndex + 1]];
   }
-
-  /* Descripiton for each Levels */
-  const levelDescriptions = {
-    beginner:
-      "At the beginner level, individuals are starting to grasp basic conversational phrases. They can exchange simple greetings and engage in uncomplicated discussions about topics like the weather, daily routines, and personal hobbies. While they may stumble occasionally, they are eager to learn and improve their ability to participate in everyday chit-chat with friends and acquaintances.",
-
-    elementary:
-      "Elementary-level practitioners are gaining confidence in their conversational skills. They can comfortably initiate and sustain dialogues on familiar subjects, including personal interests, favorite foods, and leisure activities. While they might occasionally seek help with complex vocabulary, they're well on their way to becoming adept at handling light-hearted exchanges and social interactions.",
-
-    intermediate:
-      "Individuals at the intermediate level of exhibit proficiency in engaging discussions. They can confidently express opinions, share experiences, and discuss a broad array of topics, such as travel destinations, recent movies, and upcoming plans. Their ability to navigate conversations fluidly and respond thoughtfully makes them valuable contributors to social gatherings and casual conversations.",
-
-    "upper-intermediate":
-      "At the upper-intermediate level, enthusiasts display finesse in steering conversations. They can delve into deeper subjects, such as cultural trends, personal goals, and societal issues, while maintaining a comfortable and engaging atmosphere. Their conversational prowess allows them to connect with others on a meaningful level, making them sought-after conversationalists.",
-
-    advanced:
-      "Advanced practitioners are virtuosos in the art of conversation. They effortlessly navigate intricate topics, including philosophy, art, and global affairs, while weaving in personal anecdotes and insightful perspectives. Their eloquence and charm make them captivating interlocutors who can turn any exchange into a memorable and enriching experience.",
-  };
 
   /* Fourth Div Tabs Changing */
   const handleTabChange = (event, newValue) => {
@@ -982,14 +959,7 @@ export default function SelectedReport() {
 
   return (
     <>
-      <Navbar
-        stickyNav={stickyNav}
-        setstickyNav={setstickyNav}
-        toTop={toTop}
-        settoTop={settoTop}
-        active={active}
-        setActive={setActive}
-      />
+      <Navbar />
 
       <div style={{ padding: "45px" }}>
         <div className="row mx-1">

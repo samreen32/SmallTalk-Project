@@ -19,6 +19,12 @@ const AuthProvider = ({ children }) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [reportData, setReportData] = useState([]);
   const [interviewName, setInterviewName] = useState("");
+  const storedToken = localStorage.getItem("csrfToken");
+  const [token, setToken] = useState(storedToken);
+  const storedUserData = localStorage.getItem("userData");
+  const [userData, setUserData] = useState(
+    storedUserData ? JSON.parse(storedUserData) : {}
+  );
 
   /***** Functions to format timer for interview ******/
   useEffect(() => {
@@ -73,6 +79,42 @@ const AuthProvider = ({ children }) => {
     setIsErrorOpen(false);
   };
 
+  /* Function to capitalize first letter of name */
+  const capitalizeFirst = (str) => {
+    if (typeof str === "string") {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    return str;
+  };
+
+  /* Descripiton for each Levels */
+  const levelDescriptions = {
+    beginner:
+      "At the beginner level, individuals are starting to grasp basic conversational phrases. They can exchange simple greetings and engage in uncomplicated discussions about topics like the weather, daily routines, and personal hobbies. While they may stumble occasionally, they are eager to learn and improve their ability to participate in everyday chit-chat with friends and acquaintances.",
+
+    elementary:
+      "Elementary-level practitioners are gaining confidence in their conversational skills. They can comfortably initiate and sustain dialogues on familiar subjects, including personal interests, favorite foods, and leisure activities. While they might occasionally seek help with complex vocabulary, they're well on their way to becoming adept at handling light-hearted exchanges and social interactions.",
+
+    intermediate:
+      "Individuals at the intermediate level of exhibit proficiency in engaging discussions. They can confidently express opinions, share experiences, and discuss a broad array of topics, such as travel destinations, recent movies, and upcoming plans. Their ability to navigate conversations fluidly and respond thoughtfully makes them valuable contributors to social gatherings and casual conversations.",
+
+    "upper-intermediate":
+      "At the upper-intermediate level, enthusiasts display finesse in steering conversations. They can delve into deeper subjects, such as cultural trends, personal goals, and societal issues, while maintaining a comfortable and engaging atmosphere. Their conversational prowess allows them to connect with others on a meaningful level, making them sought-after conversationalists.",
+
+    advanced:
+      "Advanced practitioners are virtuosos in the art of conversation. They effortlessly navigate intricate topics, including philosophy, art, and global affairs, while weaving in personal anecdotes and insightful perspectives. Their eloquence and charm make them captivating interlocutors who can turn any exchange into a memorable and enriching experience.",
+  };
+
+  /* Display Highest Level in Polygon */
+  const levelCodes = {
+    beginner: "A1",
+    elementary: "A2",
+    intermediate: "B1",
+    "upper-intermediate": "B2",
+    advanced: "C1",
+    proficiency: "C2",
+  };
+
   /***** Get and Store CSRF Token ******/
   async function getCSRFToken() {
     try {
@@ -83,14 +125,6 @@ const AuthProvider = ({ children }) => {
       console.error("Failed to get CSRF token:", error);
     }
   }
-
-  const storedToken = localStorage.getItem("csrfToken");
-  const [token, setToken] = useState(storedToken);
-
-  const storedUserData = localStorage.getItem("userData");
-  const [userData, setUserData] = useState(
-    storedUserData ? JSON.parse(storedUserData) : {}
-  );
 
   useEffect(() => {
     if (token) {
@@ -114,6 +148,7 @@ const AuthProvider = ({ children }) => {
         error,
         setError,
         setIsErrorOpen,
+        capitalizeFirst,
         isLoading,
         setIsLoading,
         showPassword,
@@ -133,6 +168,8 @@ const AuthProvider = ({ children }) => {
         isTimerRunning,
         setIsTimerRunning,
         formatTimer,
+        levelDescriptions,
+        levelCodes,
       }}
     >
       {children}

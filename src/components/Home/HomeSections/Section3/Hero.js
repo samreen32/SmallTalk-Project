@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import polygon from "../../../../assets/graph1.png";
 import robot from "../../../../assets/robo.png";
 import cvImg from "../../../../assets/img/cv-upload.png";
@@ -8,6 +8,40 @@ import { UserLogin } from "../../../../context/AuthContext";
 
 const Hero = () => {
   const { stickyNav, active, setActive } = UserLogin();
+
+  const [fileSelected, setFileSelected] = useState(false);
+  const [file, setFile] = useState(null);
+
+  function handleFileUpload(selectedFiles) {
+    if (selectedFiles.length > 0) {
+      setFileSelected(true);
+      setFile(selectedFiles[0]); // Store the selected file in state
+    } else {
+      console.log("No file selected.");
+    }
+  }
+
+  function uploadFileToServer() {
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      fetch("http://192.168.18.122:8000/upload_pdf/", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("cv data", data);
+          // Handle the server's response here if needed
+        })
+        .catch((error) => {
+          console.error("Error uploading CV:", error);
+        });
+    } else {
+      console.log("No file to upload.");
+    }
+  }
 
   return (
     <div
@@ -30,15 +64,21 @@ const Hero = () => {
                 qualifications, work experience, skills, and achievements.{" "}
               </p>
               <div className="d-xl-flex d-lg-flex d-md-flex d-sm-flex  d-block justify-content-between">
-                <div>
-                  <Link
-                    to="/InterviewHome"
-                    className="test-start"
-                    // onClick={() => setActive(2)}
-                  >
-                    Upload
-                  </Link>
-                </div>
+                {!fileSelected ? (
+                  <label htmlFor="fileInput" className="test-start">
+                    <span>Select File</span>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      style={{ display: "none" }}
+                      onChange={(e) => handleFileUpload(e.target.files)}
+                    />
+                  </label>
+                ) : (
+                  <button onClick={""} className="test-start">
+                    Upload CV
+                  </button>
+                )}
                 <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
                   <img src={cvImg} className="cvUpload" alt="" />
                 </div>
